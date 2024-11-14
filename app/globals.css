@@ -28,12 +28,11 @@ body {
 }
 
 a {
-	text-decoration: none;
-	color: var(--blue);
-	&:hover
-
-{
 	text-decoration: underline;
+	color: var(--green);
+	&:hover	{
+	text-decoration: underline;
+		color: var(--darkgreen);
 }
 
 }
