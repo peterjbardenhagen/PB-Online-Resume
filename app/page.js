@@ -271,7 +271,7 @@ export default function Home() {
                             <p>I am actively looking for new opportunities. Please keep me in mind for any new project. I am based in Brisbane and open to relocation to Sydney or Perth.</p>
                             <a href="./CV Peter Bardenhagen.docx" className="button black">Download Resume</a>
                             <p>&nbsp;</p>
-                            <p>There are a couple of known issues that I'm working on fixing: Don't press enter, use the Send button or the Chatbot won't respond. You may need to scroll down to get the response.</p>
+                            <p><small>There are a couple of known issues that I'm working on fixing: Don't press enter, use the Send button or the Chatbot won't respond. You may need to scroll down to get the response.</small></p>
                         </div>
                         <div className="chat-box">
                             <div className="scroll-area">
