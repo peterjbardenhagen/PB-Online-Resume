@@ -45,6 +45,37 @@ EDUCATION
 ArchiMate, TOGAF, ITIL, Prince2 Practitioner, PSM, PSPO, SAFe Agilist
 Mental Health First Aid Officer and St John’s Ambulance First Aid
 Master of Business Administration (MBA) Candidate, The University of Queensland
+
+I'm in the final stage of completing my MBA. 1 course to go. Finish at end of Semester 1, 2025
+
+Skill	Years	Level
+.Net C#	10+	Lead
+Python	2	Mid
+React	2	Mid
+Angular	3	Mid
+Azure	6	Senior
+AWS	6	Mid
+GCP	1	Mid
+SQL	10+	Lead
+WCAG	10+	Lead
+TOGAF	3	Mid
+ArchiMate	1	New
+
+
+Skill	Years	Level
+Project Management	7	Senior
+Solutions Architecture	7	Lead
+Enterprise Architecture	2	Mid
+Presales	10	Lead
+Databricks	1	New
+Optimizely	3	Lead
+Umbraco	7	Lead
+WebFlow	2	Senior
+FlutterFlow	2	Senior
+Software Engineering Manager	7	Lead
+D365	1	New
+
+
 PROFESSIONAL EXPERIENCE
 Position: Independent Contractor – June 2024 to present
 Company overview: Short-term contracts while applying for longer term roles
@@ -177,4 +208,62 @@ What's your biggest strength? I have a strong technical background and have an e
 What do you love most about your job? The people I work with, amazing clients and the opportunity to build something amazing and make a difference
 Does Peter have React experience? Of course, this Online Resume website is made in React
 Does Peter have NEXTjs experience? Of course, this Online Resume website is made in NEXTjs
+
+Peter is passionate about applying technology to enable businesses to achieve leading digital customer experience outcomes
+Peter is a highly competent lead digital architect with director level experience and holds up to date industry and vendor certifications
+Peter has delivered many enterprise level projects involving complex technical architecture, and complex stakeholder management
+
+Professional Experience at Empired and Capgemini 2022-23
+Western Power – Optimizely Technical Leader – Enterprise Platforms
+Establish a CoE for Optimizely DXP. Write Western Power enterprise and program level specific documentation to govern new Optimizely DXP projects including Guidelines, Standards, Design Patterns, High-Level Design Document, and Project Brief forming a full set of artefacts
+Provide advice to business leads, program managers on implementing Optimizely throughout the business and enable multiple concurrent projects to develop on the shared code-based platform
+Chair monthly Optimizely Chapter, and weekly Optimizely Developer Meetup
+
+Perpetual – Platform Architect 
+Solution Architect for Website Redevelopment on Optimizely Content Cloud CMS 12
+Own and drive architectural workshops, cloud, integration, security architecture, and work with business/technical stakeholders
+Responsible for working closely with multiple high-level stakeholders and vendors in determining, planning & setting the appropriate platform milestones/vision & roadmap for the website redevelopment
+Creating & driving the creation of technical documentation: Technical Design Document, Deployment Strategy, Integration Flows etc.
+
+Symbion – Platform Architect
+Solution Architect for B2B pharmacy ecommerce store implementing Optimizely Commerce 14 and integrating with Salesforce, and other CRMs and PIMs
+Own and drive the A&D phase holding various workshops, and creation of Technical Design Document, Test Strategy etc.
+Manage development process, testing process and team members
+Support team to interpret and provide clarity on scope and assess future sprints to ensure that the requirements are fit for purpose prior to commencement
+APA Group – Solution Advisory Enterprise Architect
+Provide quarterly proactive advisory on existing APA Grid Portal
+Various
+Presales consulting to various clients for Optimizely, Sitecore, Custom Cloud Apps, Micro Services etc.
+Principal UI Consultant for LendLease for mapping and document management
+Provide troubleshooting, and architectural governance & support for AusIMM, and Cancer Institute of NSW
+Lead upgrade of DXA Platform (Capgemini’s Optimizely Accelerator) to latest version
+
+Competencies
+Software Development Life Cycle
+Design thinking and Agile
+Digital Experience Platforms (DXPs) & CMS
+Customer Relationship Management
+Ecommerce
+Data & AI
+Costing and Budgeting
+P&L
+
+Profile
+Peter is passionate about applying technology to enable businesses to achieve leading digital customer experience outcomes
+Peter is a highly competent lead digital architect with director level experience and holds up to date industry and vendor certifications
+Peter has delivered many enterprise level projects involving complex technical architecture, and complex stakeholder management
+
+Education/Certification
+UQ MBA Candidate 2024
+Certified AWS Solution Architect Associate
+ITIL
+Prince2 Practitioner
+ScrumMaster (PSM-I)
+Product Owner (PSPO)
+SAFe Agilist 5.0, Umbraco L2
+Optimizely Content Cloud 12
+
+Recent industry experience: Education, Energy & Utilities, Financial services, Public sector
+
+
 `

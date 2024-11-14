@@ -17,6 +17,8 @@
 	--blue-100: #EDEDED;
 	--blue-400: Black;
 	--blue-800: White;
+	--green: Green;
+	--darkgreen: darkgreen;
 }
 
 body {
@@ -28,13 +30,11 @@ body {
 }
 
 a {
-	text-decoration: underline;
 	color: var(--green);
 	&:hover	{
-	text-decoration: underline;
+		text-decoration: underline;
 		color: var(--darkgreen);
-}
-
+	}
 }
 
 header {
