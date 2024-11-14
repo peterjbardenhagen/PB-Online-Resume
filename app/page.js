@@ -306,7 +306,6 @@ export default function Home() {
                         Good Reads
                     </h2>
                     <div className="gr_container" id="gr_grid_widget_1731301205">
-                        <a className="gr_link" rel="nofollow" href="https://www.goodreads.com/review/list/181135748-peter-bardenhagen?shelf=read&utm_medium=api&utm_source=grid_widget">Peter Bardenhagen's bookshelf: read</a>
                         <div className="gr_grid_container">
                             <div className="gr_grid_book_container"><a title="The Lean Startup: How Today's Entrepreneurs Use Continuous Innovation to Create Radically Successful Businesses" rel="nofollow" href="https://www.goodreads.com/book/show/12969025-the-lean-startup"><img alt="The Lean Startup: How Today's Entrepreneurs Use Continuous Innovation to Create Radically Successful Businesses" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1645396848l/12969025._SX98_.jpg" /></a></div>
                             <div className="gr_grid_book_container"><a title="The Practice of Enterprise Architecture : Method, Techniques and Artefacts" rel="nofollow" href="https://www.goodreads.com/book/show/211032093-the-practice-of-enterprise-architecture"><img alt="The Practice of Enterprise Architecture : Method, Techniques and Artefacts" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1712565618l/211032093._SX98_.jpg" /></a></div>
@@ -348,7 +347,10 @@ export default function Home() {
                             <div className="gr_grid_book_container"><a title="Think Like A CEO: Stop reacting, get out of your own head and take control of your role (The Effective CEO)" rel="nofollow" href="https://www.goodreads.com/book/show/59772437-think-like-a-ceo"><img alt="Think Like A CEO: Stop reacting, get out of your own head and take control of your role" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1638940230l/59772437._SX98_.jpg" /></a></div>
                             <div className="gr_grid_book_container"><a title="The SaaS Sales Method Fundamentals: How to Have Customer Conversations (Sales Blueprints Book 3)" rel="nofollow" href="https://www.goodreads.com/book/show/39782171-the-saas-sales-method-fundamentals"><img alt="The SaaS Sales Method Fundamentals: How to Have Customer Conversations" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1523197661l/39782171._SX98_.jpg" /></a></div>
                             <div className="gr_grid_book_container"><a title="The SaaS Sales Method for Customer Success & Account Managers: How to Grow Customers (Sales Blueprints Book 6)" rel="nofollow" href="https://www.goodreads.com/book/show/39904430-the-saas-sales-method-for-customer-success-account-managers"><img alt="The SaaS Sales Method for Customer Success & Account Managers: How to Grow Customers" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1524271414l/39904430._SX98_.jpg" /></a></div>
-                            <br className="gr_clear" /><br /><a className="gr_read_full" rel="nofollow" href="https://www.goodreads.com/user/show/181135748-peter-bardenhagen">Full collection at Good Reads »</a>
+                            <br className="gr_clear" /><br />
+                            <a href="https://www.goodreads.com/user/show/181135748-peter-bardenhagen" className="button black" target="_blank">
+                                Full collection at Good Reads »
+                            </a>
                         </div>
                     </div>
                 </section>
