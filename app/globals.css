@@ -31,6 +31,7 @@ body {
 
 a {
 	color: var(--green);
+	text-decoration: none;
 	&:hover	{
 		text-decoration: underline;
 		color: var(--darkgreen);
