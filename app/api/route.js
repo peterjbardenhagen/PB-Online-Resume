@@ -1,9 +1,13 @@
 import { OpenAIClient, AzureKeyCredential } from '@azure/openai';
-import { NextResponse } from 'next/server';
+import { NextResponse } from "next/server";
 
-const endpoint = process.env.AZURE_OPENAI_ENDPOINT;
-const apiKey = process.env.AZURE_OPENAI_API_KEY;
-const model = process.env.AZURE_OPENAI_MODEL;
+// const endpoint = process.env.AZURE_OPENAI_ENDPOINT;
+// const apiKey = process.env.AZURE_OPENAI_API_KEY;
+// const model = process.env.AZURE_OPENAI_MODEL;
+
+const endpoint = 'https://ai-drazureai-prod-eastus2-001.openai.azure.com/';
+const apiKey = '8Y0XFH0BfbaAM2u0dPIkbnno6UF7D4x1fTazpKrYuhMRs3PAWxa1JQQJ99AKACHYHv6XJ3w3AAAAACOG86h3';
+const model = 'GPT-4';
 
 export async function POST(req){
 	
@@ -13,11 +17,11 @@ export async function POST(req){
 
 	messages.unshift({
 		role: 'system',
-		content: `You are PortfolioGPT, answering only questions based on the resume provided.
+		content: `You are a Resume Bot, answering only questions based on the resume provided.
 Resume:
 ${DATA_RESUME}
 
-Help users learn more about Adrian from his resume.`
+Help users learn more about Peter from his resume.`
 	})
 
 	const response = await client.getChatCompletions(model, messages, {
@@ -29,48 +33,146 @@ Help users learn more about Adrian from his resume.`
 	 })
 }
 
-const DATA_RESUME = `Adrian Twarog
-Address: 1 Suburb, Street, State, 6000, Australia
-Phone: +610000000
-Email: not-real@adriantwarog.com
-Education
-Title of Course [2020-2021]
-Name of Training 
-Title of Academy
-Microsoft Certified Web Professional  [2019 – 2018]
-Graphics Designer and Web Administrator
-Australian Example of Programming Business
-High School Course [2018 – 2016]
-Title of the Course or Majors 
-Name of the High School
-Skills and Competences
-Full Stack Website Developer 
-Front End:  HTML, CSS, JavaScript, SASS, SCSS, LESS, SEO React, Angular, Knockout, jQuery Bootstrap, REST, GraphQL, AJAX/API, Responsive Design, WC3 
-Back End:  NodeJS, PHP MySQL, MongoDB, SQL, noSQL Apache, Express, IIS, Webhooks 
-Platforms: Amazon AWS, Linux, Windows, Cloud, Automation, Custom 
-Frameworks: WordPress, Joomla, PrestaShop, Shopify, Stripe, PayPal, Github 
-Management: Google Analytics, Adwords, Facebook Ads, Web Masters, etc 
-Full Stack App Developer 
-Platforms:  iOS Development, Android Development, OS Development 
-Front End:  React Native, JavaScript 
-Back End:  Integrated platforms, IE, Custom, WordPress, Drupal, etc 
-UX and UI Designer 
-Platforms:  Adobe Photoshop, Sketch, Figma 
-UI:  Website Mock-ups, App Mock-ups, Infographics, Stylesheets, Logos 
-UX:  Wireframing, Workflow Diagrams, Technical Specifications  
-Employment History
-Web Developer [Apr 2010 – Jul 2011] 
-Moshi Moshi Marketing
- Did some web dev and also IT. Provide on-site and remote technical support to 100+ clients ranging from large corporate bodies to private home users. 
- Provide over the phone support for clients to address software, hardware and network issues and assist clients through using remote software.
- Troubleshooting and resolving level 2 and 3 technical problems.
- Conduct VMware ESX installation, configuration and management. 
- Conduct communications cabinet installation, including fibre optic and cat6 patching, UPS, wireless switches and servers.
- Conduct server installation and software deployment.
- Assist with large scale SOE machine deployment. 
+const DATA_RESUME = `Peter Bardenhagen Confidential CV
+Enterprise Solutions Architect | Presales | Delivery | Apps, Data & AI | MBA Candidate
+peter@bardenhagen.xyz   +61 (0) 452 491 013   https://www.linkedin.com/in/peterbardenhagen 
+EXECUTIVE SUMMARY
+I’m an innovative digital enterprise leader with a proven track record collaborating with top-tier global consulting firms. Leveraging CX technology, I address business challenges, enhance customer experiences, and drive growth. My passion lies in building products, solving complex problems, designing robust architectures and delivering superior business results.
+Starting my career as a developer, I’ve always been curious about not just the ‘what,’ but also the ‘how’ and ‘why.’ Empathy for users drives me to optimise their experiences using UX principles and human-centered design.
+I excel at execution, bridging the gap between business and technology. My strong communication skills make me the conduit for prioritising and understanding their needs. I’m reliable, customer focussed, and results driven.
+EDUCATION
+	AWS Solution Architect Associate, Optimizely Content Cloud Developer, Umbraco Level 2, Databricks
+ArchiMate, TOGAF, ITIL, Prince2 Practitioner, PSM, PSPO, SAFe Agilist
+Mental Health First Aid Officer and St John’s Ambulance First Aid
+Master of Business Administration (MBA) Candidate, The University of Queensland
+PROFESSIONAL EXPERIENCE
+Position: Independent Contractor – June 2024 to present
+Company overview: Short-term contracts while applying for longer term roles
+Key projects:
+•	Azure AI project – Automated phone calls, Teams Chatbot, Report writer, LLM model training
+•	Conducted comprehensive accessibility compliance audit for a global rostering SaaS vendor:
+o	WCAG 2.1 AA standards, Section 508 requirements, ADA compliance
+o	VTAP certification for tender eligibility
+•	Built a consolidated timesheet application (.NET 8.0, C#) for a legal practice integrating multiple business systems to streamline professional services invoicing
+•	Contributed to CSIRO's Data61 quantum computing initiative:
+o	Conducted 50+ stakeholder interviews and experimented with several business models
+o	Identified commercial opportunities for quantum-based AI cybersecurity algorithm
+•	TOGAF 10th Edition, and ArchiMate training – Working towards certification
+
+Position: Senior Manager - Enterprise Architecture & Delivery - January 2022 to June 2024
+Company: Capgemini – Digital Customer Experience APAC Team
+Company overview: Tier 1 Global IT Consultancy in 51 countries with over 360,000 staff
+Key responsibilities and achievements:
+•	Lead architecture role delivering solutions in first 1.5 years (Optimizely, .Net Core, Vue.js tech stack):
+o	Lead Solution Architect - Symbion Shop – Optimizely Commerce B2B rolled out to 4,000 pharmacies – RFP, BRD , HLD, DevOps, integration and test strategy
+o	Business Architect - Perpetual Website – Optimizely Content Cloud - Global, and regional websites for Perpetual. Chair architectural workshops to elicit requirements for cloud, integration, security architecture. Own and drive business strategy, architectural workshops, cloud, integration, security architecture, and manage relationships with both business & technical stakeholders
+o	Digital Advisory Architect - Pharmacy Guild of Australia re-architecture of core business platform onto AWS defining vision, strategy, patterns, practices & standards
+o	Principal UI Consultant for LendLease for Esri GIS mapping and document management – Facilitated human centred design workshops with UX design, wireframing, prototyping and documentation
+o	Lead BAU for our DXP Accelerator, a reusable framework for building Optimizely solutions
+o	Training on Business Strategy, Gen AI, Machine Learning, Data Analytics, Databricks, Azure and Optimizely
+•	In the second 1.5 years I was the Enterprise Architect for a large $5 million+ digital transformation at Western Power establishing a CoE, Optimizely Chapter and leading documentation of support, onboarding and project enablement including HLDs, guidelines, standards, processes, patterns & practices. Implemented a composable CMS, DAM, experimentation (a/b testing), personalisation, customer data platform, analytics, and HA/geographic failover
+Position: Solution Architect – Design & Delivery – December 2018 to January 2022
+Company: Sonic Healthcare Ltd
+Company overview: Ranked Top 50 ASX company – specialising in global pathology, radiology and primary care
+Key responsibilities and achievements:
+•	Application architecture: Defined vision, strategy, best practices, standards, and patterns
+•	Integration architecture: CQRS, API, SignalR, micro services, message queue architectures
+•	Implemented and ran lunch and learns on Umbraco, unit testing, micro services, and telemetry
+•	Lead Developer of Angular & .Net Core CQRS tech stack solution: Location Search Map, Patient Check-in Kiosk and Clinic Opening Hours Manager
+•	Lead Developer on IPN Medical Centres corporate and clinics digital experience platform project (Umbraco, .Net Core, HTML 5, Bootstrap, TypeScript)
+•	Delivered new responsive Umbraco website for EasyVisit at www.easyvisit.com.au
+•	Interview and engaged external partners for UX and SEO
+•	Adhered and contributed to ways of working, and SDLC processes using Azure DevOps (Git)
+Position: Technical Project Manager – R&D, Messaging and Data Migration – July 2015 to September 2016
+Company: SS&C Technologies
+Company overview: Wealth Management Software Company
+Key responsibilities and achievements:
+•	Trusted to ensure success of projects to agreed scope, time and cost with P&L responsibility
+•	25 direct reports: scrum masters, product owners, architects, technical leads, developers, BAs, and QAs
+•	Hire to resource profile, and forecast capacity and utilisation
+•	Responsible for governance and compliance, and adherence to SS&C’s ways of working
+•	Routinely produce and socialise out status reports, risks and issues registers, impact assessments, change requests, resource profiles, schedules and statements of work
+•	Transformed delivery model from waterfall to agile, 3 feature teams, and coaching scrum masters
+•	Establish DevOps, CI/CD, agile ways of working, fortnightly showcase
+•	Successfully delivered:
+o	R&D white label wealth management platform and iWatch app. $500,000 budget
+o	Messaging Bus for Old Mutual Wealth. Team of 15, 3 feature teams, $5 million per year
+o	Data Migration for Old Mutual Wealth. Team of 4, $2 million budget
+o	Data modelling code generator for building messages. Team of 4, $500,000 budget
+o	Integration with Frontend Team to ensuring work package alignment and delivery of APIs
+o	Mobile apps for StatePlus. Team of 15 split into feature teams, $1 million budget
+o	Complex architectural changes and cross team dependencies
+o	Troubleshoot data mapping mismatches and integration issues
+Position: Senior Consultant - Technical Business Analyst - July 2014 to July 2015
+Company: Quantum IT
+Company overview: Leading Microsoft Partner IT consultancy and Placement Software company – quantumit.com.au inplacesoftware.com
+Key responsibilities and achievements:
+•	Product Owner of InPlace (ASP.Net C# based), world’s leading enterprise platform in use at 140 universities in Australia, United Kingdom and United States to manage process of student work industry learning placements
+•	Led product design covering accessibility, brand, and user interface guidelines ensuring a consistent, and minimum viable product. Project size: $100,000 to $1 million
+•	Prioritised product backlog, research latest trends in CX and UX, and make data driven decisions
+•	Product roadmaps balancing inputs from internal, customer and market
+•	Responded to product enhancement and bug requests sent through Zendesk to JIRA
+•	Modernised platform to meet latest trends, simplifying user experience, enhancing localisation, implementing responsive design, updates to mobile version and ensuring WCAG compliance
+•	Designed new round of enhancements to Financial Management System integrations for universities
+•	Engaged UX agency and led workshops to provide vision for a design required based on business requirements, and brand guidelines of InPlace
+•	Planned daily activities ranging from wire framing and prototyping to business analysis, project management, demos, reviews, guiding junior consultants, and directing business analysts, and developers on features
+Position: Manager, Development & Testing - October 2012 to June 2014
+Company: Education Services Australia
+Company overview: Not for Profit Government Organisation and Digital Agency
+Achievements:
+•	Maths 300, a cross-platform series of mathematics games for desktop and mobile
+•	Delivered Safe Schools Hub website with ministerial launch by Peter Garrett (Sitefinity, ASP.Net)
+•	Learning object repository system (LEX) feeding into every Education jurisdiction
+•	Hosting accounts, and establish Shared and Dedicated hosting and operational support agreements
+•	Migration of cloud services from AWS to ESA’s own cloud hosting environment
+•	Cross functional Development and Testing Team (up to 15 direct reports)¬¬
+•	Partnership with agency in Philippines uplifting FTEs to 20 staff to build a large-scale cloud based mobile apps platform in addition to development team augmentation on 35 projects
+
+Position: eHealth Team Leader - March 2011 to August 2012
+Company: Sonic Healthcare Ltd
+Achievements:
+•	Led a cross functional team of eHealth digital consultants
+•	60 highly available Umbraco CMS marketing websites (ASP.Net C#, SQL Server)
+•	Web based active directory management tool (ASP.Net C#)
+•	iPad and iPhone applications to deliver test results to doctors
+•	Secure web portals with integration to enterprise legacy systems for radiology
+•	Web services to securely integrate new web apps with older on prem enterprise systems
+
+ 
+Position: Managing Director – July 2008 to August 2018
+Company: Digital Response
+Achievements:
+•	Co-designed marketing and brand integrity platform for Mercedes-Benz and Chrysler for all Dealerships in Australia and New Zealand with ability to create SMS, email, print and direct mail campaigns online (ASP.Net C#, JQuery, HTML)
+•	Worked with Britax, BlueChipIT, SecureCorp and Traffic Technologies delivering websites, ecommerce sites, mobile apps and integrations to cloud and on-premise applications including Dynamics AX
+•	New digital platform for BlueChipIT a national IT wholesaler with 15,000 products, and integration via Azure Service Bus to on-premises Dynamics AX. With bi-directional sync of Customers, Invoices, Orders, Products and Statements. Productised solution and sold to other Dynamics AX customers
+Position: Technical Lead – January 2005 to July 2008
+Company: SolutionsCorp 
+Company overview: IT, Marketing, Digital Development & Design and Business Consulting 
+Achievements:
+•	Designed fleet management platform for Repco from conception through to build
+•	Sales of websites, portals, hardware and software to organisations
+•	Developed MyDesk, a CRM tailored to the needs of each client with quotes, purchasing, job monitoring, invoicing and expenses. Implemented at leading manufacturing and lighting businesses
+•	Developed an ASP.Net SMS rostering system, and web to fax invoice system for traffic management
 
 Additional Skills and Interests
-Language: Fluent in Polish
-Hobbies: Badminton, Graphics Design, Snowboarding
-Online: Youtube`
+Myers-Briggs personality type: ENTJ
+Citizenship: Australian
+Language: Fluent in English
+Hobbies: Badminton, Muay Thai, Aritifical Intelligence, Snowboarding, Hiking
+Favourite Movies: Sci-fi
+Online: Youtube
 
+Answers to popular questions
+How much is your permanent salary expectation? Depending on the exact specifics of the role and location I'm asking around $200,000 + super
+How much is your contractor day rate expectation? Depending on the seniority of the role around $1,200 per day inclusive of super plus GST. I have my own Pty Ltd
+How many years of solution architecture experience? Around 10 years. In every role I have been responsible for the solution in some capacity.
+How many years of .Net experience: 10 years including latest .Net Core versions
+Visual Basic or C#? I have both but I prefer to use C#
+How many years of Python experience? 2 years. I've been using Python a lot lately to build AI apps
+What's the largest project that you've managed? At SS&C I was personally responsible for a $5 million multi-year project for Old Mutual Wealth. At Capgemini I was a technical leader as part of a $5 million digital transformation
+What size projects do you manage? Usually around $500,000 to $1,000,000 but often a lot of small change requests around $100,000 plus
+Where do you see yourself in 5 years? I see myself working in a role focussing on AI or as a Head of Technology
+What's your biggest weakness? I suffer from imposter syndrome like a lot of people, and just need to remind myself that I'm only human
+What's your biggest strength? I have a strong technical background and have an equally strong business background having almost completed an MBA, managed large projects and teams as well as have ran a startup digital agency. I understand technology and how to align it to business strategy
+What do you love most about your job? The people I work with, amazing clients and the opportunity to build something amazing and make a difference
+`

@@ -121,11 +121,11 @@ export default function Home() {
                             <img src="./imgs/togaf.jpg" alt="TOGAF" className="landscape" />
                             <img src="./imgs/itil.png" alt="ITIL" className="landscape" />
                             <img src="./imgs/pspo.png" alt="Professional Product Owner I" />
-                            <img src="./imgs/psm.jpg" alt="Professional Scrum Master I" />
+                            <img src="./imgs/PSM.jpg" alt="Professional Scrum Master I" />
                             <img src="./imgs/prince2.png" height="128" alt="Prince 2 Practitioner" />
                             <img src="./imgs/safe.png" alt="SAFe Agilst 5.0" />
                             <img src="./imgs/databricks.png" alt="Databricks" height="128" className="landscape" />
-                            <img src="./imgs/webflow.jpg" alt="WebFlow" className="landscape" />
+                            <img src="./imgs/Webflow.jpg" alt="WebFlow" className="landscape" />
                             <img src="./imgs/optimizely.png" alt="Optimizely" className="landscape" />
                             <img src="./imgs/umbraco.png" height="128" alt="Umbraco" />
                             <img src="./imgs/azure.png" alt="Azure" />
