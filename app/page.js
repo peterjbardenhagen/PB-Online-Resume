@@ -118,8 +118,8 @@ export default function Home() {
                     <div className="marquee">
                         <div className="track">
                             <img src="./imgs/archi.png" alt="ArchiMate 3.2" className="landscape" />
-                            <img src="./imgs/togaf.jpg" alt="TOGAF" className="landscape" />
-                            <img src="./imgs/itil.png" alt="ITIL" className="landscape" />
+                            <img src="./imgs/Togaf.jpg" alt="TOGAF" className="landscape" />
+                            <img src="./imgs/Itil.png" alt="ITIL" className="landscape" />
                             <img src="./imgs/pspo.png" alt="Professional Product Owner I" />
                             <img src="./imgs/PSM.jpg" alt="Professional Scrum Master I" />
                             <img src="./imgs/prince2.png" height="128" alt="Prince 2 Practitioner" />
@@ -241,23 +241,20 @@ export default function Home() {
                     </h2>
                     <div className="bento-grid">
                         <a href="#" className="bento-item">
-                            <img src="./imgs/bento-1.jpg" alt="BGCCI" width="100%" />
+                            <img src="./imgs/bento-1.jpg" alt="Perpetual" width="100%" />
                         </a>
                         <a href="#" className="bento-item">
-                            <img src="./imgs/bento-2.jpg" alt="Churhview" width="100%" />
+                            <img src="./imgs/bento-2.jpg" alt="Western Power" width="100%" />
                         </a>
                         <a href="#" className="bento-item">
-                            <img src="./imgs/bento-3.jpg" alt="Harley" width="100%" />
+                            <img src="./imgs/bento-3.jpg" alt="Live Combat Sports" width="100%" />
                         </a>
                         <a href="#" className="bento-item">
-                            <img src="./imgs/bento-5.jpg" alt="Bunbury" width="100%" />
+                            <img src="./imgs/bento-5.jpg" alt="Bob Jane Racing Heritage" width="100%" />
                         </a>
                         <a href="#" className="bento-item">
-                            <img src="./imgs/bento-6.jpg" alt="Running" width="100%" />
+                            <img src="./imgs/bento-6.jpg" alt="Easy Visit" width="100%" />
                         </a>
-                        {/* <a href="#" className="bento-item">
-              <img src="./imgs/bento-7.jpg" alt="School" width="100%" />
-            </a> */}
                     </div>
                 </section>
                 <section id="chatbot" className="chatbot container">
