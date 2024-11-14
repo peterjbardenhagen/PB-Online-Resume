@@ -55,7 +55,7 @@ export default function Home() {
                             <a href="#projects">Projects</a>
                         </li>
                         <li>
-                            <a href="#chatbot">Chatbot</a>
+                            <a href="#chatbot">AI Assistant</a>
                         </li>
                         <li>
                             <a href="#book">Book</a>
@@ -173,7 +173,7 @@ export default function Home() {
                                 Hi I'm Peter Bardenhagen, an Enterprise Solution Architect, Developr and Project Manager who with over 20 years experience working with leading private sector, public, and Government organisations.
                             </p>
                             <p>
-                                I'm currently working on a project that uses Azure AI to create a chatbot that knows everything there is to know about a business. I'm also working on a solution to make and receive phone calls with a realistic voice that is able to interview customers, take notes and analyse the conversation before saving into a database.
+                                I'm currently working on a project that uses Azure AI to create an AI that knows everything there is to know about a business. I'm also working on a solution to make and receive phone calls with a realistic voice that is able to interview customers, take notes and analyse the conversation before saving into a database. Imagine being able to make 10,000 calls in a matter of minutes.
                             </p>
                         </div>
                     </div>
@@ -262,12 +262,12 @@ export default function Home() {
                         <small>
                             Talk to My AI
                         </small>
-                        Chatbot
+                        Personal Assistant
                     </h2>
                     <div className="chatbot-blue">
                         <div className="chat-info">
-                            <h3>Peter's Resume Chatbot</h3>
-                            <p>Chat with an AI trained chatbot I built on Azure AI loaded with my skills and experience. Ask questions about my work history, technical expertise, and achievements.</p>
+                            <h3>Peter's AI Resume Assistant</h3>
+                            <p>Chat with an AI assistant built on Azure AI loaded with my skills and experience. Ask questions about my work history, technical expertise, and achievements.</p>
                             <p>I am actively looking for new opportunities. Please keep me in mind for any new project. I am based in Brisbane and open to relocation to Sydney or Perth.</p>
                             <a href="./CV Peter Bardenhagen.docx" className="button black">Download Resume</a>
                             <p>&nbsp;</p>

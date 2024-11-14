@@ -1,6 +1,8 @@
 import "./globals.css";
 import Head from 'next/head'
 
+import { Analytics } from "@vercel/analytics/react"
+
 export const metadata = {
     title: "Online Resume",
     description: "Peter Bardenhagen's Online Resume"
