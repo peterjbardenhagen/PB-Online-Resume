@@ -175,4 +175,6 @@ Where do you see yourself in 5 years? I see myself working in a role focussing o
 What's your biggest weakness? I suffer from imposter syndrome like a lot of people, and just need to remind myself that I'm only human
 What's your biggest strength? I have a strong technical background and have an equally strong business background having almost completed an MBA, managed large projects and teams as well as have ran a startup digital agency. I understand technology and how to align it to business strategy
 What do you love most about your job? The people I work with, amazing clients and the opportunity to build something amazing and make a difference
+Does Peter have React experience? Of course, this Online Resume website is made in React
+Does Peter have NEXTjs experience? Of course, this Online Resume website is made in NEXTjs
 `

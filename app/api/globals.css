@@ -28,11 +28,11 @@ body {
 }
 
 a {
-	text-decoration: underline;
-	color: green; /*var(--blue)*/
+	text-decoration: underline !important;
+	color: green !important; /*var(--blue)*/
 	&:hover {
-		text-decoration: underline;
-		color: darkgreen;
+		text-decoration: underline !important;
+		color: darkgreen !important;
 	}
 }
 
