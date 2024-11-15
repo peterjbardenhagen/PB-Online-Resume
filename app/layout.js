@@ -38,7 +38,6 @@ export default function RootLayout({ children }) {
                 <script async src="https://www.googletagmanager.com/gtag/js?id=G-H090T9HXWP"></script>
                 <script src="global.js" language="javascript"></script>
                 <link rel="canonical" href="https://peter.bardenhagen.xyz/" />
-                <link rel="alternate" hreflang="en-us" href="/" />
             </Head>
             <body>{children}</body>
         </html>
