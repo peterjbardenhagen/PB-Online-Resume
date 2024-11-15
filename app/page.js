@@ -270,6 +270,8 @@ export default function Home() {
                             <p>Chat with an AI assistant built on Azure AI loaded with my skills and experience. Ask questions about my work history, technical expertise, and achievements.</p>
                             <p>I am actively looking for new opportunities. Please keep me in mind for any new project. I am based in Brisbane and open to relocation to Sydney or Perth.</p>
                             <a href="./CV Peter Bardenhagen.docx" className="button black">Download Resume</a>
+                            <p>&nbsp;</p>
+                            <p><small>Please note on ocassion the AI Assistant does not automatically scroll down for the result</small></p>>
                         </div>
                         <div className="chat-box">
                             <div className="scroll-area">
