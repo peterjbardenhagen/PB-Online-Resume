@@ -25,7 +25,7 @@ export default function RootLayout({ children }) {
                 <meta name="twitter:card" content="summary_large_image" />
                 <meta property="og:type" content="website" />
                 <meta property="og:title" content="Peter Bardenhagen Online Resume & Chatbot" />
-                <meta property="og:image" content="https://peter.bardenhagen.xyz/img/preview.png" />
+                <meta property="og:image" content="https://peter.bardenhagen.xyz/imgs/preview.png" />
                 <meta property="og:image:width" content="1200" />
                 <meta property="og:image:height" content="600" />
                 <meta property="og:image:type" content="png" />
