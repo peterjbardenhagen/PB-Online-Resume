@@ -1,13 +1,15 @@
 import "./globals.css";
 import Head from 'next/head'
-import TagManager from 'react-gtm-module';
+
 import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export const metadata = {
     title: "Online Resume",
-    description: "Peter Bardenhagen's Online Resume"
+    description: "Peter Bardenhagen Online Resume"
 };
+
+import TagManager from 'react-gtm-module';
 
 export const analytics = ((w: Window, d: Document, s: string, l: string, i: string) => {
     (w as any).dataLayer = (window as any).dataLayer || [];
@@ -50,18 +52,18 @@ export default function RootLayout({ children }) {
                 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet" />
                 <link rel="shortcut icon" href="/imgs/favicon.ico" />
                 <meta name="twitter:card" content="summary_large_image" />
-                <meta name="description" content="Peter Bardenhagen's Online Resume" />
+                <meta name="description" content="Peter Bardenhagen Online Resume" />
 
                 <meta property="og:url" content="https://peter.bardenhagen.xyz" />
                 <meta property="og:type" content="website" />
                 <meta property="og:title" content="Peter Bardenhagen's Online Resume" />
-                <meta property="og:description" content="Peter Bardenhagen's Online Resume" />
+                <meta property="og:description" content="Peter Bardenhagen Online Resume" />
                 <meta property="og:image" content="https://ogcdn.net/e4b8c678-7bd5-445d-ba03-bfaad510c686/v4/peter.bardenhagen.xyz/Online%20Resume/https%3A%2F%2Fopengraph.b-cdn.net%2Fproduction%2Fimages%2F699b2845-c895-456f-b1fe-2c1272921e83.jpg%3Ftoken%3Dooae7tVn7UywD3x6VpOoo7IBjvftmcRPV55C7lc1qXY%26height%3D448%26width%3D444%26expires%3D33267738443/og.png" />
                 <meta name="twitter:card" content="summary_large_image" />
                 <meta property="twitter:domain" content="peter.bardenhagen.xyz" />
                 <meta property="twitter:url" content="https://peter.bardenhagen.xyz" />
                 <meta name="twitter:title" content="Online Resume" />
-                <meta name="twitter:description" content="Peter Bardenhagen's Online Resume" />
+                <meta name="twitter:description" content="Peter Bardenhagen Online Resume" />
                 <meta name="twitter:image" content="https://ogcdn.net/e4b8c678-7bd5-445d-ba03-bfaad510c686/v4/peter.bardenhagen.xyz/Online%20Resume/https%3A%2F%2Fopengraph.b-cdn.net%2Fproduction%2Fimages%2F699b2845-c895-456f-b1fe-2c1272921e83.jpg%3Ftoken%3Dooae7tVn7UywD3x6VpOoo7IBjvftmcRPV55C7lc1qXY%26height%3D448%26width%3D444%26expires%3D33267738443/og.png" />
 
                 <meta property="og:url" content="https://peter.bardenhagen.xyz/" />
