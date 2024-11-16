@@ -3,13 +3,13 @@ import Head from 'next/head'
 
 import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import TagManager from 'react-gtm-module';
 
 export const metadata = {
     title: "Online Resume",
     description: "Peter Bardenhagen Online Resume"
 };
 
-import TagManager from 'react-gtm-module';
 
 export const analytics = ((w: Window, d: Document, s: string, l: string, i: string) => {
     (w as any).dataLayer = (window as any).dataLayer || [];
