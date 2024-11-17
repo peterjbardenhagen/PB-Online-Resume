@@ -9,8 +9,8 @@ import { NextSeo } from 'next-seo';
 export const metadata = {
     charset: "UTF-8",
     viewport: "width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=2",
-    title: "Peter Bardenhagen Online Resume",
-    description: "Peter Bardenhagen Online Resume",
+    title: "Peter Bardenhagen - Online Resume - Made in React, NEXTjs & Azure AI",
+    description: "I am an innovative digital enterprise leader with a proven track record collaborating with top - tier global consulting firms.Leveraging technology, I address business challenges, enhance customer experiences, and drive growth.My passion lies in building products, solving challenging business problems with AI powered solutions, and designing robust architectures.",
     robots: "index,follow",
     twitter: {
         card: 'summary_large_image',
@@ -20,31 +20,19 @@ export const metadata = {
         description: 'I am an innovative digital enterprise leader with a proven track record collaborating with top - tier global consulting firms.Leveraging technology, I address business challenges, enhance customer experiences, and drive growth.My passion lies in building products, solving challenging business problems with AI powered solutions, and designing robust architectures.',
         image: 'https://peter.bardenhagen.xyz/imgs/preview.png'
     },
-    og: {
-        image: 'https://peter.bardenhagen.xyz/imgs/preview.png',
-        site_name: 'Peter Bardenhagen Online Resume',
-        description: 'I am an innovative digital enterprise leader with a proven track record collaborating with top - tier global consulting firms.Leveraging technology, I address business challenges, enhance customer experiences, and drive growth.My passion lies in building products, solving challenging business problems with AI powered solutions, and designing robust architectures.',
-        locale: 'en',
-        type: 'website',
-        url: 'https://peter.bardenhagen.xyz',
-        logo: 'https://peter.bardenhagen.xyz/favicons/icons8-favicon-papercut-512.png'
-    },
     openGraph: {
         url: 'https://peter.bardenhagen.xyz',
-        siteName: 'Peter Bardenhagen Online Resume',
+        siteName: 'Peter Bardenhagen - Online Resume - Made in React, NEXTjs & Azure AI',
+        description: 'I am an innovative digital enterprise leader with a proven track record collaborating with top - tier global consulting firms.Leveraging technology, I address business challenges, enhance customer experiences, and drive growth.My passion lies in building products, solving challenging business problems with AI powered solutions, and designing robust architectures.',
+        locale: 'en_UK',
+        type: 'website',
         images: [
             {
                 url: 'https://peter.bardenhagen.xyz/imgs/preview.png', // Must be an absolute URL
                 width: 1200,
                 height: 630,
-            },
-            {
-                url: 'https://peter.bardenhagen.xyz/imgs/preview.png', // Must be an absolute URL
-                width: 1200,
-                height: 630,
-                alt: 'Peter Bardenhagen Online Resume',
-            },
-        ],
+            }
+        ],  // Audio not used
         videos: [
             {
                 url: 'https://peter.bardenhagen.xyz/imgs/preview.mp4', // Must be an absolute URL
@@ -52,8 +40,13 @@ export const metadata = {
                 height: 630,
             },
         ],
-        locale: 'en_US',
-        type: 'website',
+        logos: [
+            {
+                url: 'https://peter.bardenhagen.xyz/favicons/icons8-favicon-papercut-512.png', // Must be an absolute URL
+                width: 1200,
+                height: 630,
+            },
+        ],
     },
 };
 
@@ -65,20 +58,20 @@ export default function RootLayout({ children }) {
                     openGraph={{
                         type: 'website',
                         url: 'https://peter.bardenhagen.xyz',
-                        title: 'Peter Bardenhagen Online Resume',
-                        description: 'Peter Bardenhagen Online Resume',
+                        title: 'Peter Bardenhagen - Online Resume - Made in React, NEXTjs & Azure AI',
+                        description: 'I am an innovative digital enterprise leader with a proven track record collaborating with top - tier global consulting firms.Leveraging technology, I address business challenges, enhance customer experiences, and drive growth.My passion lies in building products, solving challenging business problems with AI powered solutions, and designing robust architectures.',
                         images: [
                             {
                                 url: 'https://peter.bardenhagen.xyz/imgs/preview.png',
                                 width: 1200,
                                 height: 630,
-                                alt: 'Peter Bardenhagen Online Resume',
+                                alt: 'I am an innovative digital enterprise leader with a proven track record collaborating with top - tier global consulting firms.Leveraging technology, I address business challenges, enhance customer experiences, and drive growth.My passion lies in building products, solving challenging business problems with AI powered solutions, and designing robust architectures.',
                             },
                             {
                                 url: 'https://peter.bardenhagen.xyz/imgs/preview.png',
                                 width: 120,
                                 height: 630,
-                                alt: 'Peter Bardenhagen Online Resume',
+                                alt: 'I am an innovative digital enterprise leader with a proven track record collaborating with top - tier global consulting firms.Leveraging technology, I address business challenges, enhance customer experiences, and drive growth.My passion lies in building products, solving challenging business problems with AI powered solutions, and designing robust architectures.',
                             },
                         ],
                         videos: [
