@@ -24,13 +24,13 @@ export const metadata = {
                 height: 630,
                 alt: 'Peter Bardenhagen Online Resume',
             },
-            videos: [
-                {
-                    url: 'https://peter.bardenhagen.xyz/imgs/preview.mp4', // Must be an absolute URL
-                    width: 1200,
-                    height: 630,
-                },
-            ],
+        ],
+        videos: [
+            {
+                url: 'https://peter.bardenhagen.xyz/imgs/preview.mp4', // Must be an absolute URL
+                width: 1200,
+                height: 630,
+            },
         ],
         locale: 'en_US',
         type: 'website',
@@ -70,6 +70,20 @@ export default function RootLayout({ children }) {
                         ],
                     }}
                 />
+
+                <DocumentMetaTags
+                    twitterId="@PBardenetcxyz"
+                    image="imgs/preview.png"
+                    language="en"
+                />
+
+                <PageMetaTags
+                    title="Peter Bardenhagen Online Resume"
+                    description="Peter Bardenhagen Online Resume"
+                    image="imgs/preview.png"
+                    language="en"
+                />
+
                 <meta charset="utf-8" />
                 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
                 <meta charset="utf-8" />

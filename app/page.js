@@ -6,6 +6,9 @@ import { ReactTagManager } from 'react-gtm-ts';
 
 import { NextSeo } from 'next-seo';
 
+import { DocumentMetaTags } from '../src/components/DocumentMetaTags';
+import { PageMetaTags } from '../src/components/PageMetaTags';
+
 export default function Home() {
 
   const [menuOpen, setMenuOpen] = useState(false);
