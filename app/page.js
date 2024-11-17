@@ -2,6 +2,10 @@
 import { useState } from "react";
 import Image from "next/image";
 
+import { ReactTagManager } from 'react-gtm-ts';
+
+import { NextSeo } from 'next-seo';
+
 export default function Home() {
 
   const [menuOpen, setMenuOpen] = useState(false);
@@ -34,11 +38,29 @@ export default function Home() {
 
   const toggleMobileMenu = () => {
     setMenuOpen(!menuOpen);
-  }
+    }
+
+    ReactTagManager.init({
+        code: 'GTM-KWXBWJ9J', // GTM Code
+        debug: false, // debug mode (default false)
+        performance: false, // starts GTM only after user interaction (improve initial page load)
+    });
 
     return (
         <>
             <header>
+                <div
+                    type="div"
+                    onLoad={() => {
+                        ReactTagManager.action({
+                            event: 'pageView',
+                            pagePath: 'https://peter.bardenhagen.xyz',
+                            pageTitle: 'Peter Bardenhagen Online Resume',
+                            visitorType: 'Customer'
+                        });
+                    }}
+                ></div>
+
                 <a href="#" className="logo-holder">
                     <div className="logo">PB</div>
                     <div className="logo-text">Peter Bardenhagen Online Resume</div>
@@ -125,6 +147,8 @@ export default function Home() {
                             <img src="./imgs/prince2.png" height="128" alt="Prince 2 Practitioner" />
                             <img src="./imgs/safe.png" alt="SAFe Agilst 5.0" />
                             <img src="./imgs/databricks.png" alt="Databricks" height="128" className="landscape" />
+                            <img src="./imgs/datadog.png" alt="Datadog" className="landscape" />
+                            <img src="./imgs/flutterflow.png" alt="Flutterflow" className="landscape" />
                             <img src="./imgs/Webflow.jpg" alt="WebFlow" className="landscape" />
                             <img src="./imgs/optimizely.png" alt="Optimizely" className="landscape" />
                             <img src="./imgs/umbraco.png" height="128" alt="Umbraco" />
@@ -350,7 +374,7 @@ export default function Home() {
                             <div className="gr_grid_book_container"><a title="The SaaS Sales Method Fundamentals: How to Have Customer Conversations (Sales Blueprints Book 3)" rel="nofollow" href="https://www.goodreads.com/book/show/39782171-the-saas-sales-method-fundamentals"><img alt="The SaaS Sales Method Fundamentals: How to Have Customer Conversations" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1523197661l/39782171._SX98_.jpg" /></a></div>
                             <div className="gr_grid_book_container"><a title="The SaaS Sales Method for Customer Success & Account Managers: How to Grow Customers (Sales Blueprints Book 6)" rel="nofollow" href="https://www.goodreads.com/book/show/39904430-the-saas-sales-method-for-customer-success-account-managers"><img alt="The SaaS Sales Method for Customer Success & Account Managers: How to Grow Customers" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1524271414l/39904430._SX98_.jpg" /></a></div>
                             <br className="gr_clear" /><br />
-                            <a href="https://www.goodreads.com/user/show/181135748-peter-bardenhagen" className="button black" target="_blank">
+                            <a href="https://www.goodreads.com/user/show/181135748-peter-bardenhagen" className="button black button_fullcollection" target="_blank">
                                 Full collection at Good Reads »
                             </a>
                         </div>
@@ -363,10 +387,7 @@ export default function Home() {
                         </small>
                         References
                     </h2>
-                    <iframe src="https://bardenhagen.xyz/portfolio.html" class="references_iframe"></iframe>
-                    {/* <div className="References">
-            <p className="References"><a href="https://bardenhagen.xyz/portfolio.html" target="_blank" className="recommendations_link">View My LinkedIn Recommendations</a></p>
-          </div> */}
+                    <iframe src="https://bardenhagen.xyz/portfolio.html" className="references_iframe"></iframe>
                 </section>
             </main>
         </>

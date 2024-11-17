@@ -3,45 +3,40 @@ import Head from 'next/head'
 
 import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/next"
-import TagManager from 'react-gtm-module';
+
+import { NextSeo } from 'next-seo';
 
 export const metadata = {
     title: "Online Resume",
     description: "Peter Bardenhagen Online Resume"
 };
 
-
-export const analytics = ((w: Window, d: Document, s: string, l: string, i: string) => {
-    (w as any).dataLayer = (window as any).dataLayer || [];
-    (w as any).dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
-    var dl = l != 'dataLayer' ? '&l=' + l : '';
-    var scr = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-    /*
-        To avoid Multiple installations of google tag manager detected warning
-    */
-    if (!scriptExists(scr)) {
-        var f = d.getElementsByTagName(s)[0],
-            j: HTMLScriptElement = d.createElement("script")
-        j.async = true;
-        j.src = scr;
-        f?.parentNode?.insertBefore(j, f);
-    }
-})
-const scriptExists = (url: string) => {
-    var scripts = document.getElementsByTagName('script');
-    for (var i = scripts.length; i--;) {
-        if (scripts[i].src == url) return true;
-    }
-    return false;
-}
 export default function RootLayout({ children }) {
-    useEffect(() => {
-        TagManager.initialize({ gtmId: 'GTM-KWXBWJ9J' });
-        analytics(window, document, 'script', 'dataLayer', 'GTM-AA12345');
-    }, []);
     return (
         <html lang="en">
             <Head>
+                <NextSeo
+                    openGraph={{
+                        type: 'website',
+                        url: 'https://peter.bardenhagen.xyz',
+                        title: 'Peter Bardenhagen Online Resume',
+                        description: 'Peter Bardenhagen Online Resume',
+                        images: [
+                            {
+                                url: 'https://peter.bardenhagen.xyz/imgs/preview.png',
+                                width: 1200,
+                                height: 630,
+                                alt: 'Peter Bardenhagen Online Resume',
+                            },
+                            {
+                                url: 'https://peter.bardenhagen.xyz/imgs/preview.png',
+                                width: 120,
+                                height: 630,
+                                alt: 'Peter Bardenhagen Online Resume',
+                            },
+                        ],
+                    }}
+                />
                 <meta charset="utf-8" />
                 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
                 <meta charset="utf-8" />
@@ -75,12 +70,10 @@ export default function RootLayout({ children }) {
                 <meta name="description" content="I'm an innovative digital enterprise leader with a proven track record collaborating with top-tier global consulting firms. Leveraging technology, I address business challenges, enhance customer experiences, and drive growth. My passion lies in building products, solving challenging business problems with AI powered solutions, and designing robust architectures." />
                 <meta property="og:locale" content="en_UK" />
                 <link rel="canonical" href="https://peter.bardenhagen.xyz/" />
-                <script async src="https://www.googletagmanager.com/gtag/js?id=G-H090T9HXWP"></script>
-                <script src="./global.js" type="javascript" defer></script>
-                <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KWXBWJ9J"
-                height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </Head>
-            <body>{children}</body>
+            <body>
+                {children}
+            </body>
         </html>
     );
 }
