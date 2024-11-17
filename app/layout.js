@@ -7,7 +7,9 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 import { NextSeo } from 'next-seo';
 
 export const metadata = {
-    title: "Online Resume",
+    charset: "UTF-8",
+    viewport: "width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=2",
+    title: "Peter Bardenhagen Online Resume",
     description: "Peter Bardenhagen Online Resume",
     openGraph: {
         url: 'https://peter.bardenhagen.xyz',
@@ -71,6 +73,8 @@ export default function RootLayout({ children }) {
                     }}
                 />
 
+                <metaData />
+
                 <DocumentMetaTags
                     twitterId="@PBardenetcxyz"
                     image="imgs/preview.png"
@@ -86,7 +90,6 @@ export default function RootLayout({ children }) {
 
                 <meta charset="utf-8" />
                 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-                <meta charset="utf-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=2" />
                 <title>Peter Bardenhagen Online Resume & Chatbot</title>
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
