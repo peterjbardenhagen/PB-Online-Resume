@@ -8,7 +8,33 @@ import { NextSeo } from 'next-seo';
 
 export const metadata = {
     title: "Online Resume",
-    description: "Peter Bardenhagen Online Resume"
+    description: "Peter Bardenhagen Online Resume",
+    openGraph: {
+        url: 'https://peter.bardenhagen.xyz',
+        siteName: 'Peter Bardenhagen Online Resume',
+        images: [
+            {
+                url: 'https://peter.bardenhagen.xyz/imgs/preview.png', // Must be an absolute URL
+                width: 1200,
+                height: 630,
+            },
+            {
+                url: 'https://peter.bardenhagen.xyz/imgs/preview.png', // Must be an absolute URL
+                width: 1200,
+                height: 630,
+                alt: 'Peter Bardenhagen Online Resume',
+            },
+            videos: [
+                {
+                    url: 'https://peter.bardenhagen.xyz/imgs/preview.mp4', // Must be an absolute URL
+                    width: 1200,
+                    height: 630,
+                },
+            ],
+        ],
+        locale: 'en_US',
+        type: 'website',
+    },
 };
 
 export default function RootLayout({ children }) {
@@ -33,6 +59,13 @@ export default function RootLayout({ children }) {
                                 width: 120,
                                 height: 630,
                                 alt: 'Peter Bardenhagen Online Resume',
+                            },
+                        ],
+                        videos: [
+                            {
+                                url: 'https://peter.bardenhagen.xyz/imgs/preview.mp4', // Must be an absolute URL
+                                width: 800,
+                                height: 450,
                             },
                         ],
                     }}
