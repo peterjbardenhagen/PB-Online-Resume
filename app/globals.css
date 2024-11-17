@@ -38,13 +38,6 @@ a {
 	}
 }
 
-.button_fullcollection {
-	text-align: center;
-	margin: 0 auto 0 auto !important;
-	display: block;
-	max-width: 350px;
-}
-
 header {
 	padding-top: 10px;
 	padding-bottom: 10px;
@@ -837,4 +830,11 @@ gr_container {
 nextjs-portal, .nextjs-toast, .nextjs-toast-errors-parent, .nextjs-error-with-static {
 	display: none;
 	visibility: hidden;
+}
+
+.button_fullcollection {
+	text-align: center;
+	margin: 0 auto 0 auto !important;
+	display: block;
+	max-width: 350px;
 }

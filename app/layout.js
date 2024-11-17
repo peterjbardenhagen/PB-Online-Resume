@@ -11,6 +11,16 @@ export const metadata = {
     viewport: "width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=2",
     title: "Peter Bardenhagen Online Resume",
     description: "Peter Bardenhagen Online Resume",
+    robots: "index,follow",
+    twitter: {
+        image: 'https://peter.bardenhagen.xyz/imgs/preview.png'
+    }
+    og: {
+        image: 'https://peter.bardenhagen.xyz/imgs/preview.png',
+        site_name: 'Peter Bardenhagen Online Resume',
+        type: 'website',
+        url: 'https://peter.bardenhagen.xyz'
+    }
     openGraph: {
         url: 'https://peter.bardenhagen.xyz',
         siteName: 'Peter Bardenhagen Online Resume',
@@ -91,7 +101,7 @@ export default function RootLayout({ children }) {
                 <meta charset="utf-8" />
                 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
                 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=2" />
-                <title>Peter Bardenhagen Online Resume & Chatbot</title>
+                <title>Peter Bardenhagen Online Resume</title>
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
                 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet" />

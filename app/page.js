@@ -377,9 +377,11 @@ export default function Home() {
                             <div className="gr_grid_book_container"><a title="The SaaS Sales Method Fundamentals: How to Have Customer Conversations (Sales Blueprints Book 3)" rel="nofollow" href="https://www.goodreads.com/book/show/39782171-the-saas-sales-method-fundamentals"><img alt="The SaaS Sales Method Fundamentals: How to Have Customer Conversations" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1523197661l/39782171._SX98_.jpg" /></a></div>
                             <div className="gr_grid_book_container"><a title="The SaaS Sales Method for Customer Success & Account Managers: How to Grow Customers (Sales Blueprints Book 6)" rel="nofollow" href="https://www.goodreads.com/book/show/39904430-the-saas-sales-method-for-customer-success-account-managers"><img alt="The SaaS Sales Method for Customer Success & Account Managers: How to Grow Customers" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1524271414l/39904430._SX98_.jpg" /></a></div>
                             <br className="gr_clear" /><br />
-                            <a href="https://www.goodreads.com/user/show/181135748-peter-bardenhagen" className="button black button_fullcollection" target="_blank">
-                                Full collection at Good Reads »
-                            </a>
+                            <div className="button_fullcollection">
+                                <a href="https://www.goodreads.com/user/show/181135748-peter-bardenhagen" className="button black" target="_blank">
+                                    Full collection at Good Reads »
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </section>
