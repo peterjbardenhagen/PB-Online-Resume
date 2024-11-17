@@ -16,11 +16,13 @@
     "next-seo": "^6.6.0",
     "react": "^18",
     "react-dom": "^18",
-    "react-gtm-ts": "^1.0.45"
+    "react-gtm-ts": "^1.0.45",
+    "typescript-eslint": "^8.14.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.0.1",
     "postcss": "^8",
-    "tailwindcss": "^3.3.0"
+    "tailwindcss": "^3.3.0",
+    "webpack-config": "^7.5.0"
   }
 }

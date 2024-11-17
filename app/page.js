@@ -6,8 +6,8 @@ import { ReactTagManager } from 'react-gtm-ts';
 
 import { NextSeo } from 'next-seo';
 
-import { DocumentMetaTags } from '../src/components/DocumentMetaTags';
-import { PageMetaTags } from '../src/components/PageMetaTags';
+import { DocumentMetaTags } from '../src/components/DocumentMetaTags/DocumentMetaTags.tsx';
+import { PageMetaTags } from '../src/components/PageMetaTags/PageMetaTags.tsx';
 
 export default function Home() {
 

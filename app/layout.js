@@ -13,14 +13,22 @@ export const metadata = {
     description: "Peter Bardenhagen Online Resume",
     robots: "index,follow",
     twitter: {
+        card: 'summary_large_image',
+        domain: 'peter.bardenhagen.xyz',
+        url: 'https://peter.bardenhagen.xyz',
+        title: 'Peter Bardenhagen Online Resume',
+        description: 'I am an innovative digital enterprise leader with a proven track record collaborating with top - tier global consulting firms.Leveraging technology, I address business challenges, enhance customer experiences, and drive growth.My passion lies in building products, solving challenging business problems with AI powered solutions, and designing robust architectures.',
         image: 'https://peter.bardenhagen.xyz/imgs/preview.png'
-    }
+    },
     og: {
         image: 'https://peter.bardenhagen.xyz/imgs/preview.png',
         site_name: 'Peter Bardenhagen Online Resume',
+        description: 'I am an innovative digital enterprise leader with a proven track record collaborating with top - tier global consulting firms.Leveraging technology, I address business challenges, enhance customer experiences, and drive growth.My passion lies in building products, solving challenging business problems with AI powered solutions, and designing robust architectures.',
+        locale: 'en',
         type: 'website',
-        url: 'https://peter.bardenhagen.xyz'
-    }
+        url: 'https://peter.bardenhagen.xyz',
+        logo: 'https://peter.bardenhagen.xyz/favicons/icons8-favicon-papercut-512.png'
+    },
     openGraph: {
         url: 'https://peter.bardenhagen.xyz',
         siteName: 'Peter Bardenhagen Online Resume',
@@ -85,50 +93,12 @@ export default function RootLayout({ children }) {
 
                 <metaData />
 
-                <DocumentMetaTags
-                    twitterId="@PBardenetcxyz"
-                    image="imgs/preview.png"
-                    language="en"
-                />
-
-                <PageMetaTags
-                    title="Peter Bardenhagen Online Resume"
-                    description="Peter Bardenhagen Online Resume"
-                    image="imgs/preview.png"
-                    language="en"
-                />
-
-                <meta charset="utf-8" />
-                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-                <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=2" />
                 <title>Peter Bardenhagen Online Resume</title>
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
                 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet" />
                 <link rel="shortcut icon" href="/imgs/favicon.ico" />
-                <meta name="twitter:card" content="summary_large_image" />
-                <meta name="description" content="Peter Bardenhagen Online Resume" />
-
-                <meta property="og:url" content="https://peter.bardenhagen.xyz" />
-                <meta property="og:type" content="website" />
-                <meta property="og:title" content="Peter Bardenhagen's Online Resume" />
-                <meta property="og:description" content="Peter Bardenhagen Online Resume" />
-                <meta property="og:image" content="https://ogcdn.net/e4b8c678-7bd5-445d-ba03-bfaad510c686/v4/peter.bardenhagen.xyz/Online%20Resume/https%3A%2F%2Fopengraph.b-cdn.net%2Fproduction%2Fimages%2F699b2845-c895-456f-b1fe-2c1272921e83.jpg%3Ftoken%3Dooae7tVn7UywD3x6VpOoo7IBjvftmcRPV55C7lc1qXY%26height%3D448%26width%3D444%26expires%3D33267738443/og.png" />
-                <meta name="twitter:card" content="summary_large_image" />
-                <meta property="twitter:domain" content="peter.bardenhagen.xyz" />
-                <meta property="twitter:url" content="https://peter.bardenhagen.xyz" />
-                <meta name="twitter:title" content="Online Resume" />
-                <meta name="twitter:description" content="Peter Bardenhagen Online Resume" />
-                <meta name="twitter:image" content="https://ogcdn.net/e4b8c678-7bd5-445d-ba03-bfaad510c686/v4/peter.bardenhagen.xyz/Online%20Resume/https%3A%2F%2Fopengraph.b-cdn.net%2Fproduction%2Fimages%2F699b2845-c895-456f-b1fe-2c1272921e83.jpg%3Ftoken%3Dooae7tVn7UywD3x6VpOoo7IBjvftmcRPV55C7lc1qXY%26height%3D448%26width%3D444%26expires%3D33267738443/og.png" />
-
-                <meta property="og:url" content="https://peter.bardenhagen.xyz/" />
-                <meta property="og:description" content="I'm an innovative digital enterprise leader with a proven track record collaborating with top-tier global consulting firms. Leveraging technology, I address business challenges, enhance customer experiences, and drive growth. My passion lies in building products, solving challenging business problems with AI powered solutions, and designing robust architectures." />
-                <meta property="og:site_name" content="Peter Bardenhagen Resume/CV Professional Skills & Experience" />
-                <meta property="og:logo" content="https://peter.bardenhagen.xyz/favicons/icons8-favicon-papercut-512.png" />
-
-                <meta name="robots" content="index,follow" />
-                <meta name="description" content="I'm an innovative digital enterprise leader with a proven track record collaborating with top-tier global consulting firms. Leveraging technology, I address business challenges, enhance customer experiences, and drive growth. My passion lies in building products, solving challenging business problems with AI powered solutions, and designing robust architectures." />
-                <meta property="og:locale" content="en_UK" />
+                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
                 <link rel="canonical" href="https://peter.bardenhagen.xyz/" />
             </Head>
             <body>
