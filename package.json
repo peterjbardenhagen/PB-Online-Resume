@@ -19,6 +19,7 @@
     "react-gtm-ts": "^1.0.45",
     "react-hubspot-tracking-code-hook": "^1.2.2",
     "react-share": "^5.1.1",
+    "sharp": "^0.33.5",
     "typescript-eslint": "^8.14.0"
   },
   "devDependencies": {

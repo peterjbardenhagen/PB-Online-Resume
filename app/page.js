@@ -79,7 +79,7 @@ export default function Home() {
     const shareUrl = 'https://peter.bardenhagen.xyz';
     const title = 'Peter Bardenhagen - Online Resume';
 
-    const { setPathPageView, setIdentity } = useTrackingCode(); 
+    const { setPathPageView, setIdentity, setContentType } = useTrackingCode(); 
     setPathPageView("/home");
     setIdentity("peter@bardenhagen.xyz");
     setContentType("landing-page");
