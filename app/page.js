@@ -9,6 +9,34 @@ import { NextSeo } from 'next-seo';
 import { DocumentMetaTags } from '../src/components/DocumentMetaTags/DocumentMetaTags.tsx';
 import { PageMetaTags } from '../src/components/PageMetaTags/PageMetaTags.tsx';
 
+import {
+    EmailShareButton,
+    FacebookShareButton,
+    LinkedinShareButton,
+    PinterestShareButton,
+    RedditShareButton,
+    TelegramShareButton,
+    TwitterShareButton,
+    WhatsappShareButton,
+    FacebookShareCount,
+    PinterestShareCount,
+    RedditShareCount,
+    FacebookIcon,
+    FacebookMessengerIcon,
+    FacebookMessengerShareButton,
+    XIcon,
+    TelegramIcon,
+    WhatsappIcon,
+    LinkedinIcon,
+    PinterestIcon,
+    RedditIcon,
+    EmailIcon,
+} from "react-share";
+
+import exampleImage from './imgs/social.png';
+
+import { useTrackingCode } from "react-hubspot-tracking-code-hook";
+
 export default function Home() {
 
   const [menuOpen, setMenuOpen] = useState(false);
@@ -36,10 +64,10 @@ export default function Home() {
         body: JSON.stringify({ messages: newMessages })
       }
     ).then(res => res.json());
-    setMessages([...newMessages, { role: 'assistant', content: apiMessage.message }]);
-  }
+      setMessages([...newMessages, { role: 'assistant', content: apiMessage.message }]);
+    }
 
-  const toggleMobileMenu = () => {
+    const toggleMobileMenu = () => {
     setMenuOpen(!menuOpen);
     }
 
@@ -48,7 +76,13 @@ export default function Home() {
         debug: false, // debug mode (default false)
         performance: false, // starts GTM only after user interaction (improve initial page load)
     });
+    const shareUrl = 'https://peter.bardenhagen.xyz';
+    const title = 'Peter Bardenhagen - Online Resume';
 
+    const { setPathPageView, setIdentity } = useTrackingCode(); 
+    setPathPageView("/home");
+    setIdentity("peter@bardenhagen.xyz");
+    setContentType("landing-page");
     return (
         <>
             <header>
@@ -58,7 +92,7 @@ export default function Home() {
                         ReactTagManager.action({
                             event: 'pageView',
                             pagePath: 'https://peter.bardenhagen.xyz',
-                            pageTitle: 'Peter Bardenhagen Online Resume',
+                            pageTitle: 'Peter Bardenhagen - Online Resume',
                             visitorType: 'Customer'
                         });
                     }}
@@ -66,7 +100,7 @@ export default function Home() {
 
                 <a href="#" className="logo-holder">
                     <div className="logo">PB</div>
-                    <div className="logo-text">Peter Bardenhagen Online Resume</div>
+                    <div className="logo-text">Online Resume</div>
                 </a>
                 <nav>
                     <ul id="menu" className={menuOpen ? "active" : ""}>
@@ -112,11 +146,11 @@ export default function Home() {
                             <h1><small>Hi I'm</small>
                                 Peter Bardenhagen
                             </h1>
-                            <p>AI & Digital Architect, Senior Delivery Manager and Coder focussed on bridging technology and business strategy. From hands-on development to enterprise solutions, I deliver user-focused innovations that drive business growth. Proven track record of transforming complex requirements into practical, scalable solutions.</p>
+                            <p>I deliver enterprise-scale digital solutions with measurable ROI, partnering with leading brands and top-tier consultancy firms. Specialising in AWS/Azure cloud infrastructures, AI & Digital solutions, and data analytics platforms, I transform complex business challenges into scalable technical solutions. My implementations have optimised operations and accelerated growth for organisations across multiple industries, consistently exceeding KPI targets while reducing operational costs.</p>
                             {/* Experienced in the full project lifecycle, from presales to delivery, with proven success partnering with global consulting firms. */}
                             <div className="call-to-action">
                                 <a href="./CV Peter Bardenhagen.docx" className="button black">
-                                    View Resume
+                                    Resume
                                 </a>
                                 <a href="tel:+61452491013" className="button white">
                                     Call
@@ -197,10 +231,13 @@ export default function Home() {
                         <div className="right-column">
                             <h3>A bit about me</h3>
                             <p>
-                                Hi I'm Peter Bardenhagen, an Enterprise Solution Architect, Developr and Project Manager who with over 20 years experience working with leading private sector, public, and Government organisations.
+                                Hi, I'm Peter Bardenhagen. I’m an innovative digital enterprise leader with a proven track record collaborating with top-tier global consulting firms. Leveraging CX technology, I address business challenges, enhance customer experiences, and drive growth. My passion lies in building products, solving complex problems, designing robust architectures and delivering superior business results.
                             </p>
                             <p>
-                                I'm currently working on a project that uses Azure AI to create an AI that knows everything there is to know about a business. I'm also working on a solution to make and receive phone calls with a realistic voice that is able to interview customers, take notes and analyse the conversation before saving into a database. Imagine being able to make 10,000 calls in a matter of minutes.
+                                Starting my career as a developer, I’ve always been curious about not just the ‘what,’ but also the ‘how’ and ‘why.’ Empathy for users drives me to optimise their experiences using UX principles and human-centered design.
+                            </p>
+                            <p>
+                                I excel at execution, bridging the gap between business and technology. My strong communication skills make me the conduit for prioritising and understanding their needs. I’m reliable, customer focussed, and results driven.
                             </p>
                         </div>
                     </div>
@@ -262,6 +299,115 @@ export default function Home() {
                 <section id="projects" className="bento container">
                     <h2>
                         <small>
+                            Share with friends on
+                        </small>
+                        Social Media
+                    </h2>
+                    <div className="share__container">
+                        <div className="share__some-network">
+                            <FacebookShareButton url={shareUrl} className="share__some-network__share-button">
+                                <FacebookIcon size={64} round />
+                            </FacebookShareButton>
+
+                            <div>
+                                <FacebookShareCount url={shareUrl} className="share__some-network__share-count">
+                                    {count => count}
+                                </FacebookShareCount>
+                            </div>
+                        </div>
+
+                        <div className="share__some-network">
+                            <FacebookMessengerShareButton
+                                url={shareUrl}
+                                appId="521270401588372"
+                                className="share__some-network__share-button"
+                            >
+                                <FacebookMessengerIcon size={64} round />
+                            </FacebookMessengerShareButton>
+                        </div>
+
+                        <div className="share__some-network">
+                            <TwitterShareButton
+                                url={shareUrl}
+                                title={title}
+                                className="share__some-network__share-button"
+                            >
+                                <XIcon size={64} round />
+                            </TwitterShareButton>
+                        </div>
+
+                        <div className="share__some-network">
+                            <TelegramShareButton
+                                url={shareUrl}
+                                title={title}
+                                className="share__some-network__share-button"
+                            >
+                                <TelegramIcon size={64} round />
+                            </TelegramShareButton>
+                        </div>
+
+                        <div className="share__some-network">
+                            <WhatsappShareButton
+                                url={shareUrl}
+                                title={title}
+                                separator=":: "
+                                className="share__some-network__share-button"
+                            >
+                                <WhatsappIcon size={64} round />
+                            </WhatsappShareButton>
+                        </div>
+
+                        <div className="share__some-network">
+                            <LinkedinShareButton url={shareUrl} className="share__some-network__share-button">
+                                <LinkedinIcon size={64} round />
+                            </LinkedinShareButton>
+                        </div>
+
+                        <div className="share__some-network">
+                            <PinterestShareButton
+                                url={String(shareUrl)}
+                                media={`${String(shareUrl)}/${exampleImage}`}
+                                className="share__some-network__share-button"
+                            >
+                                <PinterestIcon size={64} round />
+                            </PinterestShareButton>
+
+                            <div>
+                                <PinterestShareCount url={shareUrl} className="share__some-network__share-count" />
+                            </div>
+                        </div>
+
+                        <div className="share__some-network">
+                            <RedditShareButton
+                                url={shareUrl}
+                                title={title}
+                                windowWidth={660}
+                                windowHeight={460}
+                                className="share__some-network__share-button"
+                            >
+                                <RedditIcon size={64} round />
+                            </RedditShareButton>
+
+                            <div>
+                                <RedditShareCount url={shareUrl} className="share__some-network__share-count" />
+                            </div>
+                        </div>
+
+                        <div className="share__some-network">
+                            <EmailShareButton
+                                url={shareUrl}
+                                subject={title}
+                                body="body"
+                                className="share__some-network__share-button"
+                            >
+                                <EmailIcon size={64} round />
+                            </EmailShareButton>
+                        </div>
+                    </div>
+                </section>
+                <section id="projects" className="bento container">
+                    <h2>
+                        <small>
                             Successfully Delivered
                         </small>
                         Digital Projects
@@ -287,14 +433,13 @@ export default function Home() {
                 <section id="chatbot" className="chatbot container">
                     <h2>
                         <small>
-                            Talk to My AI
+                            Talk to my
                         </small>
-                        Personal Assistant
+                        AI Assistant
                     </h2>
                     <div className="chatbot-blue">
                         <div className="chat-info">
-                            <h3>Peter's AI Resume Assistant</h3>
-                            <p>Chat with an AI assistant built on Azure AI loaded with my skills and experience. Ask questions about my work history, technical expertise, and achievements.</p>
+                            <p>Chat with my AI assistant built on Azure AI, traineḍ with my skills and experience. Ask questions about my work history, technical expertise, and achievements.</p>
                             <p>I am actively looking for new opportunities. Please keep me in mind for any new project. I am based in Brisbane and open to relocation to Sydney or Perth.</p>
                             <a href="./CV Peter Bardenhagen.docx" className="button black">Download Resume</a>
                             <p>&nbsp;</p>

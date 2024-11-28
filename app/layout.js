@@ -8,7 +8,6 @@ import { NextSeo } from 'next-seo';
 
 export const metadata = {
     charset: "UTF-8",
-    viewport: "width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=2",
     title: "Peter Bardenhagen - Online Resume - Made in React, NEXTjs & Azure AI",
     description: "I am an innovative digital enterprise leader with a proven track record collaborating with top - tier global consulting firms.Leveraging technology, I address business challenges, enhance customer experiences, and drive growth.My passion lies in building products, solving challenging business problems with AI powered solutions, and designing robust architectures.",
     robots: "index,follow",
@@ -90,9 +89,10 @@ export default function RootLayout({ children }) {
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
                 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet" />
-                <link rel="shortcut icon" href="/imgs/favicon.ico" />
+                <link rel="shortcut icon" href="./imgs/favicon.ico" />
                 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
                 <link rel="canonical" href="https://peter.bardenhagen.xyz/" />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2"/>
             </Head>
             <body>
                 {children}
