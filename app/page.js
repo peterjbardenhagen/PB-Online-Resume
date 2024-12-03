@@ -1,16 +1,11 @@
 ﻿"use client";
 import { useState } from "react";
 import Image from "next/image";
-
 import { ReactTagManager } from 'react-gtm-ts';
-
 import { SpeedInsights } from "@vercel/speed-insights/next"
-
 import { NextSeo } from 'next-seo';
-
 import { DocumentMetaTags } from '../src/components/DocumentMetaTags/DocumentMetaTags.tsx';
 import { PageMetaTags } from '../src/components/PageMetaTags/PageMetaTags.tsx';
-
 import {
     EmailShareButton,
     FacebookShareButton,
@@ -34,10 +29,10 @@ import {
     RedditIcon,
     EmailIcon,
 } from "react-share";
-
 import exampleImage from './imgs/social.png';
-
 import { useTrackingCode } from "react-hubspot-tracking-code-hook";
+import ResponsiveCarousel from "../src/components/ResponsiveCarousel/ResponsiveCarousel.tsx";
+import styles from "./globals.css";
 
 export default function Home() {
 
@@ -150,7 +145,6 @@ export default function Home() {
                                 Peter Bardenhagen
                             </h1>
                             <p>I deliver enterprise-scale digital solutions with measurable ROI, partnering with leading brands and top-tier consultancy firms. Specialising in AWS/Azure cloud infrastructures, AI & Digital solutions, and data analytics platforms, I transform complex business challenges into scalable technical solutions. My implementations have optimised operations and accelerated growth for organisations across multiple industries, consistently exceeding KPI targets while reducing operational costs.</p>
-                            {/* Experienced in the full project lifecycle, from presales to delivery, with proven success partnering with global consulting firms. */}
                             <div className="call-to-action">
                                 <a href="./CV Peter Bardenhagen.docx" className="button black">
                                     Resume
@@ -299,6 +293,17 @@ export default function Home() {
                         </article>
                     </div>
                 </section>
+                {/*<section id="projects" className="bento container">*/}
+                {/*    <h2>*/}
+                {/*        <small>*/}
+                {/*            A selection of completed*/}
+                {/*        </small>*/}
+                {/*        Projects*/}
+                {/*    </h2>*/}
+                {/*    <div className="projects">*/}
+                {/*        <ResponsiveCarousel />*/}
+                {/*    </div>*/}
+                {/*</section>*/}
                 <section id="projects" className="bento container">
                     <h2>
                         <small>
@@ -473,7 +478,7 @@ export default function Home() {
                         </small>
                         Book a time
                     </h2>
-                    <iframe src="https://outlook.office365.com/owa/calendar/InterviewPeterBardenhagen@digitalresponsecomau.onmicrosoft.com/bookings/" className="bookings" scrolling="yes" />
+                    <iframe src="https://app.apollo.io/#/meet/peterbardenhagen" className="bookings" scrolling="yes" />
                 </section>
                 <section id="books">
                     <h2>
