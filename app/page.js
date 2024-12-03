@@ -478,7 +478,7 @@ export default function Home() {
                         </small>
                         Book a time
                     </h2>
-                    <iframe src="https://app.apollo.io/#/meet/peterbardenhagen" className="bookings" scrolling="yes" />
+                    <iframe src="https://outlook.office.com/bookwithme/user/aad8f0e0beba4aebb06c83a9fbd6be01@bardenhagen.xyz?anonymous&ep=plink" className="bookings" scrolling="yes" />
                 </section>
                 <section id="books">
                     <h2>
