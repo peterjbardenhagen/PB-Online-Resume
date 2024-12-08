@@ -3,6 +3,9 @@ import Head from 'next/head'
 
 import { Analytics } from "@vercel/analytics/react"
 
+import { GoogleAnalytics } from '@next/third-parties/google'
+import { GoogleTagManager } from '@next/third-parties/google'
+
 import { NextSeo } from 'next-seo';
 
 export const metadata = {
@@ -96,6 +99,8 @@ export default function RootLayout({ children }) {
             <body>
                 {children}
                 <Analytics />
+                <GoogleAnalytics gaId="G-H090T9HXWP" />
+                <GoogleTagManager gtmId="GTM-KWXBWJ9J" />
             </body>
         </html>
     );

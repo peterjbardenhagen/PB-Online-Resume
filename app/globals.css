@@ -905,3 +905,7 @@ nextjs-portal, .nextjs-toast, .nextjs-toast-errors-parent, .nextjs-error-with-st
 		height: 16px;
 	}
 }
+
+.projects {
+	display:none;
+}

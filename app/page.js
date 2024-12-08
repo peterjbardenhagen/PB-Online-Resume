@@ -1,7 +1,6 @@
 ﻿"use client";
 import { useState } from "react";
 import Image from "next/image";
-import { ReactTagManager } from 'react-gtm-ts';
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { NextSeo } from 'next-seo';
 import { DocumentMetaTags } from '../src/components/DocumentMetaTags/DocumentMetaTags.tsx';
@@ -35,7 +34,6 @@ import ResponsiveCarousel from "../src/components/ResponsiveCarousel/ResponsiveC
 import styles from "./globals.css";
 
 export default function Home() {
-
   const [menuOpen, setMenuOpen] = useState(false);
   const [ messageInput, setMessageInput ] = useState('');
 
@@ -68,18 +66,9 @@ export default function Home() {
     setMenuOpen(!menuOpen);
     }
 
-    ReactTagManager.init({
-        code: 'GTM-KWXBWJ9J', // GTM Code
-        debug: false, // debug mode (default false)
-        performance: false, // starts GTM only after user interaction (improve initial page load)
-    });
     const shareUrl = 'https://peter.bardenhagen.xyz';
     const title = 'Peter Bardenhagen - Online Resume';
 
-    const { setPathPageView, setIdentity, setContentType } = useTrackingCode(); 
-    setPathPageView("/home");
-    setIdentity("peter@bardenhagen.xyz");
-    setContentType("landing-page");
     return (
         <>
             <header>
@@ -108,16 +97,10 @@ export default function Home() {
                             <a href="#skills">Skills</a>
                         </li>
                         <li>
-                            <a href="#projects">Projects</a>
-                        </li>
-                        <li>
                             <a href="#chatbot">AI Assistant</a>
                         </li>
                         <li>
-                            <a href="#book">Book</a>
-                        </li>
-                        <li>
-                            <a href="#books">Reading</a>
+                            <a href="#book">Book a Time</a>
                         </li>
                         <li>
                             <a href="#references">References</a>
@@ -144,7 +127,7 @@ export default function Home() {
                             <h1><small>Hi I'm</small>
                                 Peter Bardenhagen
                             </h1>
-                            <p>I deliver enterprise-scale digital solutions with measurable ROI, partnering with leading brands and top-tier consultancy firms. Specialising in AWS/Azure cloud infrastructures, AI & Digital solutions, and data analytics platforms, I transform complex business challenges into scalable technical solutions. My implementations have optimised operations and accelerated growth for organisations across multiple industries, consistently exceeding KPI targets while reducing operational costs.</p>
+                            <p>I design and deliver enterprise-scale digital solutions with measurable ROI, partnering with leading businesses, government agencies and top-tier consultancy firms. Specialising in cloud-based PaaS & SaaS AI & Digital solutions & Custom Applications, I transform complex business challenges into scalable technical solutions. My implementations have optimised operations and accelerated growth for organisations across multiple industries, consistently exceeding KPI targets while reducing operational costs.</p>
                             <div className="call-to-action">
                                 <a href="./CV Peter Bardenhagen.docx" className="button black">
                                     Resume
@@ -293,18 +276,7 @@ export default function Home() {
                         </article>
                     </div>
                 </section>
-                {/*<section id="projects" className="bento container">*/}
-                {/*    <h2>*/}
-                {/*        <small>*/}
-                {/*            A selection of completed*/}
-                {/*        </small>*/}
-                {/*        Projects*/}
-                {/*    </h2>*/}
-                {/*    <div className="projects">*/}
-                {/*        <ResponsiveCarousel />*/}
-                {/*    </div>*/}
-                {/*</section>*/}
-                <section id="projects" className="bento container">
+                <section id="share" className="bento container">
                     <h2>
                         <small>
                             Share with friends on
@@ -314,7 +286,7 @@ export default function Home() {
                     <div className="share__container">
                         <div className="share__some-network">
                             <FacebookShareButton url={shareUrl} className="share__some-network__share-button">
-                                <FacebookIcon size={64} round />
+                                <FacebookIcon size={48} round />
                             </FacebookShareButton>
 
                             <div>
@@ -330,7 +302,7 @@ export default function Home() {
                                 appId="521270401588372"
                                 className="share__some-network__share-button"
                             >
-                                <FacebookMessengerIcon size={64} round />
+                                <FacebookMessengerIcon size={48} round />
                             </FacebookMessengerShareButton>
                         </div>
 
@@ -340,7 +312,7 @@ export default function Home() {
                                 title={title}
                                 className="share__some-network__share-button"
                             >
-                                <XIcon size={64} round />
+                                <XIcon size={48} round />
                             </TwitterShareButton>
                         </div>
 
@@ -350,7 +322,7 @@ export default function Home() {
                                 title={title}
                                 className="share__some-network__share-button"
                             >
-                                <TelegramIcon size={64} round />
+                                <TelegramIcon size={48} round />
                             </TelegramShareButton>
                         </div>
 
@@ -361,13 +333,13 @@ export default function Home() {
                                 separator=":: "
                                 className="share__some-network__share-button"
                             >
-                                <WhatsappIcon size={64} round />
+                                <WhatsappIcon size={48} round />
                             </WhatsappShareButton>
                         </div>
 
                         <div className="share__some-network">
                             <LinkedinShareButton url={shareUrl} className="share__some-network__share-button">
-                                <LinkedinIcon size={64} round />
+                                <LinkedinIcon size={48} round />
                             </LinkedinShareButton>
                         </div>
 
@@ -377,7 +349,7 @@ export default function Home() {
                                 media={`${String(shareUrl)}/${exampleImage}`}
                                 className="share__some-network__share-button"
                             >
-                                <PinterestIcon size={64} round />
+                                <PinterestIcon size={48} round />
                             </PinterestShareButton>
 
                             <div>
@@ -393,7 +365,7 @@ export default function Home() {
                                 windowHeight={460}
                                 className="share__some-network__share-button"
                             >
-                                <RedditIcon size={64} round />
+                                <RedditIcon size={48} round />
                             </RedditShareButton>
 
                             <div>
@@ -408,7 +380,7 @@ export default function Home() {
                                 body="body"
                                 className="share__some-network__share-button"
                             >
-                                <EmailIcon size={64} round />
+                                <EmailIcon size={48} round />
                             </EmailShareButton>
                         </div>
                     </div>
@@ -476,67 +448,9 @@ export default function Home() {
                         <small>
                             Make a time to meet on Teams
                         </small>
-                        Book a time
+                        Book a Time
                     </h2>
                     <iframe src="https://outlook.office.com/bookwithme/user/aad8f0e0beba4aebb06c83a9fbd6be01@bardenhagen.xyz?anonymous&ep=plink" className="bookings" scrolling="yes" />
-                </section>
-                <section id="books">
-                    <h2>
-                        <small>
-                            Peter's Books
-                        </small>
-                        Good Reads
-                    </h2>
-                    <div className="gr_container" id="gr_grid_widget_1731301205">
-                        <div className="gr_grid_container">
-                            <div className="gr_grid_book_container"><a title="The Lean Startup: How Today's Entrepreneurs Use Continuous Innovation to Create Radically Successful Businesses" rel="nofollow" href="https://www.goodreads.com/book/show/12969025-the-lean-startup"><img alt="The Lean Startup: How Today's Entrepreneurs Use Continuous Innovation to Create Radically Successful Businesses" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1645396848l/12969025._SX98_.jpg" /></a></div>
-                            <div className="gr_grid_book_container"><a title="The Practice of Enterprise Architecture : Method, Techniques and Artefacts" rel="nofollow" href="https://www.goodreads.com/book/show/211032093-the-practice-of-enterprise-architecture"><img alt="The Practice of Enterprise Architecture : Method, Techniques and Artefacts" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1712565618l/211032093._SX98_.jpg" /></a></div>
-                            <div className="gr_grid_book_container"><a title="Hacking Sales: The Playbook for Building a High-Velocity Sales Machine" rel="nofollow" href="https://www.goodreads.com/book/show/30241165-hacking-sales"><img alt="Hacking Sales: The Playbook for Building a High-Velocity Sales Machine" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1463764773l/30241165._SX98_.jpg" /></a></div>
-                            <div className="gr_grid_book_container"><a title="Burning Entrepreneur: How to Launch, Fund, and Set Your Startup on Fire" rel="nofollow" href="https://www.goodreads.com/book/show/15733579-burning-entrepreneur"><img alt="Burning Entrepreneur: How to Launch, Fund, and Set Your Startup on Fire" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1343002968l/15733579._SX98_.jpg" /></a></div>
-                            <div className="gr_grid_book_container"><a title="Startup Metrics: Making Sense of the Numbers in Your Startup" rel="nofollow" href="https://www.goodreads.com/book/show/17395634-startup-metrics"><img alt="Startup Metrics: Making Sense of the Numbers in Your Startup" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1387716145l/17395634._SX98_.jpg" /></a></div>
-                            <div className="gr_grid_book_container"><a title="The Startup Community Way: How to Build an Entrepreneurial Ecosystem That Thrives" rel="nofollow" href="https://www.goodreads.com/book/show/50043900-the-startup-community-way"><img alt="The Startup Community Way: How to Build an Entrepreneurial Ecosystem That Thrives" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1585145509l/50043900._SX98_.jpg" /></a></div>
-                            <div className="gr_grid_book_container"><a title="Startup Opportunities: Know When to Quit Your Day Job" rel="nofollow" href="https://www.goodreads.com/book/show/32957259-startup-opportunities"><img alt="Startup Opportunities: Know When to Quit Your Day Job" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1494338264l/32957259._SX98_.jpg" /></a></div>
-                            <div className="gr_grid_book_container"><a title="Screw the Valley: A Coast-to-Coast Tour of America's New Tech Startup Culture: New York, Boulder, Austin, Raleigh, Detroit, Las Vegas, Kansas City" rel="nofollow" href="https://www.goodreads.com/book/show/21413887-screw-the-valley"><img alt="Screw the Valley: A Coast-to-Coast Tour of America's New Tech Startup Culture: New York, Boulder, Austin, Raleigh, Detroit, Las Vegas, Kansas City" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1398195660l/21413887._SX98_.jpg" /></a></div>
-                            <div className="gr_grid_book_container"><a title="Leading the Life You Want: Skills for Integrating Work and Life" rel="nofollow" href="https://www.goodreads.com/book/show/23340775-leading-the-life-you-want"><img alt="Leading the Life You Want: Skills for Integrating Work and Life" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1428976162l/23340775._SX98_.jpg" /></a></div>
-                            <div className="gr_grid_book_container"><a title="Crazy Is a Compliment: The Power of Zigging When Everyone Else Zags" rel="nofollow" href="https://www.goodreads.com/book/show/20821082-crazy-is-a-compliment"><img alt="Crazy Is a Compliment: The Power of Zigging When Everyone Else Zags" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1414347213l/20821082._SX98_.jpg" /></a></div>
-                            <div className="gr_grid_book_container"><a title="The Alliance: Managing Talent in the Networked Age" rel="nofollow" href="https://www.goodreads.com/book/show/20763746-the-alliance"><img alt="The Alliance: Managing Talent in the Networked Age" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1411447561l/20763746._SX98_.jpg" /></a></div>
-                            <div className="gr_grid_book_container"><a title="The Founder's Dilemmas: Anticipating and Avoiding the Pitfalls That Can Sink a Startup (The Kauffman Foundation Series on Innovation and Entrepreneurship)" rel="nofollow" href="https://www.goodreads.com/book/show/13234710-the-founder-s-dilemmas"><img alt="The Founder's Dilemmas: Anticipating and Avoiding the Pitfalls That Can Sink a Startup" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1356093515l/13234710._SX98_.jpg" /></a></div>
-                            <div className="gr_grid_book_container"><a title="Creativity, Inc.: Overcoming the Unseen Forces That Stand in the Way of True Inspiration" rel="nofollow" href="https://www.goodreads.com/book/show/19816540-creativity-inc"><img alt="Creativity, Inc.: Overcoming the Unseen Forces That Stand in the Way of True Inspiration" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1387742041l/19816540._SX98_.jpg" /></a></div>
-                            <div className="gr_grid_book_container"><a title="Dark Matter" rel="nofollow" href="https://www.goodreads.com/book/show/27833670-dark-matter"><img alt="Dark Matter" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1472119680l/27833670._SX98_.jpg" /></a></div>
-                            <div className="gr_grid_book_container"><a title="The Seven Figure Agency Roadmap: How to Build a Million Dollar Digital Marketing Agency" rel="nofollow" href="https://www.goodreads.com/book/show/57750405-the-seven-figure-agency-roadmap"><img alt="The Seven Figure Agency Roadmap: How to Build a Million Dollar Digital Marketing Agency" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1618527382l/57750405._SX98_.jpg" /></a></div>
-                            <div className="gr_grid_book_container"><a title="The SaaS Sales Method: Sales As a Science (Sales Blueprints Book 1)" rel="nofollow" href="https://www.goodreads.com/book/show/42104078-the-saas-sales-method"><img alt="The SaaS Sales Method: Sales As a Science" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1538327503l/42104078._SX98_.jpg" /></a></div>
-                            <div className="gr_grid_book_container"><a title="From 0 to 130 Properties in 3.5 Years" rel="nofollow" href="https://www.goodreads.com/book/show/19178610-from-0-to-130-properties-in-3-5-years"><img alt="From 0 to 130 Properties in 3.5 Years" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1386172147l/19178610._SX98_.jpg" /></a></div>
-                            <div className="gr_grid_book_container"><a title="Architects Of Opportunity : A Playbook On How To Create Meaningful Impact Around Us" rel="nofollow" href="https://www.goodreads.com/book/show/215616432-architects-of-opportunity"><img alt="Architects Of Opportunity : A Playbook On How To Create Meaningful Impact Around Us" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1719677025l/215616432._SX98_.jpg" /></a></div>
-                            <div className="gr_grid_book_container"><a title="Strategy to Reality: Making the Impossible Possible for Business Architects, Change Makers and Strategy Execution Leaders" rel="nofollow" href="https://www.goodreads.com/book/show/61404817-strategy-to-reality"><img alt="Strategy to Reality: Making the Impossible Possible for Business Architects, Change Makers and Strategy Execution Leaders" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1657172458l/61404817._SX98_.jpg" /></a></div>
-                            <div className="gr_grid_book_container"><a title="Lean Marketing: More leads. More profit. Less marketing. (Lean Marketing Series)" rel="nofollow" href="https://www.goodreads.com/book/show/203939843-lean-marketing"><img alt="Lean Marketing: More leads. More profit. Less marketing." border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1702833575l/203939843._SX98_.jpg" /></a></div>
-
-                            <div className="gr_grid_book_container"><a title="Scrum - The Art of Doing Twice the Work in Half the Time" rel="nofollow" href="https://www.goodreads.com/book/show/23664693-scrum---the-art-of-doing-twice-the-work-in-half-the-time"><img alt="Scrum - The Art of Doing Twice the Work in Half the Time" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1442549706l/23664693._SX98_.jpg" /></a></div>
-                            <div className="gr_grid_book_container"><a title="Trump on the Couch: Inside the Mind of the President" rel="nofollow" href="https://www.goodreads.com/book/show/38821040-trump-on-the-couch"><img alt="Trump on the Couch: Inside the Mind of the President" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1534321550l/38821040._SX98_.jpg" /></a></div>
-                            <div className="gr_grid_book_container"><a title="The Intelligent Investor" rel="nofollow" href="https://www.goodreads.com/book/show/106835.The_Intelligent_Investor"><img alt="The Intelligent Investor" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1409602421l/106835._SX98_.jpg" /></a></div>
-                            <div className="gr_grid_book_container"><a title="Invent and Wander: The Collected Writings of Jeff Bezos" rel="nofollow" href="https://www.goodreads.com/book/show/54505323-invent-and-wander"><img alt="Invent and Wander: The Collected Writings of Jeff Bezos" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1600744841l/54505323._SX98_.jpg" /></a></div>
-                            <div className="gr_grid_book_container"><a title="The Wise Enterprise: Reshape your organisation for the age of uncertainty" rel="nofollow" href="https://www.goodreads.com/book/show/58707790-the-wise-enterprise"><img alt="The Wise Enterprise: Reshape your organisation for the age of uncertainty" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1628180440l/58707790._SX98_.jpg" /></a></div>
-                            <div className="gr_grid_book_container"><a title="Zero To One" rel="nofollow" href="https://www.goodreads.com/book/show/23346490-zero-to-one"><img alt="Zero To One" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1435515337l/23346490._SX98_.jpg" /></a></div>
-                            <div className="gr_grid_book_container"><a title="Atomic Habits: An Easy & Proven Way to Build Good Habits & Break Bad Ones" rel="nofollow" href="https://www.goodreads.com/book/show/60616246-atomic-habits"><img alt="Atomic Habits: An Easy & Proven Way to Build Good Habits & Break Bad Ones" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1647263101l/60616246._SX98_.jpg" /></a></div>
-                            <div className="gr_grid_book_container"><a title="SPRINT" rel="nofollow" href="https://www.goodreads.com/book/show/25705830-sprint"><img alt="SPRINT" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1457260548l/25705830._SX98_.jpg" /></a></div>
-                            <div className="gr_grid_book_container"><a title="Humble Inquiry: The Gentle Art of Asking Instead of Telling" rel="nofollow" href="https://www.goodreads.com/book/show/56302857-humble-inquiry"><img alt="Humble Inquiry: The Gentle Art of Asking Instead of Telling" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1608062146l/56302857._SX98_.jpg" /></a></div>
-                            <div className="gr_grid_book_container"><a title="How Will You Measure Your Life?" rel="nofollow" href="https://www.goodreads.com/book/show/44570498-how-will-you-measure-your-life"><img alt="How Will You Measure Your Life?" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1553280522l/44570498._SX98_.jpg" /></a></div>
-                            <div className="gr_grid_book_container"><a title="Talking to Humans: Success starts with understanding your customers" rel="nofollow" href="https://www.goodreads.com/book/show/24813980-talking-to-humans"><img alt="Talking to Humans: Success starts with understanding your customers" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1422954418l/24813980._SX98_.jpg" /></a></div>
-                            <div className="gr_grid_book_container"><a title="Power And Prediction: The Disruptive Economics of Artificial Intelligence" rel="nofollow" href="https://www.goodreads.com/book/show/60623908-power-and-prediction"><img alt="Power And Prediction: The Disruptive Economics of Artificial Intelligence" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1647362522l/60623908._SX98_.jpg" /></a></div>
-                            <div className="gr_grid_book_container"><a title="Thinking In Systems: A Primer" rel="nofollow" href="https://www.goodreads.com/book/show/3828902-thinking-in-systems"><img alt="Thinking In Systems: A Primer" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1390169859l/3828902._SX98_.jpg" /></a></div>
-                            <div className="gr_grid_book_container"><a title="Recursion" rel="nofollow" href="https://www.goodreads.com/book/show/44773737-recursion"><img alt="Recursion" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1554251283l/44773737._SX98_.jpg" /></a></div>
-                            <div className="gr_grid_book_container"><a title="Quantum Computing for the Quantum Curious" rel="nofollow" href="https://www.goodreads.com/book/show/59247706-quantum-computing-for-the-quantum-curious"><img alt="Quantum Computing for the Quantum Curious" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1633808660l/59247706._SX98_.jpg" /></a></div>
-                            <div className="gr_grid_book_container"><a title="Growth Hacker Marketing: A Primer on the Future of PR, Marketing and Advertising" rel="nofollow" href="https://www.goodreads.com/book/show/18917888-growth-hacker-marketing"><img alt="Growth Hacker Marketing: A Primer on the Future of PR, Marketing and Advertising" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1416181895l/18917888._SX98_.jpg" /></a></div>
-                            <div className="gr_grid_book_container"><a title="Think Like A CEO: Stop reacting, get out of your own head and take control of your role (The Effective CEO)" rel="nofollow" href="https://www.goodreads.com/book/show/59772437-think-like-a-ceo"><img alt="Think Like A CEO: Stop reacting, get out of your own head and take control of your role" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1638940230l/59772437._SX98_.jpg" /></a></div>
-                            <div className="gr_grid_book_container"><a title="The SaaS Sales Method Fundamentals: How to Have Customer Conversations (Sales Blueprints Book 3)" rel="nofollow" href="https://www.goodreads.com/book/show/39782171-the-saas-sales-method-fundamentals"><img alt="The SaaS Sales Method Fundamentals: How to Have Customer Conversations" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1523197661l/39782171._SX98_.jpg" /></a></div>
-                            <div className="gr_grid_book_container"><a title="The SaaS Sales Method for Customer Success & Account Managers: How to Grow Customers (Sales Blueprints Book 6)" rel="nofollow" href="https://www.goodreads.com/book/show/39904430-the-saas-sales-method-for-customer-success-account-managers"><img alt="The SaaS Sales Method for Customer Success & Account Managers: How to Grow Customers" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1524271414l/39904430._SX98_.jpg" /></a></div>
-                            <br className="gr_clear" /><br />
-                            <div className="button_fullcollection">
-                                <a href="https://www.goodreads.com/user/show/181135748-peter-bardenhagen" className="button black" target="_blank">
-                                    Full collection at Good Reads »
-                                </a>
-                            </div>
-                        </div>
-                    </div>
                 </section>
                 <section id="references">
                     <h2>
