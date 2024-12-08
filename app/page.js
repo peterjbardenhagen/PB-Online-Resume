@@ -219,6 +219,7 @@ export default function Home() {
                             <p>
                                 I excel at execution, bridging the gap between business and technology. My strong communication skills make me the conduit for prioritising and understanding their needs. I’m reliable, customer focussed, and results driven.
                             </p>
+                            <p><strong>Current Situation:</strong> I am actively looking for new opportunities and open to Freelance, Contract and Permanent. My current availability is immediate if required. I am based in Brisbane and open to roles locally or can relocate to Sydney or Perth at short notice.</p>
                         </div>
                     </div>
                 </section>
@@ -420,7 +421,6 @@ export default function Home() {
                     <div className="chatbot-blue">
                         <div className="chat-info">
                             <p>Chat with my AI assistant built on Azure AI, traineḍ with my skills and experience. Ask questions about my work history, technical expertise, and achievements.</p>
-                            <p>I am actively looking for new opportunities. Please keep me in mind for any new project. I am based in Brisbane and open to relocation to Sydney or Perth.</p>
                             <a href="./CV Peter Bardenhagen.docx" className="button black">Download Resume</a>
                             <p>&nbsp;</p>
                             <p><small>Please note on ocassion the AI Assistant does not automatically scroll down for the result</small></p>
