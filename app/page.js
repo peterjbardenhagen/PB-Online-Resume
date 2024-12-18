@@ -127,7 +127,9 @@ export default function Home() {
                             <h1><small>Hi I'm</small>
                                 Peter Bardenhagen
                             </h1>
-                            <p>I design and deliver enterprise-scale digital solutions with measurable ROI, partnering with leading businesses, government agencies and top-tier consultancy firms. Specialising in cloud-based PaaS & SaaS AI & Digital solutions & Custom Applications, I transform complex business challenges into scalable technical solutions. My implementations have optimised operations and accelerated growth for organisations across multiple industries, consistently exceeding KPI targets while reducing operational costs.</p>
+                            <p>I design and deliver enterprise-scale digital solutions with measurable ROI, partnering with leading businesses, government agencies and top-tier consultancy firms.</p>
+                            <p>&nbsp;</p>
+                            <p>Specialising in cloud-based custom applications, I transform complex business challenges into scalable technical solutions. My implementations have optimised operations and accelerated growth for organisations across multiple industries, consistently exceeding KPI targets while reducing operational costs.</p>
                             <div className="call-to-action">
                                 <a href="./CV Peter Bardenhagen.docx" className="button black">
                                     Resume
@@ -190,6 +192,12 @@ export default function Home() {
                     </h2>
                     <div className="holder-blue">
                         <div className="left-column">
+                            <h3>Cloud</h3>
+                            <ul>
+                                <li>AWS</li>
+                                <li>Azure</li>
+                                <li>GCP</li>
+                            </ul>
                             <h3>Frontend</h3>
                             <ul>
                                 <li>HTML</li>
@@ -210,9 +218,6 @@ export default function Home() {
                         </div>
                         <div className="right-column">
                             <h3>A bit about me</h3>
-                            <p>
-                                Hi, I'm Peter Bardenhagen. I’m an innovative digital enterprise leader with a proven track record collaborating with top-tier global consulting firms. Leveraging CX technology, I address business challenges, enhance customer experiences, and drive growth. My passion lies in building products, solving complex problems, designing robust architectures and delivering superior business results.
-                            </p>
                             <p>
                                 Starting my career as a developer, I’ve always been curious about not just the ‘what,’ but also the ‘how’ and ‘why.’ Empathy for users drives me to optimise their experiences using UX principles and human-centered design.
                             </p>
@@ -459,7 +464,7 @@ export default function Home() {
                         </small>
                         References
                     </h2>
-                    <iframe src="https://bardenhagen.xyz/portfolio.html" className="references_iframe"></iframe>
+                    <iframe src="/portfolio/index.html" className="references_iframe"></iframe>
                 </section>
             </main>
         </>
