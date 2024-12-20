@@ -5,6 +5,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 import { NextSeo } from 'next-seo';
 import { DocumentMetaTags } from '../src/components/DocumentMetaTags/DocumentMetaTags.tsx';
 import { PageMetaTags } from '../src/components/PageMetaTags/PageMetaTags.tsx';
+import { BackToTop } from '../src/components/BackToTop/BackToTop.tsx';
 import {
     EmailShareButton,
     FacebookShareButton,
@@ -99,6 +100,7 @@ export default function Home() {
             </header>
             <main>
                 <SpeedInsights />
+                <BackToTop />
                 <section className="hero container">
                     <div className="hero-blue">
                         <div>
