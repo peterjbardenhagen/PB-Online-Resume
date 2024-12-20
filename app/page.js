@@ -72,18 +72,6 @@ export default function Home() {
     return (
         <>
             <header>
-                <div
-                    type="div"
-                    onLoad={() => {
-                        ReactTagManager.action({
-                            event: 'pageView',
-                            pagePath: 'https://peter.bardenhagen.xyz',
-                            pageTitle: 'Peter Bardenhagen - Online Resume',
-                            visitorType: 'Customer'
-                        });
-                    }}
-                ></div>
-
                 <a href="#" className="logo-holder">
                     <div className="logo">PB</div>
                     <div className="logo-text">Online Resume</div>
@@ -158,30 +146,30 @@ export default function Home() {
                 <section className="logos container">
                     <div className="marquee">
                         <div className="track">
-                            <img src="./imgs/archi.png" alt="ArchiMate 3.2" className="landscape" />
-                            <img src="./imgs/Togaf.jpg" alt="TOGAF" className="landscape" />
-                            <img src="./imgs/Itil.png" alt="ITIL" className="landscape" />
-                            <img src="./imgs/pspo.png" alt="Professional Product Owner I" />
-                            <img src="./imgs/PSM.jpg" alt="Professional Scrum Master I" />
-                            <img src="./imgs/prince2.png" height="128" alt="Prince 2 Practitioner" />
-                            <img src="./imgs/safe.png" alt="SAFe Agilst 5.0" />
-                            <img src="./imgs/databricks.png" alt="Databricks" height="128" className="landscape" />
-                            <img src="./imgs/datadog.png" alt="Datadog" className="landscape" />
-                            <img src="./imgs/flutterflow.png" alt="Flutterflow" className="landscape" />
-                            <img src="./imgs/Webflow.jpg" alt="WebFlow" className="landscape" />
-                            <img src="./imgs/optimizely.png" alt="Optimizely" className="landscape" />
-                            <img src="./imgs/umbraco.png" height="128" alt="Umbraco" />
-                            <img src="./imgs/azure.png" alt="Azure" />
-                            <img src="./imgs/vscode.png" alt="VS Code" />
-                            <img src="./imgs/dotnetcore.png" alt=".Net Core" />
-                            <img src="./imgs/html.png" alt="HTML" />
-                            <img src="./imgs/css.png" alt="CSS" />
-                            <img src="./imgs/javascript.png" alt="JS" />
-                            <img src="./imgs/sass.png" alt="Sass" />
-                            <img src="./imgs/react.png" alt="React" />
-                            <img src="./imgs/nextjs.png" alt="Next JS" />
-                            <img src="./imgs/angular.png" alt="Angular" />
-                            <img src="./imgs/python.png" alt="Python" />
+                            <img src="./imgs/archi.png" alt="ArchiMate 3.2" className="archimate landscape" />
+                            <img src="./imgs/Togaf.jpg" alt="TOGAF" className="togaf landscape" />
+                            <img src="./imgs/Itil.png" alt="ITIL" className="itil landscape" />
+                            <img src="./imgs/pspo.png" alt="Professional Product Owner I" className="square" />
+                            <img src="./imgs/PSM.jpg" alt="Professional Scrum Master I" className="square" />
+                            <img src="./imgs/prince2.png" alt="Prince 2 Practitioner" className="square" />
+                            <img src="./imgs/safe.png" alt="SAFe Agilst 5.0" className="square" />
+                            <img src="./imgs/databricks.png" alt="Databricks" className="databricks landscape" />
+                            <img src="./imgs/datadog.png" alt="Datadog" className="datadog landscape" />
+                            <img src="./imgs/flutterflow.png" alt="Flutterflow" className="flutterflow landscape" />
+                            <img src="./imgs/Webflow.jpg" alt="WebFlow" className="webflow landscape" />
+                            <img src="./imgs/optimizely.png" alt="Optimizely" className="optimizely landscape" />
+                            <img src="./imgs/umbraco.png" alt="Umbraco" className="square" />
+                            <img src="./imgs/azure.png" alt="Azure" className="square" />
+                            <img src="./imgs/vscode.png" alt="VS Code" className="square" />
+                            <img src="./imgs/dotnetcore.png" alt=".Net Core" className="square" />
+                            <img src="./imgs/html.png" alt="HTML" className="square" />
+                            <img src="./imgs/css.png" alt="CSS" className="square" />
+                            <img src="./imgs/javascript.png" alt="JS" className="square" />
+                            <img src="./imgs/sass.png" alt="Sass" className="square" />
+                            <img src="./imgs/react.png" alt="React" className="square" />
+                            <img src="./imgs/nextjs.png" alt="Next JS" className="square" />
+                            <img src="./imgs/angular.png" alt="Angular" className="square" />
+                            <img src="./imgs/python.png" alt="Python" className="square" />
                         </div>
                     </div>
                 </section>
@@ -465,6 +453,18 @@ export default function Home() {
                         References
                     </h2>
                     <iframe src="/portfolio/index.html" className="references_iframe"></iframe>
+                    <div
+                        type="div"
+                        onLoad={() => {
+                            ReactTagManager.action({
+                                event: 'pageView',
+                                pagePath: 'https://peter.bardenhagen.xyz',
+                                pageTitle: 'Peter Bardenhagen - Online Resume',
+                                visitorType: 'Customer'
+                            });
+                        }}
+                    ></div>
+
                 </section>
             </main>
         </>

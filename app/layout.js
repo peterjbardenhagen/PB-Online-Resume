@@ -91,7 +91,7 @@ export default function RootLayout({ children }) {
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
                 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet" />
-                <link rel="shortcut icon" href="./imgs/favicon.ico" />
+                <link rel="shortcut icon" href="./imgs/favicon.ico" type="image/icon" />
                 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
                 <link rel="canonical" href="https://peter.bardenhagen.xyz/" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2"/>
