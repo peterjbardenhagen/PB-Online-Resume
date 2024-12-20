@@ -9,23 +9,13 @@ import {
     EmailShareButton,
     FacebookShareButton,
     LinkedinShareButton,
-    PinterestShareButton,
-    RedditShareButton,
-    TelegramShareButton,
-    TwitterShareButton,
     WhatsappShareButton,
     FacebookShareCount,
-    PinterestShareCount,
-    RedditShareCount,
     FacebookIcon,
     FacebookMessengerIcon,
     FacebookMessengerShareButton,
-    XIcon,
-    TelegramIcon,
     WhatsappIcon,
     LinkedinIcon,
-    PinterestIcon,
-    RedditIcon,
     EmailIcon,
 } from "react-share";
 import exampleImage from './imgs/social.png';
@@ -34,36 +24,36 @@ import ResponsiveCarousel from "../src/components/ResponsiveCarousel/ResponsiveC
 import styles from "./globals.css";
 
 export default function Home() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [ messageInput, setMessageInput ] = useState('');
+    const [menuOpen, setMenuOpen] = useState(false);
+    const [messageInput, setMessageInput] = useState('');
 
-  const [messages, setMessages] = useState([
-		{
-			role: 'assistant',
-			content: 'How can I help you learn more about Peter and his Resume?'
-		}
-  ]);
+    const [messages, setMessages] = useState([
+        {
+            role: 'assistant',
+            content: 'How can I help you learn more about Peter and his Resume?'
+        }
+    ]);
 
-  const submitForm = async (e) => {
-    e.preventDefault();
-    let newMessages = [...messages, { role: 'user', content: messageInput }]
-    setMessages(newMessages);
-    setMessageInput('');
-    const apiMessage = await fetch(
-      '/api',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ messages: newMessages })
-      }
-    ).then(res => res.json());
-      setMessages([...newMessages, { role: 'assistant', content: apiMessage.message }]);
+    const submitForm = async (e) => {
+        e.preventDefault();
+        let newMessages = [...messages, { role: 'user', content: messageInput }]
+        setMessages(newMessages);
+        setMessageInput('');
+        const apiMessage = await fetch(
+            '/api',
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ messages: newMessages })
+            }
+        ).then(res => res.json());
+        setMessages([...newMessages, { role: 'assistant', content: apiMessage.message }]);
     }
 
     const toggleMobileMenu = () => {
-    setMenuOpen(!menuOpen);
+        setMenuOpen(!menuOpen);
     }
 
     const shareUrl = 'https://peter.bardenhagen.xyz';
@@ -165,7 +155,6 @@ export default function Home() {
                             <img src="./imgs/html.png" alt="HTML" className="square" />
                             <img src="./imgs/css.png" alt="CSS" className="square" />
                             <img src="./imgs/javascript.png" alt="JS" className="square" />
-                            <img src="./imgs/sass.png" alt="Sass" className="square" />
                             <img src="./imgs/react.png" alt="React" className="square" />
                             <img src="./imgs/nextjs.png" alt="Next JS" className="square" />
                             <img src="./imgs/angular.png" alt="Angular" className="square" />
@@ -176,7 +165,7 @@ export default function Home() {
                 <section id="skills" className="skills container">
                     <h2>
                         <small>About Me</small>
-                        Skills
+                        Skills & Experience
                     </h2>
                     <div className="holder-blue">
                         <div className="left-column">
@@ -191,9 +180,10 @@ export default function Home() {
                                 <li>HTML</li>
                                 <li>CSS</li>
                                 <li>JavaScript</li>
+                                <li>TypeScript</li>
                                 <li>React</li>
                                 <li>Angular</li>
-                                <li>Next JS</li>
+                                <li>Next.js</li>
                                 <li>Vue</li>
                             </ul>
                             <h3>Backend</h3>
@@ -205,21 +195,25 @@ export default function Home() {
                             </ul>
                         </div>
                         <div className="right-column">
-                            <h3>A bit about me</h3>
                             <p>
                                 Starting my career as a developer, I’ve always been curious about not just the ‘what,’ but also the ‘how’ and ‘why.’ Empathy for users drives me to optimise their experiences using UX principles and human-centered design.
                             </p>
-                            <p>
-                                I excel at execution, bridging the gap between business and technology. My strong communication skills make me the conduit for prioritising and understanding their needs. I’m reliable, customer focussed, and results driven.
-                            </p>
-                            <p><strong>Current Situation:</strong> I am actively looking for new opportunities and open to Freelance, Contract and Permanent. My current availability is immediate if required. I am based in Brisbane and open to roles locally or can relocate to Sydney or Perth at short notice.</p>
+                            <p>I have a broad set of business & technical skills, with recent experience spanning across the following capabiltiies:</p>
+                            <ul className="list">
+                                <li><strong>Technical Leadership:</strong> Led teams of 25+ technologists across multiple delivery streams</li>
+                                <li><strong>Development:</strong> Recent hands on development with Optimizely, Umbraco, AWS & Azure, .Net, React and Next.js</li>
+                                <li><strong>Solution Architecture:</strong> Enterprise-scale distributed systems, cloud platforms, integration patterns</li>
+                                <li><strong>Presales & Consulting:</strong> Technical discovery, solution design, client engagement</li>
+                                <li><strong>Delivery Management:</strong> Agile methodologies, DevOps practices, program governance</li>
+                                <li><strong>Stakeholder Management:</strong> C-level engagement, technical advisory, team mentoring</li>
+                            </ul>
                         </div>
                     </div>
                 </section>
                 <section className="work-experience container">
                     <h2>
                         <small>Recent</small>
-                        Work Experience
+                        Experience
                     </h2>
                     <div className="jobs">
                         <article>
@@ -227,53 +221,137 @@ export default function Home() {
                                 <div>
                                     <img src="./imgs/workplace-1.jpg" alt="Workplace 1 - Capgemini" width="100%" />
                                     <figcaption>
-                                        Workplace - Capgemini
+                                        Capgemini
                                     </figcaption>
                                 </div>
                             </figure>
                             <h3>Senior Manager</h3>
                             <div>2022-2024</div>
-                            <p>Led enterprise architecture initiatives across diverse sectors, including Perpetual's web and ecommerce platforms, AWS microservices transformation for Pharmacy Guild of Australia, and GIS mapping solutions for LendLease. Spearheaded Western Power's digital transformation program while maintaining expertise through advanced training in Gen AI, Machine Learning, Data Analytics, and cloud platforms including Azure and Databricks.</p>
-                            <p><strong>As Lead Architect I delivered:</strong></p>
-                            <p><a href="https://www.perpetual.com.au" target="_blank">Perpetual</a></p>
-                            <p><a href="https://www.westernpower.com.au" target="_blank">Western Power</a></p>
+                            <p>Drove major digital transformation projects for well-known Australian organisations. Notable achievements include:</p>
+                            <ul className="list">
+                                <li>Modernising Perpetual's online customer platforms</li>
+                                <li>Rebuilding Pharmacy Guild's systems using cloud technology to improve efficiency</li>
+                                <li>Creating mapping solutions for LendLease's property developments</li>
+                                <li>Leading Western Power's shift to digital operations</li>
+                            </ul>
+                            <p>Stayed at the forefront of technology through ongoing training in artificial intelligence, data analytics, and modern cloud platforms like Microsoft Azure and Databricks. Specialised in helping businesses use technology to work smarter and serve customers better.</p>
                         </article>
                         <article>
                             <figure>
                                 <div>
                                     <img src="./imgs/workplace-2.jpg" alt="Workplace 2 - Sonic Healthcare" width="100%" />
                                     <figcaption>
-                                        Workplace - Sonic Healthcare
+                                        Sonic Healthcare
                                     </figcaption>
                                 </div>
                             </figure>
                             <h3>Sonic Healthcare</h3>
                             <div>2018-2021</div>
-                            <p>Led the technical vision and development of EasyVisit, a comprehensive GP booking platform serving over 200 medical practices. Architected and implemented a modern tech stack solution using Angular, .NET Core, and CQRS patterns, featuring integrated location search, patient self-service kiosks, and practice management tools. Delivered the responsive EasyVisit website and digital experience platform, leveraging Umbraco CMS with enterprise-grade integration architecture including microservices and message queues.</p>
-                            <p><strong>As a hands on developer I built:</strong></p>
-                            <p><a href="https://www.easyvisit.com.au" target="_blank">EasyVisit</a></p>
+                            <p>Led the creation of EasyVisit, a successful medical appointment booking system now used by more than 200 GP practices across Australia. The platform makes it easy for:</p>
+                                <ul className="list">
+                                    <li>Patients to find and book appointments online</li>
+                                    <li>Medical practices to manage their schedules efficiently</li>
+                                    <li>Front desk staff to check in patients using self-service kiosks</li>
+                                </ul>
+                                <p>Built EasyVisit, and IPN corporate websites using modern technology to ensure the system is fast, reliable and secure. The website works smoothly on all devices (phones, tablets, computers) and integrates seamlessly with existing medical practice software. Designed to handle high volumes of bookings while maintaining patient privacy and data security.</p>
                         </article>
                         <article>
                             <figure>
                                 <div>
                                     <img src="./imgs/workplace-3.jpg" alt="Workplace 3 - SS&C" width="100%" />
                                     <figcaption>
-                                        Workplace - SS&C
+                                        SS&C
                                     </figcaption>
                                 </div>
                             </figure>
                             <h3>SS&C</h3>
                             <div>2016-2017</div>
-                            <p>As Senior Project Manager, I led multiple strategic initiatives with full P&L responsibility, managing diverse teams of up to 25 professionals including scrum masters, product owners, architects, and developers. Key achievements included delivering a white-label wealth management platform with iWatch integration, implementing a messaging bus system, and executing complex data migration projects with budgets ranging from $500,000 to $5 million annually.</p>
-                            <p><strong>As a hands on developer I built:</strong></p>
-                            <p><a href="https://northonline.amp.com.au" target="_blank">AMP North Online</a></p>
+                            <p>As Senior Project Manager, I successfully delivered major business technology projects with budgets between $500,000 and $5 million. Led teams of up to 25 people and was accountable for project financials and outcomes.</p>
+                            <ul className="list">
+                                <li>Built a customisable wealth management platform that works on mobile and smart watches</li>
+                                <li>Improved how different business systems communicate with each other</li>
+                                <li>Managed complex data transfers between old and new systems</li>
+                            </ul>
+                            <p>Specialised in bringing together technical and business teams to deliver projects on time and within budget, while meeting business goals and customer needs.</p>
                         </article>
                     </div>
+                </section>
+                <section id="projects" className="bento container">
+                    <h2>
+                        <small>
+                            Successfully Delivered
+                        </small>
+                        Digital Projects
+                    </h2>
+                    <div className="bento-grid">
+                        <a href="#" className="bento-item">
+                            <img src="./imgs/per.png" alt="Perpetual" height="100%" width="auto" />
+                        </a>
+                        <a href="#" className="bento-item">
+                            <img src="./imgs/wp.png" alt="Western Power" width="100%" />
+                        </a>
+                        <a href="#" className="bento-item">
+                            <img src="./imgs/lcs.jpg" alt="Live Combat Sports" height="100%" width="auto" />
+                        </a>
+                        <a href="#" className="bento-item">
+                            <img src="./imgs/bento-5.jpg" alt="Bob Jane Racing Heritage" width="auto" height="100%" />
+                        </a>
+                        <a href="#" className="bento-item">
+                            <img src="./imgs/ev.png" alt="Easy Visit" width="100%" />
+                        </a>
+                    </div>
+                </section>
+                <section id="chatbot" className="chatbot container">
+                    <h2>
+                        <small>
+                            Talk to my
+                        </small>
+                        AI Assistant
+                    </h2>
+                    <div className="chatbot-blue">
+                        <div className="chat-info">
+                            <p>Chat with my AI Assistant to learn more about my profile:</p>
+                                <ul className="list">
+                                    <li>Experience delivering technical projects</li>
+                                    <li>Career achievements and expertise</li>
+                                    <li>Current availability for roles</li>
+                                    <li>Skills and qualifications</li>
+                                </ul>
+                            <a href="./CV Peter Bardenhagen.docx" className="button black">Download Resume</a>
+                            <p>&nbsp;</p>
+                            <p><small>Please note on ocassion the AI Assistant does not automatically scroll down for the result</small></p>
+                        </div>
+                        <div className="chat-box">
+                            <div className="scroll-area">
+                                <ul id="chat-log">
+                                    {messages.map((message, index) => (
+                                        <li key={index} className={`${message.role}`}>
+                                            <span className={`avatar`}>{message.role === 'user' ? 'You' : 'AI'}</span>
+                                            <div className="message">{message.content}</div>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                            <form onSubmit={submitForm} className="chat-message">
+                                <input type="text" placeholder="Enter your question here such as 'What is Peter's availability?'" value={messageInput} onChange={e => setMessageInput(e.target.value)} />
+                                <button className="button black">Send</button>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+                <section id="book">
+                    <h2>
+                        <small>
+                            Make a time to meet on Teams
+                        </small>
+                        Book a Time
+                    </h2>
+                    <iframe src="https://meetings.hubspot.com/peter-bardenhagen?embed=true" className="bookings" scrolling="no" />
                 </section>
                 <section id="share" className="bento container">
                     <h2>
                         <small>
-                            Share with friends on
+                            Share with colleagues on
                         </small>
                         Social Media
                     </h2>
@@ -301,26 +379,6 @@ export default function Home() {
                         </div>
 
                         <div className="share__some-network">
-                            <TwitterShareButton
-                                url={shareUrl}
-                                title={title}
-                                className="share__some-network__share-button"
-                            >
-                                <XIcon size={48} round />
-                            </TwitterShareButton>
-                        </div>
-
-                        <div className="share__some-network">
-                            <TelegramShareButton
-                                url={shareUrl}
-                                title={title}
-                                className="share__some-network__share-button"
-                            >
-                                <TelegramIcon size={48} round />
-                            </TelegramShareButton>
-                        </div>
-
-                        <div className="share__some-network">
                             <WhatsappShareButton
                                 url={shareUrl}
                                 title={title}
@@ -338,36 +396,6 @@ export default function Home() {
                         </div>
 
                         <div className="share__some-network">
-                            <PinterestShareButton
-                                url={String(shareUrl)}
-                                media={`${String(shareUrl)}/${exampleImage}`}
-                                className="share__some-network__share-button"
-                            >
-                                <PinterestIcon size={48} round />
-                            </PinterestShareButton>
-
-                            <div>
-                                <PinterestShareCount url={shareUrl} className="share__some-network__share-count" />
-                            </div>
-                        </div>
-
-                        <div className="share__some-network">
-                            <RedditShareButton
-                                url={shareUrl}
-                                title={title}
-                                windowWidth={660}
-                                windowHeight={460}
-                                className="share__some-network__share-button"
-                            >
-                                <RedditIcon size={48} round />
-                            </RedditShareButton>
-
-                            <div>
-                                <RedditShareCount url={shareUrl} className="share__some-network__share-count" />
-                            </div>
-                        </div>
-
-                        <div className="share__some-network">
                             <EmailShareButton
                                 url={shareUrl}
                                 subject={title}
@@ -379,92 +407,27 @@ export default function Home() {
                         </div>
                     </div>
                 </section>
-                <section id="projects" className="bento container">
-                    <h2>
-                        <small>
-                            Successfully Delivered
-                        </small>
-                        Digital Projects
-                    </h2>
-                    <div className="bento-grid">
-                        <a href="#" className="bento-item">
-                            <img src="./imgs/bento-1.jpg" alt="Perpetual" width="100%" />
-                        </a>
-                        <a href="#" className="bento-item">
-                            <img src="./imgs/bento-2.jpg" alt="Western Power" width="100%" />
-                        </a>
-                        <a href="#" className="bento-item">
-                            <img src="./imgs/bento-3.jpg" alt="Live Combat Sports" width="100%" />
-                        </a>
-                        <a href="#" className="bento-item">
-                            <img src="./imgs/bento-5.jpg" alt="Bob Jane Racing Heritage" width="100%" />
-                        </a>
-                        <a href="#" className="bento-item">
-                            <img src="./imgs/bento-6.jpg" alt="Easy Visit" width="100%" />
-                        </a>
-                    </div>
-                </section>
-                <section id="chatbot" className="chatbot container">
-                    <h2>
-                        <small>
-                            Talk to my
-                        </small>
-                        AI Assistant
-                    </h2>
-                    <div className="chatbot-blue">
-                        <div className="chat-info">
-                            <p>Chat with my AI assistant built on Azure AI, traineḍ with my skills and experience. Ask questions about my work history, technical expertise, and achievements.</p>
-                            <a href="./CV Peter Bardenhagen.docx" className="button black">Download Resume</a>
-                            <p>&nbsp;</p>
-                            <p><small>Please note on ocassion the AI Assistant does not automatically scroll down for the result</small></p>
-                        </div>
-                        <div className="chat-box">
-                            <div className="scroll-area">
-                                <ul id="chat-log">
-                                    {messages.map((message, index) => (
-                                        <li key={index} className={`${message.role}`}>
-                                            <span className={`avatar`}>{message.role === 'user' ? 'You' : 'AI'}</span>
-                                            <div className="message">{message.content}</div>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                            <form onSubmit={submitForm} className="chat-message">
-                                <input type="text" placeholder="Hi Peter, what skills are you best at?" value={messageInput} onChange={e => setMessageInput(e.target.value)} />
-                                <button className="button black">Send</button>
-                            </form>
-                        </div>
-                    </div>
-                </section>
-                <section id="book">
-                    <h2>
-                        <small>
-                            Make a time to meet on Teams
-                        </small>
-                        Book a Time
-                    </h2>
-                    <iframe src="https://meetings.hubspot.com/peter-bardenhagen?embed=true" className="bookings" scrolling="yes" />
-                </section>
                 <section id="references">
                     <h2>
                         <small>
-                            LinkedIn Recommendations
+                            LinkedIn
                         </small>
-                        References
+                        Recommendations
                     </h2>
-                    <iframe src="/portfolio/index.html" className="references_iframe"></iframe>
-                    <div
-                        type="div"
-                        onLoad={() => {
-                            ReactTagManager.action({
-                                event: 'pageView',
-                                pagePath: 'https://peter.bardenhagen.xyz',
-                                pageTitle: 'Peter Bardenhagen - Online Resume',
-                                visitorType: 'Customer'
-                            });
-                        }}
-                    ></div>
-
+                    <div className="holder-blue">
+                        <iframe src="/portfolio/index.html" className="references_iframe"></iframe>
+                        <div
+                            type="div"
+                            onLoad={() => {
+                                ReactTagManager.action({
+                                    event: 'pageView',
+                                    pagePath: 'https://peter.bardenhagen.xyz',
+                                    pageTitle: 'Peter Bardenhagen - Online Resume',
+                                    visitorType: 'Customer'
+                                });
+                            }}
+                        ></div>
+                    </div>
                 </section>
             </main>
         </>

@@ -3,21 +3,22 @@
      margin: 0;
      padding: 0;
 }
- :root {
-     --base: #555;
-     --base-100: #f1f1f1;
-     --base-400: #555;
-     --base-800: #000;
-     --yellow: #cbf4d8;
-     --yellow-100: #cbf4d8;
-     --yellow-400: #cbf4d8;
-     --yellow-800: #cbf4d8;
-     --blue: black;
-     --blue-100: #EDEDED;
-     --blue-400: Black;
-     --blue-800: White;
-     --green: Green;
-     --darkgreen: darkgreen;
+:root {
+    --base: #555;
+    --base-100: #f1f1f1;
+    --base-400: #555;
+    --base-800: #000;
+    --yellow: #cbf4d8;
+    --yellow-100: #cbf4d8;
+    --yellow-400: #cbf4d8;
+    --yellow-800: #cbf4d8;
+    --blue: black;
+    --blue-100: #EDEDED;
+    --blue-400: Black;
+    --blue-800: White;
+    --green: Green;
+    --darkgreen: darkgreen;
+    --lightgrey: gray;
 }
  body {
      font-family: "Aptos", "Open Sans", sans-serif;
@@ -30,6 +31,7 @@
      color: var(--green);
      text-decoration: none;
      &:hover {
+         background-color: gray;
          text-decoration: underline;
          color: var(--darkgreen);
     }
@@ -148,7 +150,7 @@
          background-color: white;
          color: var(--base-800);
          &:hover {
-             background-color: var(--base-100);
+             background-color: var(--lightgrey);
              color: var(--base);
         }
     }
@@ -160,6 +162,10 @@
              color: var(--base-100);
         }
     }
+}
+.button:hover {
+    background-color: var(--lightgrey);
+    color: white !important;
 }
  h1 {
      font-size: 64px;
@@ -462,13 +468,15 @@
                  position: absolute;
                  top: 0;
                  left: 0;
-                 height: 100%;
                  object-fit: cover;
                  transition: ease 3s all;
             }
              &:hover {
-                 img {
-                     transform: scale(1.2);
+                 img
+                {
+                    opacity: 0.7;
+                    transform: scale(1.2);
+                    transition: .5s ease;
                 }
             }
              @media(max-width:768px) {
@@ -536,7 +544,7 @@
              flex-direction:column;
         }
          p {
-             margin-bottom: 30px;
+             /*margin-bottom: 30px;*/
         }
          .avatar {
              color: white;
@@ -554,8 +562,8 @@
              display: flex;
              flex-direction: column;
              .scroll-area {
-                 max-height: 300px;
-                 height: 300px;
+                 max-height: 340px;
+                 height: 100%;
                  overflow-y: scroll;
                  padding: 0 5px 0 5px;
                  ul {
@@ -601,6 +609,7 @@
                  display: flex;
                  margin-top: 15px;
                  gap: 15px;
+                 padding: 5px;
                  input {
                      border-radius: 10px;
                      flex: 1;
@@ -626,10 +635,13 @@
         }
     }
 }
- .bookings {
-     width: 100%;
-     min-height: 700px;
-     max-height: 800px;
+.bookings {
+    display: block;
+    margin: auto;
+    width: 95%;
+    min-height: 700px;
+    max-height: 800px;
+    border: 0px;
 }
  .gr_grid_container {
      width: 100%;
@@ -670,8 +682,11 @@
      text-align: center;
 }
  .references_iframe {
-     width: 100%;
-     height: 700px;
+     display: block;
+     margin: auto;
+     width: 95%;
+     height: 5000px;
+     border: 0px;
 }
  .recommendations_link {
      text-align: center;
@@ -727,4 +742,11 @@
 }
  #skills {
      margin-top: 100px;
+}
+.list {
+    margin-left: 17px;
+    margin-bottom: 20px;
+    li {
+        padding: 5px;
+    }
 }
