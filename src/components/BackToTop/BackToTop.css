@@ -1,0 +1,75 @@
+.back-to-top-container {
+	position: fixed;
+	bottom: 24px;
+	right: 24px;
+	z-index: 1000;
+}
+
+.back-to-top-button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 40px;
+	height: 40px;
+	padding: 8px;
+	background-color: #000000;
+	color: #ffffff;
+	border: none;
+	border-radius: 50%;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+	.back-to-top-button:hover {
+		background-color: #1a1a1a;
+		transform: translateY(-2px);
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+	}
+
+.back-to-top-icon {
+	width: 24px;
+	height: 24px;
+}
+
+/* Media query for larger screens */
+@media (min-width: 768px) {
+	.back-to-top-container {
+		bottom: 40px;
+		right: 40px;
+	}
+
+	.back-to-top-button {
+		width: 48px;
+		height: 48px;
+	}
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+	.back-to-top-button {
+		background-color: #ffffff;
+		color: #000000;
+	}
+
+		.back-to-top-button:hover {
+			background-color: #f0f0f0;
+		}
+}
+
+/* Optional entrance animation */
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.back-to-top-container {
+	animation: fadeIn 0.3s ease-out;
+}

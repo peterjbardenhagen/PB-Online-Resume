@@ -1,5 +1,6 @@
-import React from "react";
 import { Fragment, useEffect, useState } from "react";
+import './BackToTop.css'; // Add this import for the CSS
+import React from "react";
 
 export const BackToTop = () => {
     const [show, setShow] = useState(false);
@@ -15,11 +16,10 @@ export const BackToTop = () => {
 
         window.addEventListener('scroll', handleScroll);
 
-        // Cleanup listener on component unmount
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
-    }, []); // Empty dependency array for single initialization
+    }, []);
 
     const jumpToTop = () => {
         window.scrollTo({
@@ -31,14 +31,14 @@ export const BackToTop = () => {
     return (
         <Fragment>
             {show ? (
-                <div className="fixed bottom-0 right-0 mb-6 mr-6 z-10">
+                <div className="back-to-top-container">
                     <button
                         onClick={jumpToTop}
-                        className="bg-black text-white rounded-full p-2 hover:bg-gray-900 transition"
+                        className="back-to-top-button"
                     >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            className="h-6 w-6"
+                            className="back-to-top-icon"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
