@@ -62,7 +62,6 @@ export default function Home() {
 
     return (
         <>
-            <div id="app-id-4466"></div>
             <header>
                 <a href="#" className="logo-holder">
                     <div className="logo">PB</div>

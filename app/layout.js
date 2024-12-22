@@ -97,6 +97,7 @@ export default function RootLayout({ children }) {
                 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2"/>
             </Head>
             <body>
+                <div id="app-id-4466"></div>
                 {children}
                 <Analytics />
                 <GoogleAnalytics gaId="G-H090T9HXWP" />
