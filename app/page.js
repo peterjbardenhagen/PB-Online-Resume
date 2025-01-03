@@ -1,5 +1,5 @@
 ﻿"use client";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react"; // Add these imports
 import Image from "next/image";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { NextSeo } from 'next-seo';
