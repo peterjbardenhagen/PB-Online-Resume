@@ -697,6 +697,7 @@ img {
 	height: 300px;
 	overflow-y: scroll;
 	padding: 0 5px 0 5px;
+	scroll-behavior: smooth;
 	ul
 
 {

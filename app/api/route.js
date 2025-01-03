@@ -7,7 +7,7 @@ import { NextResponse } from "next/server";
 
 const endpoint = 'https://ai-drazureai-prod-eastus2-001.openai.azure.com/';
 const apiKey = '8Y0XFH0BfbaAM2u0dPIkbnno6UF7D4x1fTazpKrYuhMRs3PAWxa1JQQJ99AKACHYHv6XJ3w3AAAAACOG86h3';
-const model = 'GPT-4';
+const model = 'GPT-4o';
 
 export async function POST(req){
 	

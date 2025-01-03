@@ -25,6 +25,7 @@ import ResponsiveCarousel from "../src/components/ResponsiveCarousel/ResponsiveC
 import styles from "./globals.css";
 
 export default function Home() {
+    const scrollAreaRef = useRef(null); // Add this ref
     const [menuOpen, setMenuOpen] = useState(false);
     const [messageInput, setMessageInput] = useState('');
 
@@ -59,6 +60,12 @@ export default function Home() {
 
     const shareUrl = 'https://peter.bardenhagen.xyz';
     const title = 'Peter Bardenhagen - Online Resume';
+
+    useEffect(() => {
+        if (scrollAreaRef.current) {
+            scrollAreaRef.current.scrollTop = scrollAreaRef.current.scrollHeight;
+        }
+    }, [messages]);
 
     return (
         <>
@@ -319,12 +326,10 @@ export default function Home() {
                                     <li>Current availability for roles</li>
                                     <li>Skills and qualifications</li>
                                 </ul>
-                            <a href="./CV Peter Bardenhagen.docx" className="button black">Download Resume</a>
-                            <p>&nbsp;</p>
-                            <p><small>Please note on ocassion the AI Assistant does not automatically scroll down for the result</small></p>
+                                <p><a href="./CV Peter Bardenhagen.docx" className="button black">Download Resume</a></p>
                         </div>
                         <div className="chat-box">
-                            <div className="scroll-area">
+                            <div className="scroll-area" ref={scrollAreaRef}>
                                 <ul id="chat-log">
                                     {messages.map((message, index) => (
                                         <li key={index} className={`${message.role}`}>
