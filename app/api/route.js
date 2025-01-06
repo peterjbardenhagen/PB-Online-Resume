@@ -1,32 +1,35 @@
-import { OpenAIClient, AzureKeyCredential } from '@azure/openai';
+﻿import { OpenAIClient, AzureKeyCredential } from '@azure/openai';
 import { NextResponse } from "next/server";
 
 const endpoint = process.env.AZURE_OPENAI_ENDPOINT;
 const apiKey = process.env.AZURE_OPENAI_API_KEY;
 const model = process.env.AZURE_OPENAI_MODEL;
 
-export async function POST(req){
-	
-	const { messages } = await req.json();
-
+export async function POST(req) {
 	const client = new OpenAIClient(endpoint, new AzureKeyCredential(apiKey));
 
-	messages.unshift({
-		role: 'system',
-		content: `You are a Talent Advisor, answering questions from a Hiring Manager (the user) based on the context of the resume provided for Peter Bardenhagen.
+    const messages = [
+        {
+            role: 'system',
+            content: `You are a Talemt Advisor, answering only questions based on Peter Bardenhagen's resume provided.
 Resume:
 ${DATA_RESUME}
 
-Help users learn more about Peter from his resume.`
-	})
+Help users learn more about Peter from his resume.`,
+        },
+        {
+            role: 'user',
+            content: `Here is a job description: ${jobDescription}. Why is Peter a good match for this job?`,
+        },
+    ];
 
-	const response = await client.getChatCompletions(model, messages, {
-		maxTokens: 128,
-	})
+    const response = await client.getChatCompletions(model, messages, {
+        maxTokens: 128,
+    })
 
-	return NextResponse.json({ 
-		message: response.choices[0].message.content
-	 })
+    return NextResponse.json({
+        message: response.choices[0].message.content
+    })
 }
 
 const DATA_RESUME = `Peter Bardenhagen Confidential CV

@@ -6,6 +6,7 @@ import { NextSeo } from 'next-seo';
 import { DocumentMetaTags } from '../src/components/DocumentMetaTags/DocumentMetaTags.tsx';
 import { PageMetaTags } from '../src/components/PageMetaTags/PageMetaTags.tsx';
 import { BackToTop } from '../src/components/BackToTop/BackToTop.tsx';
+import { JobDescriptionForm } from '../src/components/JobDescriptionForm/JobDescriptionForm.tsx';
 import {
     EmailShareButton,
     FacebookShareButton,
@@ -326,7 +327,9 @@ export default function Home() {
                                     <li>Current availability for roles</li>
                                     <li>Skills and qualifications</li>
                                 </ul>
-                                <p><a href="./CV Peter Bardenhagen.docx" className="button black">Download Resume</a></p>
+                            <p><a href="./CV Peter Bardenhagen.docx" className="button black">Download Resume</a></p>
+
+                            <JobDescriptionForm />
                         </div>
                         <div className="chat-box">
                             <div className="scroll-area" ref={scrollAreaRef}>
