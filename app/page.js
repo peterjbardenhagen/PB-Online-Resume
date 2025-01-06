@@ -213,7 +213,7 @@ export default function Home() {
                                 <li><strong>Development:</strong> Recent hands on development with Optimizely, Umbraco, AWS & Azure, .Net, React and Next.js</li>
                                 <li><strong>Solution Architecture:</strong> Enterprise-scale distributed systems, cloud platforms, integration patterns</li>
                                 <li><strong>Presales & Consulting:</strong> Technical discovery, solution design, client engagement</li>
-                                <li><strong>Delivery Management:</strong> Agile methodologies, DevOps practices, program governance</li>
+                                <li><strong>Project Management:</strong> Agile methodologies, DevOps practices, program governance</li>
                                 <li><strong>Stakeholder Management:</strong> C-level engagement, technical advisory, team mentoring</li>
                             </ul>
                         </div>
