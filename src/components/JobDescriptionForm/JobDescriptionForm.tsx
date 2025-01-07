@@ -4,7 +4,6 @@ import { marked }  from 'marked'; // Install this library for Markdown-to-HTML c
 import DOMPurify from 'dompurify'; // Install this library for sanitizing HTML
 import mammoth from 'mammoth'; // Install mammoth for Word document parsing
 import * as pdfjsLib from 'pdfjs-dist';
-import 'pdfjs-dist/build/pdf.worker.entry';
 
 export const JobDescriptionForm = () => {
     const [jobDescription, setJobDescription] = useState<string>('');
