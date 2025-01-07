@@ -45,7 +45,7 @@ Help users learn more about Peter from his resume.`,
                 },
                 {
                     role: 'user',
-                    content: `Here is a position title or job description: ${jobDescription}. Taking into consideration Peters resume how do his skills and experience align, and what value would he bring and any points of difference compared to most other applicants?`,
+                    content: `Here is a position title or job description: ${jobDescription}. Taking into consideration Peters resume how do his skills and experience align, and what value would he bring and any points of difference compared to most other applicants? Make it sound like a human, and less like a robot. Use UK English dictionary. Note that I'd rather you say I don't know, or be brutally honest than just pulling words together to win an argument.`,
                 },
             ];
 
@@ -54,7 +54,8 @@ Help users learn more about Peter from his resume.`,
                 temperature: 0.7,           // Controls randomness (0-1), lower = more focused
                 topP: 0.95,                 // Control  s diversity of word choices
                 frequencyPenalty: 0.5,      // Reduces repetition of similar words/phrases (-2.0 to 2.0)
-                presencePenalty: 0.5       // Encourages covering new topics (-2.0 to 2.0)
+                presencePenalty: 0.5,       // Encourages covering new topics (-2.0 to 2.0)
+                stream: true              // Whether to stream back partial progress
             });
 
             return NextResponse.json({

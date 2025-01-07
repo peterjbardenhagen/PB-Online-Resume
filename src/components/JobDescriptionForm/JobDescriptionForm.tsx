@@ -3,10 +3,10 @@ import './JobDescriptionForm.css'; // Add this import for the CSS
 import { marked }  from 'marked'; // Install this library for Markdown-to-HTML conversion
 import DOMPurify from 'dompurify'; // Install this library for sanitizing HTML
 import mammoth from 'mammoth'; // Install mammoth for Word document parsing
-import * as pdfjsLib from 'pdfjs-dist'; // Add this import
+import * as pdfjsLib from 'pdfjs-dist';
+import { getDocument } from 'pdfjs-dist';
 
-// Initialize PDF.js
-pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`;
+pdfjsLib.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@4.10.38/build/pdf.mjs`;
 
 export const JobDescriptionForm = () => {
     const [jobDescription, setJobDescription] = useState<string>('');
@@ -42,7 +42,7 @@ export const JobDescriptionForm = () => {
             }
         } catch (error) {
             console.error('Error processing file:', error);
-            alert('Error processing file. Please try again or paste the text directly.');
+            alert('Error processing file. Please try again or paste the text directly. Error details:' + error);
         }
     };
 
@@ -70,8 +70,8 @@ export const JobDescriptionForm = () => {
 
             return fullText.trim();
         } catch (error) {
-            console.error('Error extracting PDF text:', error);
-            throw new Error('Failed to extract text from PDF');
+            console.error('Error extracting PDF text. Error text:' + error, error);
+            throw new Error('Failed to extract text from PDF. Error text:' + error);
         }
     };
 
