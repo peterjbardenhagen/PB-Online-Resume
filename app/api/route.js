@@ -6,30 +6,64 @@ const apiKey = process.env.AZURE_OPENAI_API_KEY;
 const model = process.env.AZURE_OPENAI_MODEL;
 
 export async function POST(req) {
-	const client = new OpenAIClient(endpoint, new AzureKeyCredential(apiKey));
+    const client = new OpenAIClient(endpoint, new AzureKeyCredential(apiKey));
+    const body = await req.json();
+    const formType = body.FormType;
 
-    const messages = [
-        {
-            role: 'system',
-            content: `You are a Talemt Advisor, answering only questions based on Peter Bardenhagen's resume provided.
+    switch (formType) {
+        case 'Chat':
+            const newMessages = body.messages;
+            const systemMessage = {
+                role: 'system',
+                content: `You are a Talent Advisor, answering only questions based on Peter Bardenhagen's resume provided.
 Resume:
 ${DATA_RESUME}
 
 Help users learn more about Peter from his resume.`,
-        },
-        {
-            role: 'user',
-            content: `Here is a job description: ${jobDescription}. Why is Peter a good match for this job?`,
-        },
-    ];
+            };
 
-    const response = await client.getChatCompletions(model, messages, {
-        maxTokens: 128,
-    })
+            const chatMessages = [systemMessage, ...newMessages];
 
-    return NextResponse.json({
-        message: response.choices[0].message.content
-    })
+            const chatResponse = await client.getChatCompletions(model, chatMessages, {
+                maxTokens: 500,
+            });
+
+            return NextResponse.json({
+                message: chatResponse.choices[0].message.content
+            });
+
+        case 'JobDesc':
+            const { jobDescription } = body;
+            const messages = [
+                {
+                    role: 'system',
+                    content: `You are a Talent Advisor, answering only questions based on Peter Bardenhagen's resume provided.
+Resume:
+${DATA_RESUME}
+
+Help users learn more about Peter from his resume.`,
+                },
+                {
+                    role: 'user',
+                    content: `Here is a position title or job description: ${jobDescription}. Taking into consideration Peters resume how do his skills and experience align, and what value would he bring and any points of difference compared to most other applicants?`,
+                },
+            ];
+
+            const response = await client.getChatCompletions(model, messages, {
+                maxTokens: 1000,            // Maximum number of tokens to generate
+                temperature: 0.7,           // Controls randomness (0-1), lower = more focused
+                topP: 0.95,                 // Control  s diversity of word choices
+                frequencyPenalty: 0.5,      // Reduces repetition of similar words/phrases (-2.0 to 2.0)
+                presencePenalty: 0.5       // Encourages covering new topics (-2.0 to 2.0)
+            });
+
+            return NextResponse.json({
+                message: response.choices[0].message.content
+            });
+
+        default:
+            throw new Error('Invalid form type');
+    }
 }
 
 const DATA_RESUME = `Peter Bardenhagen Confidential CV

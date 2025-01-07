@@ -1,4 +1,5 @@
 ﻿"use client";
+import { Inter } from 'next/font/google';
 import { useState, useRef, useEffect } from "react"; // Add these imports
 import Image from "next/image";
 import { SpeedInsights } from "@vercel/speed-insights/next"
@@ -22,8 +23,10 @@ import {
 } from "react-share";
 import exampleImage from './imgs/social.png';
 import { useTrackingCode } from "react-hubspot-tracking-code-hook";
-import ResponsiveCarousel from "../src/components/ResponsiveCarousel/ResponsiveCarousel.tsx";
+//import ResponsiveCarousel from "../src/components/ResponsiveCarousel/ResponsiveCarousel.tsx";
 import styles from "./globals.css";
+
+const inter = Inter({ subsets: ['latin'] });
 
 export default function Home() {
     const scrollAreaRef = useRef(null); // Add this ref
@@ -49,7 +52,10 @@ export default function Home() {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ messages: newMessages })
+                body: JSON.stringify({
+                    FormType: "Chat",
+                    messages: newMessages
+                })
             }
         ).then(res => res.json());
         setMessages([...newMessages, { role: 'assistant', content: apiMessage.message }]);
@@ -70,6 +76,7 @@ export default function Home() {
 
     return (
         <>
+           <div className={inter.className}>
             <header>
                 <a href="#" className="logo-holder">
                     <div className="logo">PB</div>
@@ -100,7 +107,7 @@ export default function Home() {
                         </li>
                     </ul>
                     <a href="#" className="mobile-toggle" onClick={toggleMobileMenu}>
-                        <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="none" viewBox="0 0 24 24">
                             <path stroke="currentColor" strokeLinecap="round" strokeWidth="2" d="M5 7h14M5 12h14M5 17h10" />
                         </svg>
                     </a>
@@ -167,7 +174,6 @@ export default function Home() {
                             <img src="./imgs/javascript.png" alt="JS" className="square" />
                             <img src="./imgs/react.png" alt="React" className="square" />
                             <img src="./imgs/nextjs.png" alt="Next JS" className="square" />
-                            <img src="./imgs/angular.png" alt="Angular" className="square" />
                             <img src="./imgs/python.png" alt="Python" className="square" />
                         </div>
                     </div>
@@ -328,8 +334,6 @@ export default function Home() {
                                     <li>Skills and qualifications</li>
                                 </ul>
                             <p><a href="./CV Peter Bardenhagen.docx" className="button black">Download Resume</a></p>
-
-                            <JobDescriptionForm />
                         </div>
                         <div className="chat-box">
                             <div className="scroll-area" ref={scrollAreaRef}>
@@ -349,6 +353,21 @@ export default function Home() {
                         </div>
                     </div>
                 </section>
+
+                <section id="qualify" className="chatbot container">
+                    <h2>
+                        <small>
+                            Qualify Me
+                        </small>
+                        For a New Role
+                    </h2>
+                    <div className="chatbot-blue">
+                        <div className="chat-info">
+                            <JobDescriptionForm />
+                        </div>
+                    </div>
+                </section>
+
                 <section id="book">
                     <h2>
                         <small>
@@ -439,7 +458,8 @@ export default function Home() {
                         ></div>
                     </div>
                 </section>
-            </main>
+             </main>
+            </div>
         </>
     );
 }

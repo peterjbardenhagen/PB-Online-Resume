@@ -44,8 +44,8 @@ export const metadata = {
         logos: [
             {
                 url: 'https://peter.bardenhagen.xyz/favicons/icons8-favicon-papercut-512.png', // Must be an absolute URL
-                width: 1200,
-                height: 630,
+                width: 512,
+                height: 512,
             },
         ],
     },

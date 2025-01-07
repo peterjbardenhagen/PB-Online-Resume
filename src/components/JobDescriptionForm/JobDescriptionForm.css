@@ -1,0 +1,67 @@
+.jobdesc {
+	display: flex;
+	margin: auto;
+}
+.jobdesc_form {
+	width: 100%;
+}
+.jobdesc_textarea {
+	width: fit-content;
+	margin-bottom: 10px;
+}
+.jobdesc_response {
+	font-size: 14px;
+	padding: 0px 10px 0px 25px;
+	ol {
+			 margin-left: 5px;
+	    }
+	li {
+		margin-left: 25px;
+	}
+	p {
+		font-size: 14px;
+		line-height: normal;
+	}
+	strong {
+		font-size: 14px;
+	}
+	
+}
+.jobdesc-file-input {
+	margin: 10px 0;
+	display: block;
+}
+.button {
+	padding: 10px 20px;
+	font-size: 16px;
+	cursor: pointer;
+}
+.button:disabled {
+	background-color: grey;
+	cursor: not-allowed;
+}
+.button {
+	padding: 10px 20px;
+	font-size: 16px;
+	cursor: pointer;
+	margin: 5px;
+}
+.button.black {
+	background-color: black;
+	color: white;
+	border: none;
+	border-radius: 4px;
+}
+.button.grey {
+	background-color: grey;
+	color: white;
+	border: none;
+	border-radius: 4px;
+}
+.button:disabled {
+	background-color: lightgrey;
+	cursor: not-allowed;
+}
+p {
+	font-size: 16px;
+}
