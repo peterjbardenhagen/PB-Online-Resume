@@ -6,7 +6,7 @@ import mammoth from 'mammoth'; // Install mammoth for Word document parsing
 import * as pdfjsLib from 'pdfjs-dist';
 import { getDocument } from 'pdfjs-dist';
 
-pdfjsLib.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@4.10.38/build/pdf.mjs`;
+pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js`;
 
 export const JobDescriptionForm = () => {
     const [jobDescription, setJobDescription] = useState<string>('');
