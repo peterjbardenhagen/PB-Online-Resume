@@ -54,8 +54,7 @@ Help users learn more about Peter from his resume.`,
                 temperature: 0.7,           // Controls randomness (0-1), lower = more focused
                 topP: 0.95,                 // Control  s diversity of word choices
                 frequencyPenalty: 0.5,      // Reduces repetition of similar words/phrases (-2.0 to 2.0)
-                presencePenalty: 0.5,       // Encourages covering new topics (-2.0 to 2.0)
-                stream: true              // Whether to stream back partial progress
+                presencePenalty: 0.5       // Encourages covering new topics (-2.0 to 2.0)
             });
 
             return NextResponse.json({
