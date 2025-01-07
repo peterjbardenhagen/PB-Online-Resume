@@ -4,9 +4,9 @@ import { marked }  from 'marked'; // Install this library for Markdown-to-HTML c
 import DOMPurify from 'dompurify'; // Install this library for sanitizing HTML
 import mammoth from 'mammoth'; // Install mammoth for Word document parsing
 import * as pdfjsLib from 'pdfjs-dist';
-import { getDocument } from 'pdfjs-dist';
 
-pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js`;
+// Fix: Specify the worker source for PDF.js
+pdfjsLib.GlobalWorkerOptions.workerSrc = `app/pdf.worker.min.mjs`;
 
 export const JobDescriptionForm = () => {
     const [jobDescription, setJobDescription] = useState<string>('');
@@ -100,7 +100,7 @@ export const JobDescriptionForm = () => {
         setIsSubmitting(true);
 
         try {
-            const res = await fetch('/api', {
+            const res = await fetch('npn/api', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
