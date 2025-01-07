@@ -3,7 +3,10 @@ import './JobDescriptionForm.css'; // Add this import for the CSS
 import { marked }  from 'marked'; // Install this library for Markdown-to-HTML conversion
 import DOMPurify from 'dompurify'; // Install this library for sanitizing HTML
 import mammoth from 'mammoth'; // Install mammoth for Word document parsing
-import * as pdfjsLib from 'pdfjs-dist';
+import * as pdfjsLib from 'pdfjs-dist'; // Add this import
+
+// Initialize PDF.js
+pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`;
 
 export const JobDescriptionForm = () => {
     const [jobDescription, setJobDescription] = useState<string>('');
@@ -12,58 +15,43 @@ export const JobDescriptionForm = () => {
 
     const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0];
-        if (file) {
-            try {
-                const fileExtension = file.name.split('.').pop()?.toLowerCase();
-                let extractedText = '';
+        if (!file) return;
 
-                if (fileExtension === 'pdf') {
-                    // Extract text from PDF
-                    extractedText = await extractTextFromPDF(file);
-                } else if (fileExtension === 'doc' || fileExtension === 'docx') {
-                    // Extract text from Word document
-                    extractedText = await extractTextFromWord(file);
-                } else {
-                    // Default to raw text for other file types
-                    extractedText = await new Promise((resolve) => {
-                        const reader = new FileReader();
-                        reader.onload = (e) => {
-                            resolve(e.target?.result as string);
-                        };
-                        reader.readAsText(file);
-                    });
-                }
+        try {
+            const fileExtension = file.name.split('.').pop()?.toLowerCase();
+            let extractedText = '';
 
-                const markdownText = convertToMarkdown(extractedText);
-                const cleanedText = cleanText(markdownText);
-
-                // Update state directly
-                setJobDescription(cleanedText);
-
-                // Optional: Force a re-render if needed
-                setTimeout(() => {
-                    const textarea = document.querySelector('.jobdesc-textarea') as HTMLTextAreaElement;
-                    if (textarea) {
-                        textarea.value = cleanedText;
-                    }
-                }, 0);
-
-            } catch (error) {
-                console.error('Error processing file:', error);
+            if (fileExtension === 'pdf') {
+                extractedText = await extractTextFromPDF(file);
+            } else if (fileExtension === 'doc' || fileExtension === 'docx') {
+                const result = await mammoth.extractRawText({ arrayBuffer: await file.arrayBuffer() });
+                extractedText = result.value;
+            } else {
+                const text = await file.text();
+                extractedText = text;
             }
+
+            // Clean and set the text
+            const cleanedText = cleanText(extractedText);
+            setJobDescription(cleanedText);
+
+            // Update textarea
+            const textarea = document.querySelector('.jobdesc-textarea') as HTMLTextAreaElement;
+            if (textarea) {
+                textarea.value = cleanedText;
+            }
+        } catch (error) {
+            console.error('Error processing file:', error);
+            alert('Error processing file. Please try again or paste the text directly.');
         }
     };
 
     const extractTextFromPDF = async (file: File): Promise<string> => {
         try {
-            // Set worker path
-            pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`;
+            const fileArrayBuffer = await file.arrayBuffer();
 
-            // Create a URL from the file
-            const fileURL = URL.createObjectURL(file);
-
-            // Load the PDF document
-            const loadingTask = pdfjsLib.getDocument(fileURL);
+            // Load the PDF document using ArrayBuffer
+            const loadingTask = pdfjsLib.getDocument({ data: fileArrayBuffer });
             const pdf = await loadingTask.promise;
 
             let fullText = '';
@@ -80,13 +68,10 @@ export const JobDescriptionForm = () => {
                 fullText += pageText + '\n';
             }
 
-            // Clean up
-            URL.revokeObjectURL(fileURL);
-
             return fullText.trim();
         } catch (error) {
             console.error('Error extracting PDF text:', error);
-            return 'Error extracting text from PDF. Please try copying and pasting the text directly.';
+            throw new Error('Failed to extract text from PDF');
         }
     };
 
