@@ -13,6 +13,7 @@ import { BackToTop } from '../src/components/BackToTop/BackToTop.tsx';
 import JobDescriptionForm from '../src/components/JobDescriptionForm/JobDescriptionForm.tsx';
 import Recommendations from '../src/components/Recommendations/Recommendations.tsx';
 import WordCloud from '../src/components/WordCloud/WordCloud.js';
+import { motion, useMotionValue } from "motion/react"
 import {
     EmailShareButton,
     FacebookShareButton,
@@ -160,10 +161,15 @@ export default function Home() {
         <>
            <div className={inter.className}>
             <header>
-                <a href="#" className="logo-holder">
-                    <div className="logo">PB</div>
-                    <div className="logo-text">Online Resume</div>
-                </a>
+                <motion.a
+                    href="#"
+                    className="logo-holder"
+                    initial={{ opacity: 0.2, scale: 0 }}
+                    animate={{ opacity: 1, scale: 1, duration: 0.3, ease: "linear" }}
+                    >
+                        <div className="logo">PB</div>
+                        <div className="logo-text">Online Resume</div>
+                </motion.a>
                 <nav>
                     <ul id="menu" className={menuOpen ? "active" : ""}>
                         <li>
@@ -201,10 +207,19 @@ export default function Home() {
                 <section className="hero container">
                     <div className="hero-blue">
                         <div>
-                            <h1><small>Hi I'm</small>
-                                Peter Bardenhagen
-                            </h1>
-                                <p>I am a results-driven digital enterprise leader with extensive experience collaborating with top-tier global consulting firms and renowned Australian businesses. By leveraging cutting-edge digital technologies, I tackle complex business challenges, enhance customer experiences, and drive sustainable growth. My passion lies in leading high-performing teams, building innovative products, solving intricate problems, and delivering measurable outcomes that exceed expectations.</p>
+                                <motion.h1
+                                    initial={{ opacity: 0.2, scale: 0 }}
+                                    animate={{ opacity: 1, scale: 1, duration: 0.3, ease: "linear" }}
+                                >
+                                    <small>Hi I'm</small>
+                                    Peter Bardenhagen
+                                </motion.h1>
+                                <motion.p
+                                    initial={{ opacity: 0.2, scale: 0 }}
+                                    animate={{ opacity: 1, scale: 1, duration: 0.3, ease: "linear" }}
+                                >
+                                    I am a results-driven digital enterprise leader with extensive experience collaborating with top-tier global consulting firms and renowned Australian businesses. By leveraging cutting-edge digital technologies, I tackle complex business challenges, enhance customer experiences, and drive sustainable growth. My passion lies in leading high-performing teams, building innovative products, solving intricate problems, and delivering measurable outcomes that exceed expectations.
+                                </motion.p>
                             <div className="call-to-action">
                                 <a href="./CV Peter Bardenhagen.docx" className="button black">
                                     Resume
@@ -227,7 +242,12 @@ export default function Home() {
                         </div>
                     </div>
                     <div className="hero-green">
-                        <img src="./imgs/hero-image.png" alt="Peter Bardenhagen" width="100%" />
+                            <motion.img
+                                initial={{ opacity: 0.2, scale: 0 }}
+                                animate={{ opacity: 1, scale: 1, duration: 0.3, ease: "linear" }}
+                                src="./imgs/hero-image.png"
+                                alt="Peter Bardenhagen"
+                                width="100%" />
                     </div>
                 </section>
                 <section className="logos container">
@@ -358,7 +378,7 @@ export default function Home() {
                             </figure>
                             <h3>Technical Project Manager</h3>
                             <div>2016-2017</div>
-                            <p>As Senior Project Manager, I successfully delivered major business technology projects with budgets between $500,000 and $5 million. Led teams of up to 25 people and was accountable for project financials and outcomes.</p>
+                            <p>I successfully delivered major digital transformation projects with budgets between $500,000 and $5 million. Led teams of up to 25 people and was accountable for project financials and outcomes.</p>
                             <ul className="list">
                                 <li>Built a customisable wealth management platform that works on mobile and smart watches</li>
                                 <li>Improved how different business systems communicate with each other</li>
