@@ -28,7 +28,7 @@ import {
 } from "react-share";
 import { useTrackingCode } from "react-hubspot-tracking-code-hook";
 import { ApplicationInsights } from '@microsoft/applicationinsights-web';
-import ResponsiveCarousel from "../src/components/ResponsiveCarousel/ResponsiveCarousel.tsx";
+//import ResponsiveCarousel from "../src/components/ResponsiveCarousel/ResponsiveCarousel.tsx";
 import styles from "./globals.css";
 
 const inter = Inter({ subsets: ['latin'] });
