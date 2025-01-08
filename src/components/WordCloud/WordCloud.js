@@ -15,7 +15,7 @@ const WordCloud = () => {
                 // Maintain aspect ratio of 4:3
                 setDimensions({
                     width: width,
-                    height: width * 0.825
+                    height: width * 0.8
                 });
             }
         };
