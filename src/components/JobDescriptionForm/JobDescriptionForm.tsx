@@ -1,17 +1,18 @@
 import React, { useState, FormEvent } from 'react';
 import './JobDescriptionForm.css'; // Add this import for the CSS
-import { marked }  from 'marked'; // Install this library for Markdown-to-HTML conversion
-import DOMPurify from 'dompurify'; // Install this library for sanitizing HTML
-import mammoth from 'mammoth'; // Install mammoth for Word document parsing
+import { marked } from 'marked'; // Markdown-to-HTML conversion
+import DOMPurify from 'dompurify'; // Sanitizing HTML
+import mammoth from 'mammoth'; // Word document parsing
 import * as pdfjsLib from 'pdfjs-dist';
 
 // Fix: Specify the worker source for PDF.js
 pdfjsLib.GlobalWorkerOptions.workerSrc = `app/pdf.worker.min.mjs`;
 
 export const JobDescriptionForm = () => {
-    const [jobDescription, setJobDescription] = useState<string>('');   
+    const [jobDescription, setJobDescription] = useState<string>('');
     const [response, setResponse] = useState<string>('');
     const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0];
@@ -20,6 +21,8 @@ export const JobDescriptionForm = () => {
         try {
             const fileExtension = file.name.split('.').pop()?.toLowerCase();
             let extractedText = '';
+
+            setIsLoading(true); // Show loading animation
 
             if (fileExtension === 'pdf') {
                 extractedText = await extractTextFromPDF(file);
@@ -43,6 +46,8 @@ export const JobDescriptionForm = () => {
         } catch (error) {
             console.error('Error processing file:', error);
             alert('Error processing file. Please try again or paste the text directly. Error details:' + error);
+        } finally {
+            setIsLoading(false); // Hide loading animation
         }
     };
 
@@ -75,20 +80,6 @@ export const JobDescriptionForm = () => {
         }
     };
 
-    // Function to extract text from Word documents
-    const extractTextFromWord = async (file: File): Promise<string> => {
-        const arrayBuffer = await file.arrayBuffer();
-        const result = await mammoth.extractRawText({ arrayBuffer });
-        return result.value.trim();
-    };
-
-    // Function to convert text to Markdown (basic conversion)
-    const convertToMarkdown = (text: string): string => {
-        // This can be enhanced for specific Markdown formatting needs
-        return text.replace(/\n/g, '\n\n'); // Add Markdown-style paragraph breaks
-    };
-
-    // Function to clean text
     const cleanText = (text: string): string => {
         return text.replace(/\s{2,}/g, ' ').trim(); // Remove extra whitespace and trim
     };
@@ -97,7 +88,8 @@ export const JobDescriptionForm = () => {
         if (e) e.preventDefault();
         console.log('Submit button clicked');
 
-        setIsSubmitting(true);
+        setIsSubmitting(true); // Disable inputs
+        setIsLoading(true); // Show loading animation
 
         try {
             const res = await fetch('/api', {
@@ -127,7 +119,8 @@ export const JobDescriptionForm = () => {
             console.error('Error:', error);
             setResponse('An error occurred while submitting the form:' + error);
         } finally {
-            setIsSubmitting(false);
+            setIsSubmitting(false); // Re-enable inputs
+            setIsLoading(false); // Hide loading animation
         }
     };
 
@@ -142,15 +135,27 @@ export const JobDescriptionForm = () => {
 
     return (
         <div className="jobdesc">
+            {isLoading && (
+                <div className="loading-overlay">
+                    <div className="spinner" />
+                    <div className="loading-text">
+                        <p>Processing large amounts of information. Please wait a moment...</p>
+                    </div>
+                </div>
+            )}
             <form className="jobdesc-form" onSubmit={handleSubmit} method="GET">
                 <textarea
                     className="jobdesc-textarea"
                     value={jobDescription}
-                    onChange={(e) => setJobDescription(e.target.value)}
+                    onChange={(e) => {
+                        setJobDescription(e.target.value);
+                        if (!isSubmitting) setIsLoading(false); // Stop loading when textarea changes
+                    }}
                     placeholder="Enter or paste a position title or description. Then click Submit."
                     cols={50}
                     rows={10}
-                    required={!jobDescription} // Ensure either textarea or file is used
+                    required={!jobDescription || isLoading || isSubmitting} // Ensure either textarea or file is used
+                    disabled={isSubmitting || isLoading} // Disable textarea during loading
                 />
                 <p>or</p>
                 <input
@@ -158,12 +163,13 @@ export const JobDescriptionForm = () => {
                     accept=".txt,.doc,.docx,.json,.pdf"
                     onChange={handleFileUpload}
                     className="jobdesc-file-input"
+                    disabled={isSubmitting || isLoading}
                 />
                 <p>
                     <button
                         className="button black"
                         type="submit"
-                        disabled={isSubmitting || !jobDescription} // Disable button if no input
+                        disabled={isSubmitting || !jobDescription || isLoading} // Disable button if no input or loading
                     >
                         {isSubmitting ? 'Submitting...' : 'Submit'}
                     </button>
@@ -171,6 +177,7 @@ export const JobDescriptionForm = () => {
                         className="button grey"
                         type="button"
                         onClick={handleClear}
+                        disabled={isSubmitting || isLoading} // Disable Clear button during loading
                     >
                         Clear
                     </button>
