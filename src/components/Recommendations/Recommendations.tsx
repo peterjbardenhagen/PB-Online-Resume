@@ -1,6 +1,6 @@
 import React from 'react';
 import './Recommendations.css';
-import json from './recommendations.json';
+import json from './Recommendations.json';
 
 interface Recommendation {
     name: string;
