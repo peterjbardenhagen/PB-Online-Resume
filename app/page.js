@@ -4,8 +4,8 @@ import IconButton from '@mui/material/IconButton';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import { useState, useRef, useEffect } from "react"; // Add these imports
-import Image from "next/image";
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import Image from "next/image";
 import NextSeo from 'next-seo';
 import DocumentMetaTags from '../src/components/DocumentMetaTags/DocumentMetaTags.tsx';
 import PageMetaTags from '../src/components/PageMetaTags/PageMetaTags.tsx';
