@@ -1,74 +1,174 @@
 ﻿import { OpenAIClient, AzureKeyCredential } from '@azure/openai';
 import { NextResponse } from "next/server";
+import { appInsights } from '../utils/appInsights';
 
+// Constants and configuration validation
 const endpoint = process.env.AZURE_OPENAI_ENDPOINT;
 const apiKey = process.env.AZURE_OPENAI_API_KEY;
 const model = process.env.AZURE_OPENAI_MODEL;
 
-export async function POST(req) {
-    const client = new OpenAIClient(endpoint, new AzureKeyCredential(apiKey));
-    const body = await req.json();
-    const formType = body.FormType;
+// Validate required environment variables
+if (!endpoint || !apiKey || !model) {
+    throw new Error('Missing required Azure OpenAI configuration');
+}
 
-    switch (formType) {
-        case 'Chat':
-            try {
-                const newMessages = body.messages;
+// Custom error class for API errors
+class APIError extends Error {
+    constructor(message, statusCode, details = {}) {
+        super(message);
+        this.name = 'APIError';
+        this.statusCode = statusCode;
+        this.details = details;
+    }
+}
+
+// Logger function
+const logEvent = (name, properties = {}) => {
+    if (appInsights) {
+        appInsights.trackEvent({
+            name,
+            properties: {
+                timestamp: new Date().toISOString(),
+                ...properties
+            }
+        });
+    }
+};
+
+// Error logger function
+const logError = (error, context = {}) => {
+    if (appInsights) {
+        appInsights.trackException({
+            exception: error,
+            properties: {
+                ...context,
+                timestamp: new Date().toISOString()
+            }
+        });
+    }
+};
+
+export async function POST(req) {
+    const startTime = Date.now();
+    let client;
+
+    try {
+        // Initialize OpenAI client
+        client = new OpenAIClient(endpoint, new AzureKeyCredential(apiKey));
+
+        // Parse and validate request body
+        const body = await req.json();
+        const { FormType: formType } = body;
+
+        if (!formType) {
+            throw new APIError('FormType is required', 400);
+        }
+
+        // Log request
+        logEvent('API_Request_Started', {
+            formType,
+            requestSize: JSON.stringify(body).length
+        });
+
+        let result;
+        switch (formType) {
+            case 'Chat': {
+                const { messages } = body;
+                if (!Array.isArray(messages)) {
+                    throw new APIError('Invalid messages format', 400);
+                }
+
                 const systemMessage = {
                     role: 'system',
                     content: `You are a Talent Advisor, answering only questions based on Peter Bardenhagen's resume provided.
 Resume:
 ${DATA_RESUME}
 
-Help users learn more about Peter from his resume.`,
+Help users learn more about Peter from his resume.`
                 };
 
-                const chatMessages = [systemMessage, ...newMessages];
+                const chatMessages = [systemMessage, ...messages];
 
                 const chatResponse = await client.getChatCompletions(model, chatMessages, {
-                    maxTokens: 250, // Maximum number of tokens to generate
-                    temperature: 0.5 // Controls randomness (0-1), lower = more focused
+                    maxTokens: 250,
+                    temperature: 0.5
                 });
 
-                return NextResponse.json({
-                    message: chatResponse.choices[0].message.content
-                });
-            } catch (error) {
-                alert('error');
-                console.error(error);
+                result = chatResponse.choices[0].message.content;
+                break;
             }
 
-        case 'JobDesc':
-            const { jobDescription } = body;
-            const messages = [
-                {
-                    role: 'system',
-                    content: `You are a Talent Advisor, answering only questions based on Peter Bardenhagen's resume provided.
+            case 'JobDesc': {
+                const { jobDescription } = body;
+                if (!jobDescription) {
+                    throw new APIError('Job description is required', 400);
+                }
+
+                const messages = [
+                    {
+                        role: 'system',
+                        content: `You are a Talent Advisor, answering only questions based on Peter Bardenhagen's resume provided.
 Resume:
 ${DATA_RESUME}
 
-Help users learn more about Peter from his resume.`,
-                },
-                {
-                    role: 'user',
-                    content: `Here is a position title or job description: ${jobDescription}. Taking into consideration Peters resume how do his skills and experience align, and what value would he bring and any points of difference compared to most other applicants? Make it sound like a human, and less like a robot. Use UK English dictionary. Note that I'd rather you say I don't know, or be brutally honest than just pulling words together to win an argument.`,
-                },
-            ];
+Help users learn more about Peter from his resume.`
+                    },
+                    {
+                        role: 'user',
+                        content: `Here is a position title or job description: ${jobDescription}. Taking into consideration Peters resume how do his skills and experience align, and what value would he bring and any points of difference compared to most other applicants? Make it sound like a human, and less like a robot. Use UK English dictionary. Note that I'd rather you say I don't know, or be brutally honest than just pulling words together to win an argument.`
+                    }
+                ];
 
-            const response = await client.getChatCompletions(model, messages, {
-                maxTokens: 1000,    // Maximum number of tokens to generate
-                temperature: 0.7,   // Controls randomness (0-1), lower = more focused
-                topP: 0.95, // Control  s diversity of word choices
-                frequencyPenalty: 0.5,  // Reduces repetition of similar words/phrases (-2.0 to 2.0)
-                presencePenalty: 0.5    // Encourages covering new topics (-2.0 to 2.0)
-            });
+                const response = await client.getChatCompletions(model, messages, {
+                    maxTokens: 1000,
+                    temperature: 0.7,
+                    presencePenalty: 0.1, // Slight penalty to avoid repetition
+                    frequencyPenalty: 0.1
+                });
 
-            return NextResponse.json({
-                message: response.choices[0].message.content
-            });
+                result = response.choices[0].message.content;
+                break;
+            }
 
-        default:
-            throw new Error('Invalid form type');
+            default:
+                throw new APIError('Invalid form type', 400);
+        }
+
+        // Log successful completion
+        logEvent('API_Request_Completed', {
+            formType,
+            processingTime: Date.now() - startTime,
+            responseSize: result.length
+        });
+
+        return NextResponse.json({ message: result });
+
+    } catch (error) {
+        // Log error
+        logError(error, {
+            formType: req.body?.FormType,
+            processingTime: Date.now() - startTime
+        });
+
+        // Handle different types of errors
+        if (error instanceof APIError) {
+            return NextResponse.json(
+                { error: error.message },
+                { status: error.statusCode }
+            );
+        }
+
+        // Handle unexpected errors
+        console.error('Unexpected error:', error);
+        return NextResponse.json(
+            { error: 'An unexpected error occurred' },
+            { status: 500 }
+        );
+    } finally {
+        // Clean up resources if needed
+        if (client) {
+            // Any cleanup code for the client
+        }
     }
 }
 
