@@ -34,9 +34,8 @@ const WordCloud = () => {
         if (!dimensions.width || !dimensions.height) return;
 
         const words = [
-            { text: "Web Applications", size: 50 },
             { text: "SEO", size: 30 },
-            { text: "Digital Strategy", size: 40 },
+            { text: "Strategy", size: 45 },
             { text: "Software Development", size: 30 },
             { text: "Business Acumen", size: 40 },
             { text: "Interpersonal Skills", size: 25 },
@@ -44,14 +43,14 @@ const WordCloud = () => {
             { text: "Communicator", size: 35 },
             { text: "Proactive", size: 25 },
             { text: "Mentor", size: 20 },
-            { text: "Digital Technologies", size: 45 },
+            { text: "Digital", size: 60 },
             { text: "SDLC", size: 20 },
             { text: "Project Management", size: 40 },
             { text: "Innovative", size: 30 },
             { text: "High-Pressure", size: 20 },
             { text: "Relationship Builder", size: 30 },
             { text: "Microsoft", size: 20 },
-            { text: "Team Leadership", size: 35 },
+            { text: "Leadership", size: 35 },
             { text: "Quality and Excellence", size: 25 },
             { text: "Emerging Technologies", size: 35 }
         ];
