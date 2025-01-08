@@ -1,9 +1,7 @@
-/*https://cloudinary.com/blog/3-ways-to-implement-a-carousel-in-nextjs*/
 import React, { FC } from 'react';
 import { Carousel } from "react-responsive-carousel";
 import { items } from "./Items.json";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import styles from "../../public/globals.css";
 
 interface ResponsiveCarouselProps { }
 

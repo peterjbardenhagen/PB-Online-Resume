@@ -1,13 +1,18 @@
 ﻿"use client";
 import { Inter } from 'next/font/google';
+import IconButton from '@mui/material/IconButton';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import { useState, useRef, useEffect } from "react"; // Add these imports
 import Image from "next/image";
 import { SpeedInsights } from "@vercel/speed-insights/next"
-import { NextSeo } from 'next-seo';
-import { DocumentMetaTags } from '../src/components/DocumentMetaTags/DocumentMetaTags.tsx';
-import { PageMetaTags } from '../src/components/PageMetaTags/PageMetaTags.tsx';
+import NextSeo from 'next-seo';
+import DocumentMetaTags from '../src/components/DocumentMetaTags/DocumentMetaTags.tsx';
+import PageMetaTags from '../src/components/PageMetaTags/PageMetaTags.tsx';
 import { BackToTop } from '../src/components/BackToTop/BackToTop.tsx';
-import { JobDescriptionForm } from '../src/components/JobDescriptionForm/JobDescriptionForm.tsx';
+import JobDescriptionForm from '../src/components/JobDescriptionForm/JobDescriptionForm.tsx';
+import Recommendations from '../src/components/Recommendations/Recommendations.tsx';
+import WordCloud from '../src/components/WordCloud/WordCloud.js';
 import {
     EmailShareButton,
     FacebookShareButton,
@@ -21,12 +26,28 @@ import {
     LinkedinIcon,
     EmailIcon,
 } from "react-share";
-import exampleImage from './imgs/social.png';
 import { useTrackingCode } from "react-hubspot-tracking-code-hook";
-//import ResponsiveCarousel from "../src/components/ResponsiveCarousel/ResponsiveCarousel.tsx";
+import { ApplicationInsights } from '@microsoft/applicationinsights-web';
+import ResponsiveCarousel from "../src/components/ResponsiveCarousel/ResponsiveCarousel.tsx";
 import styles from "./globals.css";
 
 const inter = Inter({ subsets: ['latin'] });
+
+// Initialize Application Insights
+import { appInsights } from './utils/appInsights';
+
+// At the top of the file, after initializing ApplicationInsights
+const logUserAction = (actionName, properties) => {
+    if (appInsights) {
+        appInsights.trackEvent({
+            name: actionName,
+            properties: {
+                timestamp: new Date().toISOString(),
+                ...properties
+            }
+        });
+    }
+};
 
 export default function Home() {
     const scrollAreaRef = useRef(null); // Add this ref
@@ -42,12 +63,19 @@ export default function Home() {
 
     const submitForm = async (e) => {
         e.preventDefault();
-        let newMessages = [...messages, { role: 'user', content: messageInput }]
+        const startTime = Date.now();
+
+        logUserAction('ChatMessage_Started', {
+            messageLength: messageInput.length,
+            conversationLength: messages.length
+        });
+
+        let newMessages = [...messages, { role: 'user', content: messageInput }];
         setMessages(newMessages);
         setMessageInput('');
-        const apiMessage = await fetch(
-            '/api',
-            {
+
+        try {
+            const response = await fetch('/api', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -56,19 +84,73 @@ export default function Home() {
                     FormType: "Chat",
                     messages: newMessages
                 })
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
             }
-        ).then(res => res.json());
-        setMessages([...newMessages, { role: 'assistant', content: apiMessage.message }]);
-    }
+
+            const apiMessage = await response.json();
+            setMessages([...newMessages, { role: 'assistant', content: apiMessage.message }]);
+
+            logUserAction('ChatMessage_Completed', {
+                processingTime: Date.now() - startTime,
+                messageLength: messageInput.length,
+                responseLength: apiMessage.message.length,
+                conversationLength: messages.length + 1,
+                success: true
+            });
+
+        } catch (error) {
+            console.error('Chat Error:', error);
+            logUserAction('ChatMessage_Error', {
+                processingTime: Date.now() - startTime,
+                error: error.message,
+                messageLength: messageInput.length,
+                conversationLength: messages.length
+            });
+
+            setMessages([...newMessages, {
+                role: 'assistant',
+                content: 'Sorry, I encountered an error. Please try again.'
+            }]);
+        }
+    };
 
     const toggleMobileMenu = () => {
         setMenuOpen(!menuOpen);
     }
 
+    // Add these event handlers
+    const handleJobDescriptionSubmit = (formData) => {
+        logUserAction('JobDescription_Submitted', {
+            contentLength: formData.jobDescription?.length,
+            hasFile: !!formData.file
+        });
+    };
+
+    const handleJobDescriptionError = (error) => {
+        logUserAction('JobDescription_Error', {
+            error: error.message
+        });
+    };
+
+    const handleJobDescriptionSuccess = (response) => {
+        logUserAction('JobDescription_Completed', {
+            responseLength: response?.length,
+            success: true
+        });
+    };
+
     const shareUrl = 'https://peter.bardenhagen.xyz';
     const title = 'Peter Bardenhagen - Online Resume';
 
     useEffect(() => {
+        logUserAction('PageView', {
+            path: window.location.pathname,
+            referrer: document.referrer,
+            userAgent: navigator.userAgent
+        });
         if (scrollAreaRef.current) {
             scrollAreaRef.current.scrollTop = scrollAreaRef.current.scrollHeight;
         }
@@ -122,9 +204,7 @@ export default function Home() {
                             <h1><small>Hi I'm</small>
                                 Peter Bardenhagen
                             </h1>
-                            <p>I design and deliver enterprise-scale digital solutions with measurable ROI, partnering with leading businesses, government agencies and top-tier consultancy firms.</p>
-                            <p>&nbsp;</p>
-                            <p>Specialising in cloud-based custom applications, I transform complex business challenges into scalable technical solutions. My implementations have optimised operations and accelerated growth for organisations across multiple industries, consistently exceeding KPI targets while reducing operational costs.</p>
+                                <p>I am a results-driven digital enterprise leader with extensive experience collaborating with top-tier global consulting firms and renowned Australian businesses. By leveraging cutting-edge digital technologies, I tackle complex business challenges, enhance customer experiences, and drive sustainable growth. My passion lies in leading high-performing teams, building innovative products, solving intricate problems, and delivering measurable outcomes that exceed expectations.</p>
                             <div className="call-to-action">
                                 <a href="./CV Peter Bardenhagen.docx" className="button black">
                                     Resume
@@ -137,12 +217,12 @@ export default function Home() {
                                 </a>
                             </div>
                             <div className="social-links">
-                                <a href="https://github.com/peterjbardenhagen">
-                                    <img src="./imgs/github.png" alt="GitHub" width="48" />
-                                </a>
-                                <a href="https://www.linkedin.com/in/peterbardenhagen">
-                                    <img src="./imgs/linkedin.png" alt="LinkedIn" width="48" />
-                                </a>
+                                <IconButton aria-label="GitHub" href="https://github.com/peterjbardenhagen" target="_blank" rel="noopener noreferrer">
+                                    <GitHubIcon fontSize="large" />
+                                </IconButton>
+                                <IconButton aria-label="LinkedIn" href="https://www.linkedin.com/in/peterbardenhagen" target="_blank" rel="noopener noreferrer">
+                                    <LinkedInIcon fontSize="large" />
+                                </IconButton>
                             </div>
                         </div>
                     </div>
@@ -160,18 +240,14 @@ export default function Home() {
                             <img src="./imgs/PSM.jpg" alt="Professional Scrum Master I" className="square" />
                             <img src="./imgs/prince2.png" alt="Prince 2 Practitioner" className="square" />
                             <img src="./imgs/safe.png" alt="SAFe Agilst 5.0" className="square" />
+                            <img src="./imgs/azure.png" alt="Azure" className="square" />
                             <img src="./imgs/databricks.png" alt="Databricks" className="databricks landscape" />
                             <img src="./imgs/datadog.png" alt="Datadog" className="datadog landscape" />
                             <img src="./imgs/flutterflow.png" alt="Flutterflow" className="flutterflow landscape" />
-                            <img src="./imgs/Webflow.jpg" alt="WebFlow" className="webflow landscape" />
                             <img src="./imgs/optimizely.png" alt="Optimizely" className="optimizely landscape" />
                             <img src="./imgs/umbraco.png" alt="Umbraco" className="square" />
-                            <img src="./imgs/azure.png" alt="Azure" className="square" />
-                            <img src="./imgs/vscode.png" alt="VS Code" className="square" />
+                            <img src="./imgs/Webflow.jpg" alt="WebFlow" className="webflow landscape" />
                             <img src="./imgs/dotnetcore.png" alt=".Net Core" className="square" />
-                            <img src="./imgs/html.png" alt="HTML" className="square" />
-                            <img src="./imgs/css.png" alt="CSS" className="square" />
-                            <img src="./imgs/javascript.png" alt="JS" className="square" />
                             <img src="./imgs/react.png" alt="React" className="square" />
                             <img src="./imgs/nextjs.png" alt="Next JS" className="square" />
                             <img src="./imgs/python.png" alt="Python" className="square" />
@@ -214,14 +290,14 @@ export default function Home() {
                             <p>
                                 Starting my career as a developer, I’ve always been curious about not just the ‘what,’ but also the ‘how’ and ‘why.’ Empathy for users drives me to optimise their experiences using UX principles and human-centered design.
                             </p>
-                            <p>I have a broad set of business & technical skills, with recent experience spanning across the following capabiltiies:</p>
+                                <p>Drawing on extensive business and technical expertise, I specialise in:"</p>
                             <ul className="list">
                                 <li><strong>Technical Leadership:</strong> Led teams of 25+ technologists across multiple delivery streams</li>
-                                <li><strong>Development:</strong> Recent hands on development with Optimizely, Umbraco, AWS & Azure, .Net, React and Next.js</li>
+                                <li><strong>Engineering:</strong> Recent hands on development with Optimizely, Umbraco, AWS & Azure, .Net, React and Next.js</li>
                                 <li><strong>Solution Architecture:</strong> Enterprise-scale distributed systems, cloud platforms, integration patterns</li>
-                                <li><strong>Presales & Consulting:</strong> Technical discovery, solution design, client engagement</li>
-                                <li><strong>Project Management:</strong> Agile methodologies, DevOps practices, program governance</li>
-                                <li><strong>Stakeholder Management:</strong> C-level engagement, technical advisory, team mentoring</li>
+                                <li><strong>Presales & Consulting:</strong> Technical discovery, solution design, client engagement, proposals</li>
+                                <li><strong>Project Management:</strong> Agile methodologies, DevOps practices, P&L, ways of working, program governance</li>
+                                <li><strong>Stakeholder Management:</strong> C-level engagement, technical advisory, team mentoring, incident management</li>
                             </ul>
                         </div>
                     </div>
@@ -261,7 +337,7 @@ export default function Home() {
                                     </figcaption>
                                 </div>
                             </figure>
-                            <h3>Sonic Healthcare</h3>
+                            <h3>Senior Consultant</h3>
                             <div>2018-2021</div>
                             <p>Led the creation of EasyVisit, a successful medical appointment booking system now used by more than 200 GP practices across Australia. The platform makes it easy for:</p>
                                 <ul className="list">
@@ -280,7 +356,7 @@ export default function Home() {
                                     </figcaption>
                                 </div>
                             </figure>
-                            <h3>SS&C</h3>
+                            <h3>Technical Project Manager</h3>
                             <div>2016-2017</div>
                             <p>As Senior Project Manager, I successfully delivered major business technology projects with budgets between $500,000 and $5 million. Led teams of up to 25 people and was accountable for project financials and outcomes.</p>
                             <ul className="list">
@@ -356,14 +432,16 @@ export default function Home() {
 
                 <section id="qualify" className="chatbot container">
                     <h2>
-                        <small>
-                            Qualify Me
-                        </small>
+                        <small>Qualify Me</small>
                         For a New Role
                     </h2>
                     <div className="chatbot-blue">
                         <div className="chat-info">
-                            <JobDescriptionForm />
+                            <JobDescriptionForm
+                                onSubmit={handleJobDescriptionSubmit}
+                                onError={handleJobDescriptionError}
+                                onSuccess={handleJobDescriptionSuccess}
+                            />
                         </div>
                     </div>
                 </section>
@@ -444,22 +522,23 @@ export default function Home() {
                         Recommendations
                     </h2>
                     <div className="holder-blue">
-                        <iframe src="/portfolio/index.html" className="references_iframe"></iframe>
-                        <div
-                            type="div"
-                            onLoad={() => {
-                                ReactTagManager.action({
-                                    event: 'pageView',
-                                    pagePath: 'https://peter.bardenhagen.xyz',
-                                    pageTitle: 'Peter Bardenhagen - Online Resume',
-                                    visitorType: 'Customer'
-                                });
-                            }}
-                        ></div>
+                        <WordCloud />
+                        <Recommendations />
                     </div>
                 </section>
              </main>
             </div>
+            <div
+                type="div"
+                onLoad={() => {
+                    ReactTagManager.action({
+                        event: 'pageView',
+                        pagePath: 'https://peter.bardenhagen.xyz',
+                        pageTitle: 'Peter Bardenhagen - Online Resume',
+                        visitorType: 'Customer'
+                    });
+                }}
+            ></div>
         </>
     );
 }

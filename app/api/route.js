@@ -12,25 +12,31 @@ export async function POST(req) {
 
     switch (formType) {
         case 'Chat':
-            const newMessages = body.messages;
-            const systemMessage = {
-                role: 'system',
-                content: `You are a Talent Advisor, answering only questions based on Peter Bardenhagen's resume provided.
+            try {
+                const newMessages = body.messages;
+                const systemMessage = {
+                    role: 'system',
+                    content: `You are a Talent Advisor, answering only questions based on Peter Bardenhagen's resume provided.
 Resume:
 ${DATA_RESUME}
 
 Help users learn more about Peter from his resume.`,
-            };
+                };
 
-            const chatMessages = [systemMessage, ...newMessages];
+                const chatMessages = [systemMessage, ...newMessages];
 
-            const chatResponse = await client.getChatCompletions(model, chatMessages, {
-                maxTokens: 500,
-            });
+                const chatResponse = await client.getChatCompletions(model, chatMessages, {
+                    maxTokens: 250, // Maximum number of tokens to generate
+                    temperature: 0.5 // Controls randomness (0-1), lower = more focused
+                });
 
-            return NextResponse.json({
-                message: chatResponse.choices[0].message.content
-            });
+                return NextResponse.json({
+                    message: chatResponse.choices[0].message.content
+                });
+            } catch (error) {
+                alert('error');
+                console.error(error);
+            }
 
         case 'JobDesc':
             const { jobDescription } = body;
@@ -50,11 +56,11 @@ Help users learn more about Peter from his resume.`,
             ];
 
             const response = await client.getChatCompletions(model, messages, {
-                maxTokens: 1000,            // Maximum number of tokens to generate
-                temperature: 0.7,           // Controls randomness (0-1), lower = more focused
-                topP: 0.95,                 // Control  s diversity of word choices
-                frequencyPenalty: 0.5,      // Reduces repetition of similar words/phrases (-2.0 to 2.0)
-                presencePenalty: 0.5       // Encourages covering new topics (-2.0 to 2.0)
+                maxTokens: 1000,    // Maximum number of tokens to generate
+                temperature: 0.7,   // Controls randomness (0-1), lower = more focused
+                topP: 0.95, // Control  s diversity of word choices
+                frequencyPenalty: 0.5,  // Reduces repetition of similar words/phrases (-2.0 to 2.0)
+                presencePenalty: 0.5    // Encourages covering new topics (-2.0 to 2.0)
             });
 
             return NextResponse.json({
@@ -67,6 +73,180 @@ Help users learn more about Peter from his resume.`,
 }
 
 const DATA_RESUME = `Peter Bardenhagen Confidential CV
+
+# Peter Bardenhagen - Confidential CV
+
+**Email:** peter@bardenhagen.xyz
+**Phone:** +61 (0) 452 491 013
+**AI Resume:** [https://peter.bardenhagen.xyz](https://peter.bardenhagen.xyz)
+
+---
+
+## Executive Summary
+
+I am a results-driven digital enterprise leader with extensive experience collaborating with top-tier global consulting firms and renowned Australian businesses. By leveraging cutting-edge digital technologies, I tackle complex business challenges, enhance customer experiences, and drive sustainable growth. My passion lies in leading high-performing teams, building innovative products, solving intricate problems, and delivering measurable outcomes that exceed expectations.
+
+Outside of work, I enjoy playing basketball, ice hockey, and staying active. A lifelong learner, I am deeply engaged with emerging technologies and business strategy, complemented by my ENTJ personality type, which drives my leadership and strategic vision.
+
+---
+
+## Key Capabilities
+
+- **Technical Leadership:** Led teams of 25+ technologists across multiple delivery streams
+- **Solution Architecture:** Enterprise-scale distributed systems, cloud platforms, integration patterns
+- **Presales & Consulting:** Technical discovery, solution design, client engagement, proposals
+- **Project Management:** Agile methodologies, DevOps practices, P&L, ways of working, program governance
+- **Stakeholder Management:** C-level engagement, technical advisory, team mentoring, incident management
+
+---
+
+## Skills Matrix
+
+| **Technical Skills**         | **Years** | **Technical Credentials**                | **Business Credentials**            |
+|-------------------------------|-----------|------------------------------------------|--------------------------------------|
+| .Net, ASP.Net, C#, Java       | 10+       | AWS Solution Architect Associate         | MBA Candidate, UQ (2025)            |
+| Angular                       | 3         | Azure Administrator (AZ-104), Azure AI Engineer (AI-102), Azure Designing Solutions (AZ-304) | Microsoft Project (Intermediate)    |
+| Python                        | 1         | Capgemini Lead Architect                 | Prince 2 Practitioner                |
+| Typescript                    | 3         | Databricks Fundamentals                  | PSM-I & PSPO-I                       |
+| Node.js / React / Next.js / Vue.js | 3     | ITIL Foundation                          | SAFe Agilist 5.0                     |
+| SQL Server / Entity Framework | 3         | Optimizely One                           | Mental Health First Aid Officer      |
+| AWS (10 years), Azure (10 years), GCP (1 year) |           | TOGAF 10 & ArchiMate 3.1                | St John’s First Aid                  |
+
+### Additional Skills
+- **Cloud Technologies:** CloudFormation, CloudFront, EC2, EKS, RDS, S3, SQS, VPCs, App Insights, Bicep, Blob Storage, Cosmos DB, Defender, DevOps, Docker, Entra ID, Functions, Key Vault, Log Analytics, Logic Apps, Power Apps, Power Automate, PowerBI
+- **AI Tools:** AI Search, AI Services, Copilot Studio (no-code), Cost Management, Gemini, Google AI, Looker
+
+---
+
+## Professional Experience
+
+### Independent Contractor - Brisbane
+**June 2024 – Present**
+
+**Overview:** Engaged in short-term contracts while pursuing opportunities for longer-term roles.
+
+#### Responsibilities:
+- Conducted business development and presales activities for each project.
+- Gathered requirements, designed scalable solutions, and prepared proposals and estimates.
+- Managed projects from initiation through delivery and post-deployment support.
+- Oversaw stakeholder management, high-level design, proof of concept development, weekly showcases, development, deployment, UAT, and final handover.
+
+#### Key Projects:
+1. **Carter Capner Law:**
+   - **AI Phone Calls:** Developed AI-driven inbound and outbound phone calls for customer onboarding with call transcript logging and automated analysis using DataStax Astra & Langflow, Azure OpenAI, and Vapi.
+   - **Staff Onboarding Chatbot:** Created an Azure AI-powered Teams chatbot for staff onboarding.
+   - **Timesheet Consolidation Application:** Built an application integrating multiple business systems to streamline professional services invoicing (.NET 8.0, C#, Web API).
+   - **Automated Email Processing:** Designed automated email responses for customer inquiries using Power Automate.
+   - **Proof of Concepts:** Completed a PoC of Azure AI Search agents on Copilot Studio and Power Apps.
+
+2. **Totalmobile UK:**
+   - Conducted a WCAG accessibility compliance audit for a global rostering SaaS vendor, ensuring alignment with Australian government requirements.
+
+#### MBA Capstone Program at CSIRO's Data61:
+- Collaborated on commercialising a patented quantum computing algorithm to safeguard AI from adversarial attacks.
+- Conducted 50+ interviews, designed outreach campaigns, and explored models to identify buyers and partners.
+- Discovered two commercial opportunities and recommended a strategic pivot for market alignment.
+
+---
+
+### Senior Manager – Digital Delivery (Digital Customer Experience Team)
+**Capgemini – Brisbane**
+**January 2022 – June 2024**
+
+**Company Overview:** Capgemini is a global IT consultancy operating in 51 countries with over 360,000 staff.
+
+#### Responsibilities:
+- **Technical Leadership at Western Power:**
+  - Led a $5M+ digital transformation project in the energy sector.
+  - Established an Optimizely Chapter and Centre of Excellence.
+  - Architected and implemented Optimizely Customer Data Platform (CDP).
+  - Defined KPIs and built real-time monitoring dashboards.
+
+- **Presales Architect:**
+  - Consulted on platforms like Optimizely, Sitecore, Azure, and AWS.
+  - Engaged with clients including Pharmacy Guild of Australia, Parliament of South Australia, and Brisbane City Council.
+
+- **Delivery Lead for Optimizely Solutions:**
+  - Delivered global and regional websites and digital platforms.
+
+---
+
+### Solution Architect / Delivery Lead
+**Sonic Healthcare – Brisbane**
+**December 2018 – January 2022**
+
+#### Key Projects:
+- **EasyVisit GP Appointments Platform:** Supported 200+ medical centres and 500,000+ bookings in the first year.
+- **Corporate and GP Clinic Websites:** Built on Umbraco DXP, .NET Core, HTML5, and TypeScript.
+
+---
+
+### Technical Project Manager
+**SS&C Technologies – Melbourne**
+**July 2015 – September 2016**
+
+#### Key Projects:
+- R&D White Label Wealth Management Platform
+- Messaging Bus for Old Mutual Wealth
+- Data Modelling Code Generator
+
+---
+
+### Product Owner
+**Quantum IT – Melbourne**
+**July 2014 – July 2015**
+
+- Led product design for accessibility, branding, and user interface consistency.
+
+---
+
+### Manager, Development & Testing
+**Education Services Australia – Melbourne**
+**October 2012 – June 2014**
+
+- Delivered key educational projects including **Scootle Games on Demand** and **Maths 300**.
+
+---
+
+### Managing Director
+**Digital Response – Brisbane**
+**July 2008 – March 2011; Sept 2016 – Dec 2018**
+
+- Designed and developed a SaaS marketing platform for automotive dealerships.
+
+---
+
+### Technical Lead
+**SolutionsCorp – Melbourne**
+**January 2005 – July 2008**
+
+---
+
+### Senior Web Developer
+**iProperty.com.au / Professionals Real Estate – Melbourne**
+**January 2002 – July 2005**
+
+---
+
+### Web Developer
+**Roadhouse Digital – Melbourne**
+**February 2001 – December 2002**
+
+---
+
+### Web Developer
+**Challenger International – Hobart**
+**September 2000 – November 2000**
+
+---
+
+### Web Developer
+**DigitalRez Software – Hobart**
+**November 1998 – August 2000**
+
+
+
+Peter Bardenhagen Confidential CV
 peter@bardenhagen.xyz   +61 (0) 452 491 013   AI Resume: https://peter.bardenhagen.xyz
 EXECUTIVE SUMMARY
 I am a results-driven digital enterprise leader with extensive experience collaborating with top-tier global consulting firms and renowned Australian businesses. By leveraging cutting-edge digital technologies, I tackle complex business challenges, enhance customer experiences, and drive sustainable growth. My passion lies in leading high-performing teams, building innovative products, solving intricate problems, and delivering measurable outcomes that exceed expectations.
@@ -80,19 +260,19 @@ KEY CAPABILITIES
 
 SKILLS MATRIX
 Technical Skills	Years	Technical Credentials	Business Credentials
-.Net, ASP.Net, C#	10+	AWS Solution Architect Associate	MBA Candidate, UQ (2025)
-Angular	3	Azure Architect Expert by end of Jan 2025	Microsoft Project - Intermediate 
+.Net, ASP.Net, C#, Java	10+	AWS Solution Architect Associate	MBA Candidate, UQ (2025)
+Angular	3	Azure Administrator (AZ-104), Azure AI Engineer (AI-102) and Azure Designing Solutions (AZ-304) 	Microsoft Project - Intermediate level training
 Python	1	Capgemini Lead Architect	Prince 2 Practitioner
 Typescript 	3	Databricks Fundamentals 	PSM-I & PSPO-I
 Node.js / React / Next.js / Vue.js	3	ITIL Foundation	SAFe Agilist 5.0
-SQL Server / Entity Framework	3	Optimizely One	Mental Health First Aid
-		ArchiMate & TOGAF (exams pending)	St John’s First Aid
+SQL Server / Entity Framework	3	Optimizely One	Mental Health First Aid Officer
+		TOGAF 10 & ArchiMate 3.1	St John’s First Aid
 AWS – 10 years	Azure – 10 years	GCP – 1 year
 CloudFormation, CloudFront, EC2, EKS, RDS, S3, SQS, VPCs or RDS	AI Search, AI Services, API, App Insights, Bicep, Blob Storage, Copilot Studio (no-code), Cost Management, Cosmos Db, Defender, DevOps, Docker, Entra ID, Entra B2C, Insights, Functions, Graph, Key Vault, Log Analytics, Logic Apps, M365, Monitor, Power Apps, Power Automate, PowerBI, Storage, SQL, VMs, VPC	Collab, Cloud Networking, Compute, Firebase, Gemini, Google AI, Identity Platform, Looker
 
 PROFESSIONAL EXPERIENCE
 Independent Contractor - Brisbane
-June 2024 – Present	
+June 2024 – Present
 Overview: Engaged in short-term contracts while pursuing opportunities for longer-term roles.
 Responsibilities:
 •	Conducted business development and presales activities for each project.
@@ -109,8 +289,8 @@ Key Projects:
 2.	Totalmobile UK:
 •	Conducted a WCAG accessibility compliance audit for a global rostering SaaS vendor entering the Australian market, ensuring alignment with Australian government accessibility requirements.
 MBA Capstone Program at CSIRO's Data61:
-•	Collaborated on commercialising a patented quantum computing algorithm to safeguard AI from adversarial attacks. 
-•	Conducted 50+ interviews, designed outreach campaigns, and explored models to identify buyers and partners. 
+•	Collaborated on commercialising a patented quantum computing algorithm to safeguard AI from adversarial attacks.
+•	Conducted 50+ interviews, designed outreach campaigns, and explored models to identify buyers and partners.
 •	Discovered two commercial opportunities and recommended a strategic pivot for market alignment.
 ________________________________________
 Senior Manager – Digital Delivery (Digital Customer Experience Team)
@@ -129,7 +309,7 @@ o	Defined Enterprise platform KPIs and built real-time monitoring dashboards for
 o	Authored content covering all operations of the new platform including CI/CD, codebase management, disaster recovery, identity management and upgrades. Handed over to new BAU team.
 •	Presales Architect:
 o	Consulted on platforms including Optimizely, Sitecore, Azure, and AWS aligning solutions to industry and vendor best practices.
-o	Engaged with clients such as Pharmacy Guild of Australia, Parliament of South Australia, Lendlease, APA Group, and Brisbane City Council on their digital transformations.
+o	Engaged with clients such as Pharmacy Guild of Australia, Parliament of South Australia, LendLease, APA Group, and Brisbane City Council on their digital transformations.
 o	Provided strategy and advisory services to existing customers.
 •	Delivery Lead for Optimizely Solutions:
 o	Symbion Shop: Developed an Optimizely Commerce B2C platform rolled out to 4,000 pharmacies. Managed RFP, BRD, HLD, DevOps, interface design, data mapping, integrations, and test strategy.
@@ -148,7 +328,7 @@ Key Projects:
 •	EasyVisit GP appointments platform, supporting 200+ medical centres and 500,000+ bookings in its first year, along with complementary tools like a Check-in Kiosk and Hours Manager.
 •	Corporate and GP Clinic websites using Umbraco DXP, .NET Core, HTML5, Bootstrap, and TypeScript.
 Technical Project Manager – R&D, Messaging, and Data Migration
-SS&C Technologies – Melbourne 
+SS&C Technologies – Melbourne
 July 2015 – September 2016
 Company Overview: A leading global provider of financial services software and outsourcing solutions.
 Responsibilities:
@@ -191,15 +371,15 @@ o	Maths 300: Cross-platform mathematics games with over 300 games.
 o	Safe Schools Hub: Website to prevent bullying with ministerial launch.
 o	MyFuture: National website for school leavers built on Sitecore
 ________________________________________
- 
+
 Software Engineering Team Leader
 Sonic Healthcare - Melbourne
 March 2011 – August 2012
 Responsibilities:
-•	Managed a geographically distributed team of 10 eHealth engineers across Australia and the USA, overseeing project delivery, change management, deployments, and BAU transitions. 
-•	Ensured compliance with security frameworks, passing external audits and pen testing. 
+•	Managed a geographically distributed team of 10 eHealth engineers across Australia and the USA, overseeing project delivery, change management, deployments, and BAU transitions.
+•	Ensured compliance with security frameworks, passing external audits and pen testing.
 •	Defined hosting requirements, including server specs, database configurations, disaster recovery plans, and IIS.
-•	Migrated to JIRA for task management and Confluence for knowledge sharing, ensuring smooth adoption. 
+•	Migrated to JIRA for task management and Confluence for knowledge sharing, ensuring smooth adoption.
 •	Handled project change requests via the helpdesk, delivering within SLAs agreed with business units.
 Key Projects:
 •	Active Directory Management Tool: Built an enterprise tool to assign ADFS members to new digital products in testing and production environments saving countless hours in provisioning.
@@ -220,7 +400,7 @@ o	Achieved a 97% user satisfaction score, delivered over 1,000 personalised mark
 •	Delivery of Digital Projects:
 o	Managed accounts for high-profile clients including Britax, BlueChipIT, Bob Jane T-Marts, Isuzu, Live Combat Sports, SecureCorp, and Traffic Technologies.
 o	Delivered a range of websites, e-commerce solutions, and mobile applications.
-o	Managed an IT account modernising their environment from on-premises to cloud.
+o	Managed an IT account modernising their environment from on-premise to cloud.
 o	Developed a comprehensive digital platform for BlueChipIT, integrating it with Microsoft Dynamics, and successfully marketed the solution to other clients.
 ________________________________________
 Technical Lead
@@ -271,20 +451,8 @@ Responsibilities:
 •	Created websites, online stores, and help desk systems tailored to clients’ needs.
 •	Designed custom reports and financial tools for clients, ensuring compliance with the newly introduced GST systems.
 
-Profile
-Peter is passionate about applying technology to enable businesses to achieve leading digital customer experience outcomes
-Peter is a highly competent lead digital architect with director level experience and holds up to date industry and vendor certifications
-Peter has delivered many enterprise level projects involving complex technical architecture, and complex stakeholder management
 
-Education/Certification
-UQ MBA Candidate 2024
-Certified AWS Solution Architect Associate
-ITIL
-Prince2 Practitioner
-ScrumMaster (PSM-I)
-Product Owner (PSPO)
-SAFe Agilist 5.0, Umbraco L2
-Optimizely Content Cloud 12
+
 
 Recent industry experience: Education, Energy & Utilities, Financial services, Public sector
 

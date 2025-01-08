@@ -12,6 +12,14 @@
 .jobdesc_response {
 	font-size: 14px;
 	padding: 0px 10px 0px 25px;
+	h3
+		{
+			font-size: 14px;
+			margin: 10px 0px 10px 0px;
+		}
+		ul {
+			margin-left: 5px;
+		}
 	ol {
 			 margin-left: 5px;
 	    }

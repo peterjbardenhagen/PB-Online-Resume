@@ -1,28 +1,43 @@
 import React, { useState, FormEvent } from 'react';
-import './JobDescriptionForm.css'; // Add this import for the CSS
-import { marked } from 'marked'; // Markdown-to-HTML conversion
-import DOMPurify from 'dompurify'; // Sanitizing HTML
-import mammoth from 'mammoth'; // Word document parsing
+import './JobDescriptionForm.css';
+import { marked } from 'marked';
+import DOMPurify from 'dompurify';
+import mammoth from 'mammoth';
 import * as pdfjsLib from 'pdfjs-dist';
+import { ApplicationInsights } from '@microsoft/applicationinsights-web';
 
-// Fix: Specify the worker source for PDF.js
 pdfjsLib.GlobalWorkerOptions.workerSrc = `app/pdf.worker.min.mjs`;
 
-export const JobDescriptionForm = () => {
+interface JobDescriptionFormProps {
+    onSubmit?: (formData: any) => void;
+    onError?: (error: any) => void;
+    onSuccess?: (response: any) => void;
+}
+
+// Initialize Application Insights
+import { appInsights } from '../../../app/utils/appInsights';
+
+export const JobDescriptionForm: React.FC<JobDescriptionFormProps> = ({
+    onSubmit,
+    onError,
+    onSuccess
+}) => {
     const [jobDescription, setJobDescription] = useState<string>('');
     const [response, setResponse] = useState<string>('');
     const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
     const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [retryCount, setRetryCount] = useState<number>(0);
+    const MAX_RETRIES = 3;
+    const TIMEOUT = 30000;
 
     const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0];
         if (!file) return;
 
         try {
+            setIsLoading(true);
             const fileExtension = file.name.split('.').pop()?.toLowerCase();
             let extractedText = '';
-
-            setIsLoading(true); // Show loading animation
 
             if (fileExtension === 'pdf') {
                 extractedText = await extractTextFromPDF(file);
@@ -30,24 +45,31 @@ export const JobDescriptionForm = () => {
                 const result = await mammoth.extractRawText({ arrayBuffer: await file.arrayBuffer() });
                 extractedText = result.value;
             } else {
-                const text = await file.text();
-                extractedText = text;
+                extractedText = await file.text();
             }
 
-            // Clean and set the text
             const cleanedText = cleanText(extractedText);
             setJobDescription(cleanedText);
 
-            // Update textarea
-            const textarea = document.querySelector('.jobdesc-textarea') as HTMLTextAreaElement;
-            if (textarea) {
-                textarea.value = cleanedText;
-            }
+            appInsights.trackEvent({
+                name: 'FileUpload_Successful',
+                properties: {
+                    fileType: fileExtension,
+                    fileSize: file.size
+                }
+            });
         } catch (error) {
             console.error('Error processing file:', error);
-            alert('Error processing file. Please try again or paste the text directly. Error details:' + error);
+            appInsights.trackException({
+                error: error instanceof Error ? error : new Error(String(error)),
+                properties: {
+                    fileType: file.name.split('.').pop()?.toLowerCase(),
+                    fileSize: file.size
+                }
+            });
+            alert('Error processing file. Please try again or paste the text directly.');
         } finally {
-            setIsLoading(false); // Hide loading animation
+            setIsLoading(false);
         }
     };
 
@@ -81,17 +103,28 @@ export const JobDescriptionForm = () => {
     };
 
     const cleanText = (text: string): string => {
-        return text.replace(/\s{2,}/g, ' ').trim(); // Remove extra whitespace and trim
+        return text.replace(/\s{2,}/g, ' ').trim();
     };
 
     const handleSubmit = async (e: FormEvent) => {
         if (e) e.preventDefault();
-        console.log('Submit button clicked');
 
-        setIsSubmitting(true); // Disable inputs
-        setIsLoading(true); // Show loading animation
+        const startTime = Date.now();
+        appInsights.trackEvent({ name: 'FormSubmission_Started' });
+
+        // Call onSubmit callback
+        onSubmit?.({
+            jobDescription,
+            file: (document.querySelector('.jobdesc-file-input') as HTMLInputElement)?.files?.[0]
+        });
+
+        setIsSubmitting(true);
+        setIsLoading(true);
 
         try {
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), TIMEOUT);
+
             const res = await fetch('/api', {
                 method: 'POST',
                 headers: {
@@ -101,35 +134,82 @@ export const JobDescriptionForm = () => {
                     FormType: "JobDesc",
                     jobDescription
                 }),
+                signal: controller.signal,
             });
+
+            clearTimeout(timeoutId);
+
             if (!res.ok) {
+                const errorDetails = {
+                    status: res.status,
+                    statusText: res.statusText,
+                    url: res.url,
+                };
+
+                appInsights.trackException({
+                    error: new Error(`HTTP error: ${res.status}`),
+                    properties: errorDetails
+                });
+
+                if (res.status === 504 && retryCount < MAX_RETRIES) {
+                    setRetryCount(prev => prev + 1);
+                    throw new Error('RETRY');
+                }
+
                 throw new Error(`HTTP error! status: ${res.status}`);
             }
 
             const data = await res.json();
-
-            // Convert Markdown to HTML using `marked`
-            var htmlResponse = marked.parse(data.message);
-
-            // Sanitize the HTML content using `DOMPurify`
-            var sanitizedHtmlResponse = DOMPurify.sanitize('' + htmlResponse);
+            const htmlResponse = marked.parse(data.message);
+            const sanitizedHtmlResponse = DOMPurify.sanitize('' + htmlResponse);
 
             setResponse(sanitizedHtmlResponse);
-        } catch (error) {
-            console.error('Error:', error);
-            setResponse('An error occurred while submitting the form:' + error);
-        } finally {
-            setIsSubmitting(false); // Re-enable inputs
-            setIsLoading(false); // Hide loading animation
-        }
-    };
+            setRetryCount(0);
 
-    const handleClear = () => {
-        setJobDescription('');
-        setResponse('');
-        const fileInput = document.querySelector('.jobdesc-file-input') as HTMLInputElement;
-        if (fileInput) {
-            fileInput.value = ''; // Clear the file input field
+            // Call onSuccess callback
+            onSuccess?.(sanitizedHtmlResponse);
+
+            appInsights.trackMetric({
+                name: 'FormSubmission_ProcessingTime',
+                average: Date.now() - startTime
+            });
+
+            appInsights.trackEvent({
+                name: 'FormSubmission_Successful',
+                properties: {
+                    processingTime: Date.now() - startTime,
+                    contentLength: jobDescription.length
+                }
+            });
+
+        } catch (error) {
+            if (error.message === 'RETRY') {
+                appInsights.trackEvent({
+                    name: 'FormSubmission_Retry',
+                    properties: { retryCount }
+                });
+
+                await new Promise(resolve => setTimeout(resolve, 1000 * retryCount));
+                return handleSubmit(e);
+            }
+
+            console.error('Error:', error);
+
+            // Call onError callback
+            onError?.(error);
+
+            appInsights.trackException({
+                error: error instanceof Error ? error : new Error(String(error)),
+                properties: {
+                    processingTime: Date.now() - startTime,
+                    contentLength: jobDescription.length
+                }
+            });
+
+            setResponse(`An error occurred. Please try again. If the problem persists, contact support.`);
+        } finally {
+            setIsSubmitting(false);
+            setIsLoading(false);
         }
     };
 
@@ -143,24 +223,19 @@ export const JobDescriptionForm = () => {
                     </div>
                 </div>
             )}
-            <form className="jobdesc-form" onSubmit={handleSubmit} method="GET">
+            <form className="jobdesc-form" onSubmit={handleSubmit}>
                 <textarea
                     className="jobdesc-textarea"
                     value={jobDescription}
-                    onChange={(e) => {
-                        setJobDescription(e.target.value);
-                        if (!isSubmitting) setIsLoading(false); // Stop loading when textarea changes
-                    }}
-                    placeholder="Enter or paste a position title or description. Then click Submit."
-                    cols={50}
-                    rows={10}
-                    required={!jobDescription || isLoading || isSubmitting} // Ensure either textarea or file is used
-                    disabled={isSubmitting || isLoading} // Disable textarea during loading
+                    onChange={(e) => setJobDescription(e.target.value)}
+                    placeholder="Enter or paste a title or postiion description. Or upload a file. Then click Submit."
+                    required
+                    disabled={isSubmitting || isLoading}
                 />
                 <p>or</p>
                 <input
                     type="file"
-                    accept=".txt,.doc,.docx,.json,.pdf"
+                    accept=".txt,.doc,.docx,.pdf"
                     onChange={handleFileUpload}
                     className="jobdesc-file-input"
                     disabled={isSubmitting || isLoading}
@@ -169,15 +244,18 @@ export const JobDescriptionForm = () => {
                     <button
                         className="button black"
                         type="submit"
-                        disabled={isSubmitting || !jobDescription || isLoading} // Disable button if no input or loading
+                        disabled={isSubmitting || !jobDescription || isLoading}
                     >
                         {isSubmitting ? 'Submitting...' : 'Submit'}
                     </button>
                     <button
                         className="button grey"
                         type="button"
-                        onClick={handleClear}
-                        disabled={isSubmitting || isLoading} // Disable Clear button during loading
+                        onClick={() => {
+                            setJobDescription('');
+                            setResponse('');
+                        }}
+                        disabled={isSubmitting || isLoading}
                     >
                         Clear
                     </button>

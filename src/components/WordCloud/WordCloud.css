@@ -1,0 +1,27 @@
+/* In your CSS file */
+.word-cloud-wrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.word-cloud-container {
+	width: 100%;
+	max-width: 900px;
+	margin: auto;
+	background-color: #ffffff;
+	border-radius: 8px;
+	padding: 20px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.word-cloud-caption {
+	margin-top: 1rem;
+	font-size: 0.875rem;
+	color: #666;
+	text-align: center;
+	font-style: italic;
+}

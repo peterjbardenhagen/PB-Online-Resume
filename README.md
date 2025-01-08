@@ -34,3 +34,32 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+Reset Next
+
+# 1. Close VS Code and any terminal windows
+# 2. Clear npm cache
+npm cache clean --force
+
+# 3. Delete node_modules and package-lock.json
+rm -rf node_modules
+rm package-lock.json
+
+# 4. Reinstall dependencies
+npm install
+
+
+Clean Reinstall of Next
+
+# 1. Remove Next.js specific files
+rm -rf .next
+rm -rf node_modules/@next
+
+# 2. Clear npm cache
+npm cache clean --force
+
+# 3. Reinstall Next.js
+npm install next@latest
+
+# 4. Run build
+npm run build
