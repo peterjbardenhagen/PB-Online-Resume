@@ -153,7 +153,8 @@ export const JobDescriptionForm: React.FC<JobDescriptionFormProps> = ({
 
                 if (res.status === 504 && retryCount < MAX_RETRIES) {
                     setRetryCount(prev => prev + 1);
-                    throw new Error('RETRY');
+                    await new Promise(resolve => setTimeout(resolve, 1000 * retryCount)); // Exponential backoff
+                    return handleSubmit(e); // Retry the request
                 }
 
                 throw new Error(`HTTP error! status: ${res.status}`);
