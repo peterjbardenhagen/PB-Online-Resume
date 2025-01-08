@@ -39,8 +39,7 @@ Reset Next
 
 # 1. Close VS Code and any terminal windows
 # 2. Clear npm cache
-npm cache clean --force
-
+next
 # 3. Delete node_modules and package-lock.json
 rm -rf node_modules
 rm package-lock.json
