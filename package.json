@@ -16,7 +16,6 @@
     "@mui/icons-material": "^6.3.1",
     "@mui/material": "^6.3.1",
     "@next/third-parties": "^15.0.4",
-    "@types/pdfjs-dist": "^2.10.378",
     "@vercel/analytics": "^1.4.0",
     "@vercel/speed-insights": "^1.1.0",
     "d3": "^7.9.0",
