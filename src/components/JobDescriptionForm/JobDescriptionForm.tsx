@@ -9,7 +9,7 @@ import * as pdfjsLib from 'pdfjs-dist';
 pdfjsLib.GlobalWorkerOptions.workerSrc = `app/pdf.worker.min.mjs`;
 
 export const JobDescriptionForm = () => {
-    const [jobDescription, setJobDescription] = useState<string>('');
+    const [jobDescription, setJobDescription] = useState<string>('');   
     const [response, setResponse] = useState<string>('');
     const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
@@ -100,7 +100,7 @@ export const JobDescriptionForm = () => {
         setIsSubmitting(true);
 
         try {
-            const res = await fetch('npn/api', {
+            const res = await fetch('/api', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
