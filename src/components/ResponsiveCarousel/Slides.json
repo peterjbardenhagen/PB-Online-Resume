@@ -17,9 +17,15 @@
 			"imageUrl": "/imgs/slide-azure.png"
 		},
 		{
+			"id": 1,
+			"title": "Amazon",
+			"text": "I am certified as an AWS Solutions Architect Associate, demonstrating expertise in designing scalable, secure, and cost-effective cloud solutions on the AWS platform.",
+			"imageUrl": "/imgs/slide-aws.png"
+		},
+		{
 			"id": 2,
 			"title": "Enterprise Architecture",
-			"text": "I am certified in TOGAF 10 and ArchiMate 3.1, which together provide a comprehensive framework and modeling language for enterprise architecture. These certifications enable me to design, analyze, and communicate complex architectures effectively, aligning business goals with IT strategies for maximum value.",
+			"text": "I am certified in TOGAF 10 and ArchiMate 3.1, which together provide a comprehensive framework and modeling language for enterprise architecture. These certifications enable me to design, analyze, and communicate complex architectures effectively.",
 			"imageUrl": "/imgs/slide-ea.png"
 		},
 		{

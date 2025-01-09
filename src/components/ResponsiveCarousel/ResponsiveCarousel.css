@@ -1,8 +1,6 @@
-/* ResponsiveCarousel.css */
-
 /* Carousel Container Styling */
 .carousel-container {
-	max-width: 1200px; /* Set the maximum width for the carousel */
+	max-width: 1000px; /* Set the maximum width for the carousel */
 	margin: 0 auto; /* Center the carousel */
 	background-color: #fafafa; /* Light background for the container */
 	border-radius: 10px; /* Rounded corners for a clean look */
@@ -20,6 +18,11 @@
 	text-align: center;
 	color: #333; /* Base text color */
 	background-color: #fafafa; /* Background color for each slide */
+}
+
+.image-container {
+	margin-left:40px;
+	margin-right:40px;
 }
 
 /* Image Container Styling */
@@ -43,39 +46,69 @@
 	color: #555; /* Lighter text color for descriptions */
 }
 
+.control-arrow, .control-next, .control-prev {
+	background-color: #000000 !important;
+	top: 260px !important;
+	margin-left: 9px;
+	margin-right: 9px;
+}
+
 /* Arrow Controls Styling */
 .carousel .control-arrow {
-	background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+	/*background-color: rgba(0, 0, 0, 0.5);*/ /* Semi-transparent background */
+	opacity: 1.0;
+	background-color: rgba(0, 0, 0, 0.8); /* Darker background on hover */
 	border-radius: 50%; /* Circular shape */
 	width: 40px;
 	height: 40px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	transition: background-color 0.3s ease;
+	/*transition: background-color 0.3s ease;*/
 }
 
-	.carousel .control-arrow:hover {
-		background-color: rgba(0, 0, 0, 0.8); /* Darker background on hover */
-	}
+.carousel-status {
+	display: none;
+}
+
+.control-arrow .control-prev, .control-arrow .control-next {
+	top: 250px;
+	background-color: rgba(0, 0, 0, 0.8); /* Darker background on hover */
+}
+
+.carousel .control-arrow:hover {
+	background-color: rgba(0, 0, 0, 0.8); /* Darker background on hover */
+}
+
+.carousel carousel-slider ul {
+	margin-top: 20px;
+}
 
 /* Indicator Dots Styling */
 .carousel .control-dots {
+	display: block;
 	margin-top: 15px;
+	top: 50px;
 }
 
 	.carousel .control-dots .dot {
-		background-color: #ccc; /* Default dot color */
-		width: 12px;
-		height: 12px;
-		margin: 0 5px;
+		background-color: #666; /* Default dot color */
+		width: 20px;
+		height: 20px;
+		margin: 0px 12px 0px 0px;
 		border-radius: 50%; /* Circular dots */
+		border: 1px solid #ccc;
 		transition: background-color 0.3s ease;
 	}
 
 		.carousel .control-dots .dot.selected {
-			background-color: #007bff; /* Blue for the selected dot */
+			background-color: beige; /* Blue for the selected dot */
 		}
+
+p, h2 {
+	padding: 0px 0px 0px 0px !important;
+	marginP: 10px 0px 10px 0px !important;
+}
 
 /* Responsive Styling for Smaller Screens */
 @media (max-width: 768px) {
@@ -84,10 +117,12 @@
 	}
 
 	.text-container h2 {
+		margin: 10px 0px 10px 0px;
 		font-size: 1.25rem; /* Reduce title font size */
 	}
 
 	.text-container p {
+		margin: 10px 0px 10px 0px;
 		font-size: 0.9rem; /* Reduce description font size */
 	}
 }

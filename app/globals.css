@@ -294,6 +294,7 @@ h1 {
      width: 100%;
      height: auto;
      max-height: 50px;
+     margin-bottom: 50px;
      @media (max-width:1440px) {
          border-radius:0px;
     }
