@@ -1,0 +1,93 @@
+/* ResponsiveCarousel.css */
+
+/* Carousel Container Styling */
+.carousel-container {
+	max-width: 1200px; /* Set the maximum width for the carousel */
+	margin: 0 auto; /* Center the carousel */
+	background-color: #fafafa; /* Light background for the container */
+	border-radius: 10px; /* Rounded corners for a clean look */
+	overflow: hidden; /* Prevent content overflow */
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Individual Slide Styling */
+.carousel-slide {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 20px;
+	text-align: center;
+	color: #333; /* Base text color */
+	background-color: #fafafa; /* Background color for each slide */
+}
+
+/* Image Container Styling */
+.image-container img {
+	border-radius: 8px; /* Rounded corners for the images */
+}
+
+/* Title Styling */
+.text-container h2 {
+	margin-top: 15px;
+	font-size: 1.5rem; /* Title font size */
+	font-weight: bold;
+	color: #222; /* Slightly darker text for emphasis */
+}
+
+/* Description Text Styling */
+.text-container p {
+	margin-top: 10px;
+	font-size: 1rem; /* Font size for the description */
+	line-height: 1.5; /* Improve readability */
+	color: #555; /* Lighter text color for descriptions */
+}
+
+/* Arrow Controls Styling */
+.carousel .control-arrow {
+	background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+	border-radius: 50%; /* Circular shape */
+	width: 40px;
+	height: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: background-color 0.3s ease;
+}
+
+	.carousel .control-arrow:hover {
+		background-color: rgba(0, 0, 0, 0.8); /* Darker background on hover */
+	}
+
+/* Indicator Dots Styling */
+.carousel .control-dots {
+	margin-top: 15px;
+}
+
+	.carousel .control-dots .dot {
+		background-color: #ccc; /* Default dot color */
+		width: 12px;
+		height: 12px;
+		margin: 0 5px;
+		border-radius: 50%; /* Circular dots */
+		transition: background-color 0.3s ease;
+	}
+
+		.carousel .control-dots .dot.selected {
+			background-color: #007bff; /* Blue for the selected dot */
+		}
+
+/* Responsive Styling for Smaller Screens */
+@media (max-width: 768px) {
+	.carousel-container {
+		max-width: 95%; /* Fit the carousel to smaller screens */
+	}
+
+	.text-container h2 {
+		font-size: 1.25rem; /* Reduce title font size */
+	}
+
+	.text-container p {
+		font-size: 0.9rem; /* Reduce description font size */
+	}
+}

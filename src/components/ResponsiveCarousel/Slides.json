@@ -1,34 +1,32 @@
 {
-	"Slides": {
-		"bootstrap": [
-			"#bootstrap",
-			"carousel",
-			"objects"
-		],
-		"elastic": [
-			"#elastic",
-			"carousel",
-			"objects"
-		],
-		"responsive": [
-			{
-				"id": 1,
-				"title": "Microsoft Azure AI-102",
-				"text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste quos mollitia sed quod consectetur at quam dolore praesentium neque eos assumenda iusto nam laborum laboriosam odio blanditiis possimus accusantium recusandae porro exercitationem itaque",
-				"imageUrl": "/imgs/azure-ai-102.png"
-			},
-			{
-				"id": 2,
-				"title": "Swiper Carousel Example",
-				"text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste quos mollitia sed quod consectetur at quam dolore praesentium neque eos assumenda iusto nam laborum laboriosam odio blanditiis possimus accusantium recusandae porro exercitationem itaque",
-				"imageUrl": "/imgs/azure-ai-102.png"
-			},
-			{
-				"id": 3,
-				"title": "Swiper Carousel Example",
-				"text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste quos mollitia sed quod consectetur at quam dolore praesentium neque eos assumenda iusto nam laborum laboriosam odio blanditiis possimus accusantium recusandae porro exercitationem itaque",
-				"imageUrl": "/imgs/azure-ai-102.png"
-			}
-		]
-	}
+	"bootstrap": [
+		"#bootstrap",
+		"carousel",
+		"objects"
+	],
+	"elastic": [
+		"#elastic",
+		"carousel",
+		"objects"
+	],
+	"responsive": [
+		{
+			"id": 1,
+			"title": "Microsoft Azure",
+			"text": "I am a certified Azure Solutions Architect Expert, with credentials including Azure AI-900, AI-102, AZ-104, and AZ-305, demonstrating expertise in designing, implementing, and managing Azure cloud and AI solutions.",
+			"imageUrl": "/imgs/slide-azure.png"
+		},
+		{
+			"id": 2,
+			"title": "Enterprise Architecture",
+			"text": "I am certified in TOGAF 10 and ArchiMate 3.1, which together provide a comprehensive framework and modeling language for enterprise architecture. These certifications enable me to design, analyze, and communicate complex architectures effectively, aligning business goals with IT strategies for maximum value.",
+			"imageUrl": "/imgs/slide-ea.png"
+		},
+		{
+			"id": 3,
+			"title": "Project Management",
+			"text": "I am certified in PSM-I, PSPO-I, SAFe 5 Agilist, and PRINCE2, combining expertise in agile methodologies, scaled agile practices, and structured project management to deliver efficient and outcome-driven projects.",
+			"imageUrl": "/imgs/slide-pm.png"
+		}
+	]
 }
