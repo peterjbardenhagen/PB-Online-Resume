@@ -102,7 +102,7 @@
 	}
 
 		.carousel .control-dots .dot.selected {
-			background-color: beige; /* Blue for the selected dot */
+			background-color: #fff; /* Blue for the selected dot */
 		}
 
 p, h2 {
