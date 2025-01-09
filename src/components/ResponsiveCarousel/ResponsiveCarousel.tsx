@@ -1,31 +1,32 @@
 import React, { FC } from 'react';
 import { Carousel } from "react-responsive-carousel";
-import { items } from "./Items.json";
+import { Slides } from "./Slides.json";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import Image from 'next/image';
 
 interface ResponsiveCarouselProps { }
 
-const { responsive } = items;
+const { responsive } = Slides;
 
 const ResponsiveCarousel: FC<ResponsiveCarouselProps> = () => (
     <div>
         <Carousel
-        showArrows={true}
-        showIndicators={true}
-        infiniteLoop={true}
-        dynamicHeight={false}
+            showArrows={true}
+            showIndicators={true}
+            infiniteLoop={true}
+            dynamicHeight={false}
         >
-        {responsive.map((item) => (
-            <div key={item.id}>
-            <div>
-                <img src={item.imageUrl} alt="slides" />
-            </div>
-            <div>
-                <h2>{item.title}</h2>
-                <p>{item.text}</p>
-            </div>
-            </div>
-        ))}
+            {responsive.map((slide) => (
+                <div key={slide.id}>
+                    <div>
+                        <Image src={slide.imageUrl} alt={slide.title} layout="responsive" width={800} height={600} />
+                    </div>
+                    <div>
+                        <h2>{slide.title}</h2>
+                        <p>{slide.text}</p>
+                    </div>
+                </div>
+            ))}
         </Carousel>
     </div>
 );

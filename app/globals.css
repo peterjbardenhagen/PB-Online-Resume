@@ -429,6 +429,7 @@ h1 {
              flex-direction:column;
         }
          article {
+             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1), 0px 1px 3px rgba(0, 0, 0, 0.08); /* Drop shadow */
              background-image: linear-gradient(#cbf4d8, #EDEDED);
              background-color: var(--yellow-100);
              padding: 30px;
@@ -509,6 +510,7 @@ h1 {
              border-radius: 15px;
              position: relative;
              overflow: hidden;
+             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1), 0px 1px 3px rgba(0, 0, 0, 0.08); /* Drop shadow */
              img {
                  position: absolute;
                  top: 0;

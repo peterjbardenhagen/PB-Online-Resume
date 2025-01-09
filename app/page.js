@@ -14,6 +14,7 @@ import JobDescriptionForm from '../src/components/JobDescriptionForm/JobDescript
 import Recommendations from '../src/components/Recommendations/Recommendations.tsx';
 import WordCloud from '../src/components/WordCloud/WordCloud.js';
 import { motion, useMotionValue } from "motion/react"
+import { useInView } from 'framer-motion';
 import {
     EmailShareButton,
     FacebookShareButton,
@@ -29,7 +30,7 @@ import {
 } from "react-share";
 import { useTrackingCode } from "react-hubspot-tracking-code-hook";
 import { ApplicationInsights } from '@microsoft/applicationinsights-web';
-//import ResponsiveCarousel from "../src/components/ResponsiveCarousel/ResponsiveCarousel.tsx";
+import ResponsiveCarousel from "../src/components/ResponsiveCarousel/ResponsiveCarousel.tsx";
 import styles from "./globals.css";
 
 const inter = Inter({ subsets: ['latin'] });
@@ -146,6 +147,9 @@ export default function Home() {
     const shareUrl = 'https://peter.bardenhagen.xyz';
     const title = 'Peter Bardenhagen - Online Resume';
 
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true });
+
     useEffect(() => {
         logUserAction('PageView', {
             path: window.location.pathname,
@@ -243,8 +247,8 @@ export default function Home() {
                     </div>
                     <div className="hero-green">
                             <motion.img
-                                initial={{ opacity: 0.2, scale: 0 }}
-                                animate={{ opacity: 1, scale: 1, duration: 0.3, ease: "linear" }}
+                                initial={{ opacity: 0.2, scale: 0.5 }}
+                                animate={{ opacity: 1, scale: 1, duration: 3, ease: "linear" }}
                                 src="./imgs/hero-image.png"
                                 alt="Peter Bardenhagen"
                                 width="100%" />
@@ -271,6 +275,17 @@ export default function Home() {
                             <img src="./imgs/react.png" alt="React" className="square" />
                             <img src="./imgs/nextjs.png" alt="Next JS" className="square" />
                             <img src="./imgs/python.png" alt="Python" className="square" />
+                        </div>
+                    </div>
+                </section>
+                <section id="qualify" className="chatbot container">
+                    <h2>
+                        <small>Business & Technical</small>
+                        Certifications
+                    </h2>
+                    <div className="chatbot-blue">
+                        <div className="chat-info">
+                            <ResponsiveCarousel />
                         </div>
                     </div>
                 </section>
@@ -542,7 +557,12 @@ export default function Home() {
                         Recommendations
                     </h2>
                     <div className="holder-blue">
-                        <WordCloud />
+                        <motion.div ref={ref}
+                                initial={{ opacity: 0, y: 50 }}
+                                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+                                transition={{ duration: 0.5 }}>
+                                <WordCloud />
+                        </motion.div>                                
                         <Recommendations />
                     </div>
                 </section>
