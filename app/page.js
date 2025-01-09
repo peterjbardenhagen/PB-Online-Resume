@@ -247,7 +247,7 @@ export default function Home() {
                     </div>
                     <div className="hero-green">
                             <motion.img
-                                initial={{ opacity: 0.2, scale: 0.5 }}
+                                initial={{ opacity: 0.2, scale: 1 }}
                                 animate={{ opacity: 1, scale: 1, duration: 3, ease: "linear" }}
                                 src="./imgs/hero-image.png"
                                 alt="Peter Bardenhagen"
@@ -257,14 +257,14 @@ export default function Home() {
                 <section className="logos container">
                     <div className="marquee">
                         <div className="track">
-                            <img src="./imgs/archi.png" alt="ArchiMate 3.2" className="archimate landscape" />
-                            <img src="./imgs/Togaf.jpg" alt="TOGAF" className="togaf landscape" />
-                            <img src="./imgs/Itil.png" alt="ITIL" className="itil landscape" />
+                            <img src="./imgs/archi.png" alt="ArchiMate 3.1" className="archimate landscape" />
+                            <img src="./imgs/Togaf.jpg" alt="TOGAF 10" className="togaf landscape" />
+                            <img src="./imgs/Itil.png" alt="ITIL Foundation" className="itil landscape" />
                             <img src="./imgs/pspo.png" alt="Professional Product Owner I" className="square" />
                             <img src="./imgs/PSM.jpg" alt="Professional Scrum Master I" className="square" />
                             <img src="./imgs/prince2.png" alt="Prince 2 Practitioner" className="square" />
                             <img src="./imgs/safe.png" alt="SAFe Agilst 5.0" className="square" />
-                            <img src="./imgs/azure.png" alt="Azure" className="square" />
+                            <img src="./imgs/azure.png" alt="Microsoft Azure" className="square" />
                             <img src="./imgs/databricks.png" alt="Databricks" className="databricks landscape" />
                             <img src="./imgs/datadog.png" alt="Datadog" className="datadog landscape" />
                             <img src="./imgs/flutterflow.png" alt="Flutterflow" className="flutterflow landscape" />

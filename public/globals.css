@@ -68,7 +68,7 @@ body {
 	font-family: "Aptos", "Open Sans", sans-serif;
 	font-optical-sizing: auto;
 	font-style: normal;
-	font-size: 16px;
+	c;
 	/*padding-bottom: 1000px;*/
 }
 
@@ -435,14 +435,12 @@ h2 {
 	text-align: center;
 	color: var(--base-800);
 	padding: 30px;
-	small
-
-{
-	display: block;
-	font-weight: 100;
-	font-size: 0.5em;
-	color: var(--base);
-}
+	small {
+		display: block;
+		font-weight: 100;
+		font-size: 0.5em;
+		color: var(--base);
+	}
 
 @media (max-width:1024px) {
 	font-size:48px;

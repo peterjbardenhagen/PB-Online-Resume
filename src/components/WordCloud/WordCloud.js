@@ -131,7 +131,7 @@ const WordCloud = () => {
                 ref={containerRef}
                 className="word-cloud-container"
             />
-            <p className="word-cloud-caption">
+            <p className="c">
                 An AI generated visualisation of skills and qualities most often recognised by peers
             </p>
         </div>
