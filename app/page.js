@@ -247,7 +247,7 @@ export default function Home() {
                     </div>
                     <div className="hero-green">
                             <motion.img
-                                initial={{ opacity: 0.2, scale: 1 }}
+                                initial={{ opacity: 0.1, scale: 1.25 }}
                                 animate={{ opacity: 1, scale: 1, duration: 3, ease: "linear" }}
                                 src="./imgs/hero-image.png"
                                 alt="Peter Bardenhagen"
