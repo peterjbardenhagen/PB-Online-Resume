@@ -1,12 +1,11 @@
 import "./globals.css";
 import Head from 'next/head'
-
 import { Analytics } from "@vercel/analytics/react"
-
 import { GoogleAnalytics } from '@next/third-parties/google'
 import { GoogleTagManager } from '@next/third-parties/google'
-
 import { NextSeo } from 'next-seo';
+//import DocumentMetaTags from '../src/components/DocumentMetaTags/DocumentMetaTags.tsx';
+//import PageMetaTags from '../src/components/PageMetaTags/PageMetaTags.tsx';
 
 export const metadata = {
     charset: "UTF-8",

@@ -5,15 +5,11 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import { useState, useRef, useEffect } from "react"; // Add these imports
 import { SpeedInsights } from "@vercel/speed-insights/next"
-import Image from "next/image";
-import NextSeo from 'next-seo';
-import DocumentMetaTags from '../src/components/DocumentMetaTags/DocumentMetaTags.tsx';
-import PageMetaTags from '../src/components/PageMetaTags/PageMetaTags.tsx';
 import { BackToTop } from '../src/components/BackToTop/BackToTop.tsx';
 import JobDescriptionForm from '../src/components/JobDescriptionForm/JobDescriptionForm.tsx';
 import Recommendations from '../src/components/Recommendations/Recommendations.tsx';
 import WordCloud from '../src/components/WordCloud/WordCloud.js';
-import { motion, useMotionValue } from "motion/react"
+import { motion } from "motion/react"
 import { useInView } from 'framer-motion';
 import {
     EmailShareButton,
@@ -29,7 +25,6 @@ import {
     EmailIcon,
 } from "react-share";
 import { useTrackingCode } from "react-hubspot-tracking-code-hook";
-import { ApplicationInsights } from '@microsoft/applicationinsights-web';
 import ResponsiveCarousel from "../src/components/ResponsiveCarousel/ResponsiveCarousel.tsx";
 import styles from "./globals.css";
 
@@ -55,7 +50,7 @@ export default function Home() {
     const scrollAreaRef = useRef(null); // Add this ref
     const [menuOpen, setMenuOpen] = useState(false);
     const [messageInput, setMessageInput] = useState('');
-
+    const { setPathPageView, setIdentity, setContentType } = useTrackingCode();
     const [messages, setMessages] = useState([
         {
             role: 'assistant',
@@ -143,6 +138,11 @@ export default function Home() {
             success: true
         });
     };
+
+    // HubSpot tracking
+    setPathPageView("/");
+    setIdentity("anonymous");
+    setContentType("landing-page");
 
     const shareUrl = 'https://peter.bardenhagen.xyz';
     const title = 'Peter Bardenhagen - Online Resume';
@@ -316,7 +316,9 @@ export default function Home() {
                             <h3>Backend</h3>
                             <ul>
                                 <li>ASP.Net</li>
-                                <li>C#</li>
+                                    <li>C#</li>
+                                    <li>C++</li>
+                                <li>Java</li>
                                 <li>Node.js</li>
                                 <li>Python</li>
                             </ul>
@@ -554,7 +556,7 @@ export default function Home() {
                         <small>
                             LinkedIn
                         </small>
-                        Recommendations
+                        References
                     </h2>
                     <div className="holder-blue">
                         <motion.div ref={ref}
