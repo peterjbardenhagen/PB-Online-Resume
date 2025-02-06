@@ -145,7 +145,7 @@ export default function Home() {
     setContentType("landing-page");
 
     const shareUrl = 'https://peter.bardenhagen.xyz';
-    const title = 'Peter Bardenhagen - Online Resume';
+    const title = 'Peter Bardenhagen - Technology Leader & Innovator';
 
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true });
@@ -172,7 +172,7 @@ export default function Home() {
                     animate={{ opacity: 1, scale: 1, duration: 0.3, ease: "linear" }}
                     >
                         <div className="logo">PB</div>
-                        <div className="logo-text">Online Resume</div>
+                        <div className="logo-text">Peter Bardenhagen</div>
                 </motion.a>
                 <nav>
                     <ul id="menu" className={menuOpen ? "active" : ""}>
@@ -492,6 +492,7 @@ export default function Home() {
                     </h2>
                     <iframe src="https://meetings.hubspot.com/peter-bardenhagen?embed=true" className="bookings" scrolling="no" />
                 </section>
+
                 <section id="share" className="bento container">
                     <h2>
                         <small>

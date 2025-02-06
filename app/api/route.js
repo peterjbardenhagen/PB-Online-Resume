@@ -2,15 +2,15 @@
 import { NextResponse } from "next/server";
 import { appInsights } from '../utils/appInsights';
 
-// Constants and configuration validation
-const endpoint = process.env.AZURE_OPENAI_ENDPOINT;
-const apiKey = process.env.AZURE_OPENAI_API_KEY;
-const model = process.env.AZURE_OPENAI_MODEL;
+// Enable CORS Headers for API Responses
+const setCORSHeaders = (response) => {
+    response.headers.set("Access-Control-Allow-Origin", "*"); // Allow any domain
+    response.headers.set("Access-Control-Allow-Methods", "POST, OPTIONS");
+    response.headers.set("Access-Control-Allow-Headers", "Content-Type, Authorization");
+    return response;
+};
 
-// Validate required environment variables
-if (!endpoint || !apiKey || !model) {
-    throw new Error('Missing required Azure OpenAI configuration');
-}
+console.log('Azure OpenAI API Model:', process.env.AZURE_OPENAI_MODEL);
 
 // Custom error class for API errors
 class APIError extends Error {
@@ -37,6 +37,8 @@ const logEvent = (name, properties = {}) => {
 
 // Error logger function
 const logError = (error, context = {}) => {
+    console.error('Error:', error);
+    console.error('Context:', context);
     if (appInsights) {
         appInsights.trackException({
             exception: error,
@@ -48,15 +50,20 @@ const logError = (error, context = {}) => {
     }
 };
 
+// Handle OPTIONS method for preflight requests
+export async function OPTIONS(req) {
+    return setCORSHeaders(new NextResponse(null, { status: 204 }));
+}
+
+// Handle POST requests
 export async function POST(req) {
     const startTime = Date.now();
     let client;
 
     try {
-        // Initialize OpenAI client
-        client = new OpenAIClient(endpoint, new AzureKeyCredential(apiKey));
+        client = new OpenAIClient(process.env.AZURE_OPENAI_ENDPOINT, new AzureKeyCredential(process.env.AZURE_OPENAI_API_KEY));
+        const model = process.env.AZURE_OPENAI_MODEL;
 
-        // Parse and validate request body
         const body = await req.json();
         const { FormType: formType } = body;
 
@@ -64,7 +71,6 @@ export async function POST(req) {
             throw new APIError('FormType is required', 400);
         }
 
-        // Log request
         logEvent('API_Request_Started', {
             formType,
             requestSize: JSON.stringify(body).length
@@ -107,19 +113,15 @@ Help users learn more about Peter from his resume.`
                 const messages = [
                     {
                         role: 'system',
-                        content: `You are a Talent Advisor, answering only questions based on Peter Bardenhagen's resume provided.
-Resume:
-${DATA_RESUME}
-
-Help users learn more about Peter from his resume.`
+                        content: `You are a Talent Advisor...`
                     },
                     {
                         role: 'user',
-                        content: `Here is a position title or job description: ${jobDescription}. Taking into consideration Peters resume how do his skills and experience align, and what value would he bring and any points of difference compared to most other applicants? Make it sound like a human, and less like a robot. Use UK English dictionary. Note that I'd rather you say I don't know, or be brutally honest than just pulling words together to win an argument.`
+                        content: `Here is a position title or job description: ${jobDescription}...`
                     }
                 ];
 
-                const response = await client.getChatCompletions(model, messages, {
+                const response = await client.getChatCompletions(process.env.AZURE_OPENAI_MODEL, messages, {
                     maxTokens: 1000,
                     temperature: 0.7,
                     presencePenalty: 0.1, // Slight penalty to avoid repetition
@@ -134,41 +136,33 @@ Help users learn more about Peter from his resume.`
                 throw new APIError('Invalid form type', 400);
         }
 
-        // Log successful completion
         logEvent('API_Request_Completed', {
             formType,
             processingTime: Date.now() - startTime,
             responseSize: result.length
         });
 
-        return NextResponse.json({ message: result });
+        let response = NextResponse.json({ message: result });
+        return setCORSHeaders(response);
 
     } catch (error) {
-        // Log error
         logError(error, {
             formType: req.body?.FormType,
             processingTime: Date.now() - startTime
         });
 
-        // Handle different types of errors
         if (error instanceof APIError) {
-            return NextResponse.json(
+            return setCORSHeaders(NextResponse.json(
                 { error: error.message },
                 { status: error.statusCode }
-            );
+            ));
         }
 
-        // Handle unexpected errors
         console.error('Unexpected error:', error);
-        return NextResponse.json(
+        return setCORSHeaders(NextResponse.json(
             { error: 'An unexpected error occurred' },
             { status: 500 }
-        );
-    } finally {
-        // Clean up resources if needed
-        if (client) {
-            // Any cleanup code for the client
-        }
+        ));
     }
 }
 

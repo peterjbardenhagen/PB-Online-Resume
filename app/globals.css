@@ -390,7 +390,7 @@ h1 {
      font-size: 27px;
      font-weight: 600;
      line-height: 1;
-     letter-spacing: -2px;
+     /*letter-spacing: -2px;*/
      margin-bottom: 20px;
      color: var(--base-800);
 }

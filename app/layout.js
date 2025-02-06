@@ -9,8 +9,8 @@ import { NextSeo } from 'next-seo';
 
 export const metadata = {
     charset: "UTF-8",
-    title: "Peter Bardenhagen - Online Resume - Made in React, NEXTjs & Azure AI",
-    description: "I am an innovative digital enterprise leader with a proven track record collaborating with top - tier global consulting firms.Leveraging technology, I address business challenges, enhance customer experiences, and drive growth.My passion lies in building products, solving challenging business problems with AI powered solutions, and designing robust architectures.",
+    title: "Peter Bardenhagen - Technology Leader & Innovator",
+    description: "I am a results-driven digital enterprise leader with extensive experience collaborating with top-tier global consulting firms and renowned Australian businesses. By leveraging cutting-edge digital technologies, I tackle complex business challenges, enhance customer experiences, and drive sustainable growth. My passion lies in leading high-performing teams, building innovative products, solving intricate problems, and delivering measurable outcomes that exceed expectations.",
     robots: "index,follow",
     twitter: {
         card: 'summary_large_image',
@@ -22,8 +22,8 @@ export const metadata = {
     },
     openGraph: {
         url: 'https://peter.bardenhagen.xyz',
-        siteName: 'Peter Bardenhagen - Online Resume - Made in React, NEXTjs & Azure AI',
-        description: 'I am an innovative digital enterprise leader with a proven track record collaborating with top - tier global consulting firms.Leveraging technology, I address business challenges, enhance customer experiences, and drive growth.My passion lies in building products, solving challenging business problems with AI powered solutions, and designing robust architectures.',
+        siteName: 'Peter Bardenhagen - Technology Leader & Innovator',
+        description: "I am a results-driven digital enterprise leader with extensive experience collaborating with top-tier global consulting firms and renowned Australian businesses. By leveraging cutting-edge digital technologies, I tackle complex business challenges, enhance customer experiences, and drive sustainable growth. My passion lies in leading high-performing teams, building innovative products, solving intricate problems, and delivering measurable outcomes that exceed expectations.",
         locale: 'en_UK',
         type: 'website',
         images: [
@@ -58,20 +58,20 @@ export default function RootLayout({ children }) {
                     openGraph={{
                         type: 'website',
                         url: 'https://peter.bardenhagen.xyz',
-                        title: 'Peter Bardenhagen - Online Resume - Made in React, NEXTjs & Azure AI',
-                        description: 'I am an innovative digital enterprise leader with a proven track record collaborating with top - tier global consulting firms.Leveraging technology, I address business challenges, enhance customer experiences, and drive growth.My passion lies in building products, solving challenging business problems with AI powered solutions, and designing robust architectures.',
+                        title: 'Peter Bardenhagen - Technology Leader & Innovator',
+                        description: 'I am a results-driven digital enterprise leader with extensive experience collaborating with top-tier global consulting firms and renowned Australian businesses. By leveraging cutting-edge digital technologies, I tackle complex business challenges, enhance customer experiences, and drive sustainable growth. My passion lies in leading high-performing teams, building innovative products, solving intricate problems, and delivering measurable outcomes that exceed expectations.',
                         images: [
                             {
                                 url: 'https://peter.bardenhagen.xyz/imgs/preview.png',
                                 width: 1200,
                                 height: 630,
-                                alt: 'I am an innovative digital enterprise leader with a proven track record collaborating with top - tier global consulting firms.Leveraging technology, I address business challenges, enhance customer experiences, and drive growth.My passion lies in building products, solving challenging business problems with AI powered solutions, and designing robust architectures.',
+                                alt: 'I am a results-driven digital enterprise leader with extensive experience collaborating with top-tier global consulting firms and renowned Australian businesses. By leveraging cutting-edge digital technologies, I tackle complex business challenges, enhance customer experiences, and drive sustainable growth. My passion lies in leading high-performing teams, building innovative products, solving intricate problems, and delivering measurable outcomes that exceed expectations.',
                             },
                             {
                                 url: 'https://peter.bardenhagen.xyz/imgs/preview.png',
                                 width: 120,
                                 height: 630,
-                                alt: 'I am an innovative digital enterprise leader with a proven track record collaborating with top - tier global consulting firms.Leveraging technology, I address business challenges, enhance customer experiences, and drive growth.My passion lies in building products, solving challenging business problems with AI powered solutions, and designing robust architectures.',
+                                alt: 'I am a results-driven digital enterprise leader with extensive experience collaborating with top-tier global consulting firms and renowned Australian businesses. By leveraging cutting-edge digital technologies, I tackle complex business challenges, enhance customer experiences, and drive sustainable growth. My passion lies in leading high-performing teams, building innovative products, solving intricate problems, and delivering measurable outcomes that exceed expectations.',
                             },
                         ],
                         videos: [
@@ -86,7 +86,7 @@ export default function RootLayout({ children }) {
 
                 <metaData />
 
-                <title>Peter Bardenhagen Online Resume</title>
+                <title>Peter Bardenhagen - Technology Leader & Innovator</title>
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
                 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet" />
