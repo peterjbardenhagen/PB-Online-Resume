@@ -2,15 +2,15 @@
 import { NextResponse } from "next/server";
 import { appInsights } from '../utils/appInsights';
 
-// Enable CORS Headers for API Responses
-const setCORSHeaders = (response) => {
-    response.headers.set("Access-Control-Allow-Origin", "*"); // Allow any domain
-    response.headers.set("Access-Control-Allow-Methods", "POST, OPTIONS");
-    response.headers.set("Access-Control-Allow-Headers", "Content-Type, Authorization");
-    return response;
-};
+// Constants and configuration validation
+const endpoint = process.env.AZURE_OPENAI_ENDPOINT;
+const apiKey = process.env.AZURE_OPENAI_API_KEY;
+const model = process.env.AZURE_OPENAI_MODEL;
 
-console.log('Azure OpenAI API Model:', process.env.AZURE_OPENAI_MODEL);
+// Validate required environment variables
+if (!endpoint || !apiKey || !model) {
+    throw new Error('Missing required Azure OpenAI configuration');
+}
 
 // Custom error class for API errors
 class APIError extends Error {
@@ -37,8 +37,6 @@ const logEvent = (name, properties = {}) => {
 
 // Error logger function
 const logError = (error, context = {}) => {
-    console.error('Error:', error);
-    console.error('Context:', context);
     if (appInsights) {
         appInsights.trackException({
             exception: error,
@@ -50,20 +48,15 @@ const logError = (error, context = {}) => {
     }
 };
 
-// Handle OPTIONS method for preflight requests
-export async function OPTIONS(req) {
-    return setCORSHeaders(new NextResponse(null, { status: 204 }));
-}
-
-// Handle POST requests
 export async function POST(req) {
     const startTime = Date.now();
     let client;
 
     try {
-        client = new OpenAIClient(process.env.AZURE_OPENAI_ENDPOINT, new AzureKeyCredential(process.env.AZURE_OPENAI_API_KEY));
-        const model = process.env.AZURE_OPENAI_MODEL;
+        // Initialize OpenAI client
+        client = new OpenAIClient(endpoint, new AzureKeyCredential(apiKey));
 
+        // Parse and validate request body
         const body = await req.json();
         const { FormType: formType } = body;
 
@@ -71,6 +64,7 @@ export async function POST(req) {
             throw new APIError('FormType is required', 400);
         }
 
+        // Log request
         logEvent('API_Request_Started', {
             formType,
             requestSize: JSON.stringify(body).length
@@ -113,15 +107,19 @@ Help users learn more about Peter from his resume.`
                 const messages = [
                     {
                         role: 'system',
-                        content: `You are a Talent Advisor...`
+                        content: `You are a Talent Advisor, answering only questions based on Peter Bardenhagen's resume provided.
+Resume:
+${DATA_RESUME}
+
+Help users learn more about Peter from his resume.`
                     },
                     {
                         role: 'user',
-                        content: `Here is a position title or job description: ${jobDescription}...`
+                        content: `Here is a position title or job description: ${jobDescription}. Taking into consideration Peters resume how do his skills and experience align, and what value would he bring and any points of difference compared to most other applicants? Make it sound like a human, and less like a robot. Use UK English dictionary. Note that I'd rather you say I don't know, or be brutally honest than just pulling words together to win an argument.`
                     }
                 ];
 
-                const response = await client.getChatCompletions(process.env.AZURE_OPENAI_MODEL, messages, {
+                const response = await client.getChatCompletions(model, messages, {
                     maxTokens: 1000,
                     temperature: 0.7,
                     presencePenalty: 0.1, // Slight penalty to avoid repetition
@@ -136,33 +134,41 @@ Help users learn more about Peter from his resume.`
                 throw new APIError('Invalid form type', 400);
         }
 
+        // Log successful completion
         logEvent('API_Request_Completed', {
             formType,
             processingTime: Date.now() - startTime,
             responseSize: result.length
         });
 
-        let response = NextResponse.json({ message: result });
-        return setCORSHeaders(response);
+        return NextResponse.json({ message: result });
 
     } catch (error) {
+        // Log error
         logError(error, {
             formType: req.body?.FormType,
             processingTime: Date.now() - startTime
         });
 
+        // Handle different types of errors
         if (error instanceof APIError) {
-            return setCORSHeaders(NextResponse.json(
+            return NextResponse.json(
                 { error: error.message },
                 { status: error.statusCode }
-            ));
+            );
         }
 
+        // Handle unexpected errors
         console.error('Unexpected error:', error);
-        return setCORSHeaders(NextResponse.json(
+        return NextResponse.json(
             { error: 'An unexpected error occurred' },
             { status: 500 }
-        ));
+        );
+    } finally {
+        // Clean up resources if needed
+        if (client) {
+            // Any cleanup code for the client
+        }
     }
 }
 
@@ -576,104 +582,5 @@ Ref: Umbraco Upgrade Guide
 Conclusion
 I don't find Umbraco itself challenging, as it's exceptionally well-designed software and a pleasure to work with. The real challenges typically arise when extending or integrating it with other systems.
 My most recent commercial experience is with version 10.x, though I also have experience with versions 13.x and 14.x.
-
-
-
-
-With over 20 years of experience and strengths in such a broad range of skills, the individual is well-positioned for senior leadership, strategic, or consulting roles in industries that require both technical expertise and strong interpersonal and business acumen. Below are some job suggestions that align with these skills:
-
-1. Chief Technology Officer (CTO)
-Why it fits:
-Strong foundation in Software Development, SDLC, Emerging Technologies, and Digital.
-Ability to combine technical expertise with Leadership, Strategy, and Business Acumen.
-Skilled at managing large-scale projects, fostering innovation, and leading technology teams.
-Key Responsibilities:
-Oversee the organization's technological vision and strategy.
-Drive digital transformation and innovation.
-Manage development teams and ensure high-quality technical delivery.
-2. Chief Marketing Officer (CMO) with a Digital Focus
-Why it fits:
-Expertise in SEO, Digital, and Strategy.
-Leadership and Relationship Builder skills for managing cross-functional teams.
-Experience in leveraging emerging technologies for marketing and business growth.
-Key Responsibilities:
-Develop and execute marketing strategies that align with business goals.
-Oversee digital marketing initiatives, including SEO and content strategies.
-Build relationships with stakeholders and drive brand positioning.
-3. Vice President of Product or Product Management
-Why it fits:
-Strong skills in Software Development, SDLC, and Project Management.
-Ability to innovate and align product development with Strategy and Business Acumen.
-Interpersonal Skills and Leadership to inspire and mentor product teams.
-Key Responsibilities:
-Oversee the end-to-end product lifecycle and delivery.
-Define product roadmaps and ensure alignment with business objectives.
-Collaborate with engineering, marketing, and sales teams to deliver impactful solutions.
-4. Digital Transformation Consultant
-Why it fits:
-Experience with Emerging Technologies, Digital, and Strategy.
-Strong Business Acumen and ability to manage high-pressure environments.
-Quality and Excellence focus ensures successful organizational transformation.
-Key Responsibilities:
-Advise organizations on integrating digital tools and technologies.
-Identify opportunities for innovation and process optimization.
-Provide leadership on strategy, implementation, and change management.
-5. Program Manager or Director of Technology Programs
-Why it fits:
-Proficiency in Project Management, SDLC, and Software Development.
-Strong Communicator and Relationship Builder, capable of managing stakeholders.
-Experience in delivering projects under High-Pressure conditions.
-Key Responsibilities:
-Manage and oversee multiple technology programs or projects.
-Communicate effectively with executives, customers, and technical teams.
-Ensure timely delivery and alignment with organizational goals.
-6. Head of Innovation or Innovation Consultant
-Why it fits:
-Proven track record in Innovative thinking and leveraging Emerging Technologies.
-Strong Leadership and ability to foster a culture of creativity.
-Business Acumen to align innovation initiatives with profitability and growth.
-Key Responsibilities:
-Drive innovation initiatives within the organization or for clients.
-Explore and implement cutting-edge technologies to enhance business value.
-Mentor teams to think creatively and solve complex problems.
-7. Technical Director or Engineering Manager
-Why it fits:
-Deep technical expertise in Software Development and SDLC.
-Strong Leadership and Reliable for managing engineering teams.
-Ability to maintain Quality and Excellence in technical solutions.
-Key Responsibilities:
-Manage and lead engineering teams to deliver high-quality software.
-Oversee technical architecture and ensure alignment with business goals.
-Mentor engineers and foster a collaborative work environment.
-8. Business Strategy Consultant
-Why it fits:
-Combines Strategy, Business Acumen, and interpersonal skills like Mentor and Relationship Builder.
-Strong understanding of technology trends and Digital Transformation.
-Key Responsibilities:
-Help businesses identify growth opportunities and develop strategies.
-Provide insights into leveraging technology for competitive advantage.
-Build relationships with stakeholders and deliver actionable recommendations.
-9. Enterprise Architect or Solution Architect
-Why it fits:
-Expertise in Software Development, SDLC, and Emerging Technologies.
-Ability to innovate and design scalable, efficient solutions.
-Key Responsibilities:
-Design and oversee the implementation of enterprise-level systems.
-Ensure systems align with organizational goals and quality standards.
-Collaborate with technical and business teams to define requirements.
-10. Leadership Development Consultant or Mentor
-Why it fits:
-Strong Leadership, Mentor, and Interpersonal Skills.
-Depth of experience in Business Acumen and Strategy.
-Key Responsibilities:
-Mentor emerging leaders and executives.
-Design and implement leadership training programs.
-Provide strategic guidance to organizations focused on leadership excellence.
-Key Considerations:
-Industry Focus: Depending on your interests, roles in technology, consulting, healthcare, finance, or marketing could be viable options.
-Entrepreneurship: With such a strong skillset, starting your own consulting firm or business focusing on digital transformation, strategy, or innovation could also be a highly rewarding option.
-Remote/Flexible Work: Many of these roles can now be performed remotely, allowing for a better work-life balance.
-Conclusion:
-Based on the skills and experience, roles such as CTO, Digital Transformation Consultant, or Head of Innovation would be particularly well-suited. These roles leverage technical expertise, strategic thinking, leadership, and interpersonal skills, providing opportunities to lead impactful initiatives and innovate in high-pressure environments.
 
 `
