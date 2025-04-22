@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35913.81 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "PB-Online-Resume", "..\..\..\..\..\Development\PB-Online-Resume\", "{DC9E9C76-9A71-BD0E-9292-A2E05CE03111}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.8.1"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_56482"
+		Debug.AspNetCompiler.PhysicalPath = "..\..\..\..\..\Development\PB-Online-Resume\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_56482\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_56482"
+		Release.AspNetCompiler.PhysicalPath = "..\..\..\..\..\Development\PB-Online-Resume\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_56482\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "56482"
+		SlnRelativePath = "..\..\..\..\..\Development\PB-Online-Resume\"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DC9E9C76-9A71-BD0E-9292-A2E05CE03111}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC9E9C76-9A71-BD0E-9292-A2E05CE03111}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {11C1D5DD-9011-45DA-B401-CCDF8DB54F6C}
+	EndGlobalSection
+EndGlobal
