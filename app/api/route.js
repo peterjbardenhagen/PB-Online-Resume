@@ -1,12 +1,14 @@
 ﻿import { OpenAIClient, AzureKeyCredential } from '@azure/openai';
 import { NextResponse } from "next/server";
-import { appInsights } from '../utils/appInsights';
+//import { appInsights } from '../utils/appInsights';
+
+const appInsights = false;
 
 // Enable CORS Headers for API Responses
 const setCORSHeaders = (response) => {
     response.headers.set("Access-Control-Allow-Origin", "*"); // Allow any domain
     response.headers.set("Access-Control-Allow-Methods", "POST, OPTIONS");
-    response.headers.set("Access-Control-Allow-Headers", "Content-Type, Authorization");
+    response.headers.set("Access-Control-Allow-Headers", "Content-Type, Authorization, request-id");
     return response;
 };
 
