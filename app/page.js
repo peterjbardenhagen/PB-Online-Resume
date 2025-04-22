@@ -60,61 +60,79 @@ export default function Home() {
 
     const submitForm = async (e) => {
         e.preventDefault();
-        const startTime = Date.now();
-
-        logUserAction('ChatMessage_Started', {
-            messageLength: messageInput.length,
-            conversationLength: messages.length
-        });
-
-        let newMessages = [...messages, { role: 'user', content: messageInput }];
+        let newMessages = [...messages, { role: 'user', content: messageInput }]
         setMessages(newMessages);
         setMessageInput('');
-
-        try {
-            const response = await fetch('/api', {
+        const apiMessage = await fetch(
+            '/api',
+            {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({
-                    FormType: "Chat",
-                    messages: newMessages
-                })
-            });
-
-            if (!response.ok) {
-                const errorBody = await response.json();
-                console.error("API error details:", errorBody);
-                throw new Error(`HTTP error! status: ${response.status}, message: ${errorBody.error}`);
+                body: JSON.stringify({ messages: newMessages })
             }
+        ).then(res => res.json());
+        setMessages([...newMessages, { role: 'assistant', content: apiMessage.message }]);
+    }
 
-            const apiMessage = await response.json();
-            setMessages([...newMessages, { role: 'assistant', content: apiMessage.message }]);
+    //const submitForm = async (e) => {
+    //    e.preventDefault();
+    //    const startTime = Date.now();
 
-            logUserAction('ChatMessage_Completed', {
-                processingTime: Date.now() - startTime,
-                messageLength: messageInput.length,
-                responseLength: apiMessage.message.length,
-                conversationLength: messages.length + 1,
-                success: true
-            });
+    //    logUserAction('ChatMessage_Started', {
+    //        messageLength: messageInput.length,
+    //        conversationLength: messages.length
+    //    });
 
-        } catch (error) {
-            console.error('Chat Error:', error);
-            logUserAction('ChatMessage_Error', {
-                processingTime: Date.now() - startTime,
-                error: error.message,
-                messageLength: messageInput.length,
-                conversationLength: messages.length
-            });
+    //    let newMessages = [...messages, { role: 'user', content: messageInput }];
+    //    setMessages(newMessages);
+    //    setMessageInput('');
 
-            setMessages([...newMessages, {
-                role: 'assistant',
-                content: 'Sorry, I encountered an error. Please try again.'
-            }]);
-        }
-    };
+    //    try {
+    //        const response = await fetch('/api', {
+    //            method: 'POST',
+    //            headers: {
+    //                'Content-Type': 'application/json',
+    //            },
+    //            body: JSON.stringify({
+    //                FormType: "Chat",
+    //                messages: newMessages
+    //            })
+    //        });
+
+    //        if (!response.ok) {
+    //            const errorBody = await response.json();
+    //            console.error("API error details:", errorBody);
+    //            throw new Error(`HTTP error! status: ${response.status}, message: ${errorBody.error}`);
+    //        }
+
+    //        const apiMessage = await response.json();
+    //        setMessages([...newMessages, { role: 'assistant', content: apiMessage.message }]);
+
+    //        logUserAction('ChatMessage_Completed', {
+    //            processingTime: Date.now() - startTime,
+    //            messageLength: messageInput.length,
+    //            responseLength: apiMessage.message.length,
+    //            conversationLength: messages.length + 1,
+    //            success: true
+    //        });
+
+    //    } catch (error) {
+    //        console.error('Chat Error:', error);
+    //        logUserAction('ChatMessage_Error', {
+    //            processingTime: Date.now() - startTime,
+    //            error: error.message,
+    //            messageLength: messageInput.length,
+    //            conversationLength: messages.length
+    //        });
+
+    //        setMessages([...newMessages, {
+    //            role: 'assistant',
+    //            content: 'Sorry, I encountered an error. Please try again.'
+    //        }]);
+    //    }
+    //};
 
     const toggleMobileMenu = () => {
         setMenuOpen(!menuOpen);
