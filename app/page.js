@@ -84,7 +84,9 @@ export default function Home() {
             });
 
             if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+                const errorBody = await response.json();
+                console.error("API error details:", errorBody);
+                throw new Error(`HTTP error! status: ${response.status}, message: ${errorBody.error}`);
             }
 
             const apiMessage = await response.json();
