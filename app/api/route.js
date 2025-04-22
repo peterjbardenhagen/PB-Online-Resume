@@ -184,6 +184,25 @@ Outside of work, I enjoy playing basketball, ice hockey, and staying active. A l
 
 ---
 
+
+## Current Role
+
+Solution Architect
+Recusant – Brisbane
+March 2024 – Present
+Overview: Engaged in short-term contracts while pursuing opportunities for longer-term roles.
+Responsibilities:
+•	Lead the architecture and delivery of innovative, AI-driven information management solutions tailored to enterprise clients.
+•	Provide strategic architectural governance, ensuring alignment between technical implementations and client business objectives.
+•	Manage and mentor cross-functional development teams, ensuring high-quality, scalable, and secure software delivery.
+•	Translate complex business requirements into clear, robust, and maintainable technical solutions.
+•	Facilitate effective stakeholder engagement, clarifying technical strategy and ensuring successful project outcomes.
+•	Drive continuous innovation by integrating cutting-edge cloud technologies and automation frameworks into Recusant's product offerings.
+•	Develop and execute tactical marketing plans and strategic positioning, including targeted campaigns, content marketing, and industry engagement to enhance Recusant’s market presence and generate qualified leads.
+•	Collaborate closely with leadership on marketing strategy to effectively communicate value propositions, strengthen brand identity, and support business development objectives.
+
+
+
 ## Key Capabilities
 
 - **Technical Leadership:** Led teams of 25+ technologists across multiple delivery streams
