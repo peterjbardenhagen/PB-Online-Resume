@@ -9,7 +9,7 @@ console.log('API route /api hit');
 
 const endpoint = 'https://ai-ccl02aihub531797370483.openai.azure.com/';
 const apiKey = 'F7qsG46VRDjgTqfO1dt3sxm2O2CbLCRQmf3YTrlv9dmbvauOVe1MJQQJ99BBACHYHv6XJ3w3AAAAACOGemVh';
-const model = 'gpt-4.5-preview';
+const model = 'gpt-4';
 
 export async function POST(req) {
 
@@ -35,95 +35,110 @@ Help users learn more about Peter from his resume.`
 	})
 }
 
-const DATA_RESUME = `Peter Bardenhagen Confidential CV
-peter@bardenhagen.xyz   +61 (0) 452 491 013   AI Resume: peter.bardenhagen.xyz 
+const DATA_RESUME = `
+
+
+Peter Bardenhagen Confidential CV
+Spring Hill, QLD | 0452 491 013 | peter@bardenhagen.xyz | peter.bardenhagen.xyz | LinkedIn
 EXECUTIVE SUMMARY
-I’m an innovative digital enterprise leader with a proven track record collaborating with top-tier global consulting firms and well-known Australian businesses. Leveraging digital technology, I address business challenges, enhance customer experiences, and drive growth. My passion lies in leading teams, building products, solving complex problems and delivering superior business outcomes with measurable results.
-I excel at delivery, bridging the gap between business strategy and technology. My strong communication skills make me the conduit for prioritising and understanding their needs. I’m reliable, customer focussed, and results driven.
-Outside of work hours I enjoy playing basketball, ice hockey and fitness. I am a perpetual learner in emerging technologies and business strategy, and my personality type is ENTJ.
-
+Results-driven Senior Solution Architect with 20+ years’ experience designing and delivering enterprise-grade digital solutions across healthcare, energy, finance, and government. Combines deep technical expertise in Azure, AWS, GCP, AI, and enterprise platforms with strategic leadership in large-scale transformations. Adept at aligning technical architecture with business objectives, delivering regulatory-compliant, scalable, and secure solutions. Experienced in presales, governance, and C-level engagement, with a track record of driving measurable business outcomes.
+Outside of work, I enjoy playing basketball, ice hockey, and staying active. A lifelong learner, I am deeply engaged with emerging technologies and business strategy, complemented by my ENTJ personality type, which drives my leadership and strategic vision.
 KEY CAPABILITIES
-•	Technical Leadership: Led teams of 25+ technologists across multiple delivery streams
-•	Solution Architecture: Enterprise-scale distributed systems, cloud platforms, integration patterns
-•	Presales & Consulting: Technical discovery, solution design, client engagement
-•	Delivery Management: Agile methodologies, DevOps practices, program governance
-•	Stakeholder Management: C-level engagement, technical advisory, team mentoring
-
+• AI & Innovation – Delivered AI-driven phone onboarding system and Azure AI-powered Teams chatbot for Carter Capner Law, reducing onboarding time and improving accuracy.
+• Quantum Computing Commercialisation – As part of CSIRO Data61 MBA Capstone, designed go-to-market strategy for patented algorithm to protect AI from adversarial attacks, identifying commercial partners and pivot opportunities.
+• Enterprise Transformation Leadership – Technical Lead for a $5M+ enterprise-wide digital transformation at Western Power, establishing an Optimizely Centre of Excellence and reusable delivery patterns.
+• Global SaaS Delivery – Led design and launch of EasyVisit GP appointments platform (200+ centres, 500k bookings first year) at Sonic Healthcare, plus complementary patient-facing tools.
+• Multi-Cloud Expertise – 10+ years in Azure and AWS, 1 year in GCP, delivering cloud-native, AI-integrated, and highly available enterprise platforms in regulated industries.
+CORE COMPENTENCIES
+• Architecture & Strategy: Enterprise/Solution Architecture, Target State Design, Capability Mapping, Regulatory Compliance (APRA, CPS 230, NER)
+• Delivery Leadership: Agile, DevOps, Program Governance, Multi-Stream Delivery, Presales Consulting
+• Cloud & AI: Azure PaaS/IaaS/AI, AWS Cloud Services, GCP Data & AI, AI/ML Solution Integration
+• Technology: .NET, Angular, React, Node.js, Power Platform, SQL, Optimizely, Sitecore
+• Stakeholder Engagement: C-level Advisory, Technical Governance, Change Management, Coaching
 SKILLS MATRIX
-Technical Skills	Years	Training & Certifications		Training & Certifications	
-.Net 8.0, ASP.Net, C#	10+	ArchiMate		MBA Candidate, UQ (2025)	
-Angular	3	AWS Solution Architect Associate		SAFe Agilist	
-Python	1	Databricks Fundamentals		Optimizely Content Cloud	
-Typescript 	3	ITIL Foundation		TOGAF	
-Node.js	3	Professional Scrum Master		Umbraco Level 2	
-React / Next.js / Vue.js	3	Professional Scrum Product Owner		Mental Health First Aid Officer and St John’s First Aid	
-AWS	Years	Azure	Years	GCP	Years
-CloudFormation, CloudFront, EC2, EKS, RDS, S3, SQS, VPCs or RDS	10	AI, AI Search, API, Bicep, Copilot Studio (no-code), Cost Management, DevOps, Docker, Entra ID, Entra B2C, Insights, Functions, Grafana, Log Analytics, Logic Apps, M365, Power Automate, PowerBI, Storage, SQL, VMs, VPC	10	Collab, Cloud Networking, Compute, Firebase, Identity Platform, Looker	1
+Technical Skills	Years	Technical Credentials	Business Credentials
+.Net, ASP.Net, C#	10+	AWS Solution Architect Associate	MBA, UQ (2025)
+Angular	3	Azure AI Fundamentals (AI-900), Azure AI Engineer (AI-102), Azure Administrator (AZ-104), Azure Developing Solutions (AZ-204) & Azure Designing Solutions (AZ-305) 	Microsoft Project - Intermediate level training
+Python	1	Capgemini Lead Architect	Prince 2 Practitioner
+Typescript 	3	Databricks Fundamentals 	PSM-I & PSPO-I
+Node.js / React / Next.js / Vue.js	3	ITIL Foundation	SAFe Agilist 5.0
+SQL Server / Entity Framework	3	Optimizely One	Mental Health First Aid Officer
+		TOGAF 10 & ArchiMate 3.1	St John’s First Aid
+AWS – 10 years	Azure – 10 years	GCP – 1 year
+CloudFormation, CloudFront, EC2, EKS, RDS, S3, SQS, VPCs or RDS	ACR, AKR, AI Search, AI Services, API, App Insights, Bicep, Blob Storage, Copilot Studio (no-code), Cost Management, Cosmos Db, Defender, DevOps, Entra ID, Entra B2C, Event Grid, Insights, Functions, Graph, Key Vault, Log Analytics, Logic Apps, M365, Monitor, Power Apps, Power Automate, PowerBI, Service Bus, Storage, SQL, VMs, VPC	Collab, Cloud Networking, Compute, Firebase, Gemini, Google AI, Identity Platform, Looker
+
+
 
 PROFESSIONAL EXPERIENCE
-Independent Contractor
-June 2024 – Dec 2024
-Overview:
-Engaged in short-term contracts while pursuing opportunities for longer-term roles.
+Senior Solution Architect
+Recusant – Brisbane
+March 2024 – Present
+Overview: Recusant is a Brisbane-based consultancy specialising in business-led enterprise & solution architecture
+Responsibilities:
+•	Retail Solution Architect at CS Energy:
+o	Provided strategic architectural governance to ensure technical solutions align with enterprise business goals.
+o	Translated complex business strategies and requirements into robust, scalable, and maintainable solution designs.
+o	Presented and secured approval for designs at the Architecture Forum and Architecture Review Board.
+o	Led the design and delivery of AI-powered and automation solutions, improving operational efficiency and customer engagement.
+•	Presales & Strategic Advisory:
+o	Partnered with leadership on go-to-market strategies, strengthening Recusant’s brand and market positioning.
+o	Supported business development and presales, scoping solutions, preparing proposals, and engaging directly with enterprise clients.
+o	Oversaw technical delivery and cross-team collaboration, ensuring high-quality outcomes and adherence to best practices.
+________________________________________
+Independent Contractor - Brisbane
+June 2024 – March 2025
+Overview: Delivered short-term, high-impact architecture and delivery engagements
 Responsibilities:
 •	Conducted business development and presales activities for each project.
-•	Gathered requirements, designed scalable solutions, and prepared proposals and estimates.
-•	Managed projects from initiation through delivery and post-deployment support.
-•	Oversaw stakeholder management, high-level design, proof of concept development, weekly showcases, development, deployment, UAT, and final handover.
-Projects:
+•	Led business development and presales efforts, from client engagement through to solution scoping and proposal development.
+•	Gathered requirements, designed scalable enterprise solutions, and prepared detailed estimates aligned to client objectives.
+•	Managed projects end-to-end — initiation, high-level design, proof-of-concept, showcases, development, deployment, UAT, and post-go-live support.
+•	Oversaw stakeholder engagement to ensure alignment between technical delivery and business needs.
+Key Projects:
 1.	Carter Capner Law:
-o	AI Phone Calls: Developed AI-driven inbound and outbound phone calls for customer onboarding with call transcript logging and analysis using Azure AI. Completed UAT and currently in pilot stage.
-o	Staff Onboarding Chatbot: Created an Azure AI powered Teams chatbot trained on extensive documentation and videos for staff onboarding.
-o	Timesheet Consolidation Application: Built an application integrating multiple business systems to streamline professional services invoicing, saving significant administrative time (.NET 8.0, C#, Web API).
+•	AI Phone Calls: Developed AI-driven inbound and outbound phone calls for customer onboarding with call transcript logging and automated analysis.
+•	Teams Chatbot: Created an Azure AI powered Teams chatbot trained on extensive documentation and videos for staff onboarding.
+•	Custom App: Built a timesheet consolidation application integrating multiple business systems to streamline professional services invoicing, saving significant administrative time (.Net 8.0, C#, Web API).
+•	AI Automation: Designed and implemented automated email processing using Power Automate to generate responses for customer inquiries with built-in approval workflows.
+•	Proof of Concepts: Completed a PoC of an Azure AI Search agents on Copilot Studio and Power Apps.
 2.	Totalmobile UK:
-o	Performed an accessibility compliance audit for a global rostering SaaS vendor entering the Australian market, ensuring compliance with government tender requirements.
-3.	MBA Capstone Program at CSIRO's Data61:
-o	Collaborated on commercialising a patented quantum computing algorithm to prevent adversarial attacks on AI machine learning.
-o	Conducted experiments to identify potential buyers and partners through LinkedIn articles, Google AdWords campaigns, and targeted outreach using Apollo.ai.
-o	Conducted over 50 stakeholder interviews and explored various business models.
-o	Identified two commercial opportunities and recommended strategic pivots.
+•	Conducted a WCAG accessibility compliance audit for a global rostering SaaS vendor entering the Australian market, ensuring alignment with Australian government accessibility requirements
 ________________________________________
-Senior Manager – Lead Solutions Architect
+Senior Manager – Digital Delivery (Digital Customer Experience Team)
+Capgemini – Brisbane
 January 2022 – June 2024
-Company: Capgemini – Digital Customer Experience APAC Team
-Overview:
-Capgemini is a global IT consultancy operating in 51 countries with over 360,000 staff.
+Company Overview: Capgemini is a global IT consultancy operating in 51 countries with over 360,000 staff.
 Responsibilities:
 •	Technical Leadership at Western Power:
-o	Led a $5M+ enterprise-wide digital transformation project in the energy sector.
-o	Established an Optimizely Chapter and Centre of Excellence.
-o	Conducted technical workshops and ensured platform scalability and redundancy.
-o	Architected and implemented Optimizely Customer Data Platform (CDP) with cloud and on-premises integrations via MuleSoft to Dynamics CRM.
-o	Developed technical documentation and validated solutions through pilots and proofs of concept.
-o	Defined KPIs and built real-time monitoring dashboards using Azure Insights.
-o	Provided training and demonstrated operational efficiency improvements.
-•	Presales Architect:
-o	Consulted on platforms including Optimizely, Sitecore, Azure, and AWS.
-o	Engaged with clients such as Pharmacy Guild of Australia, Parliament of South Australia, LendLease, APA Group, and Brisbane City Council on their digital transformations.
-o	Provided strategy and advisory services to existing customers.
-•	Lead Architect for Optimizely Solutions:
-o	Symbion Shop: Developed an Optimizely Commerce B2C platform rolled out to 4,000 pharmacies. Managed RFP, BRD, HLD, DevOps, interface design, data mapping, integrations, and test strategy.
-o	Perpetual Website: Delivered global and regional websites. Chaired architectural workshops and managed relationships with business and technical stakeholders.
+o	Technical Leader on a $5M+ enterprise-wide digital transformation project.
+o	Established an Optimizely One Centre of Excellence, enabling multiple high-profile projects (.NET, Azure, Optimizely) and setting scalable delivery patterns.
+o	Facilitated technical workshops, defined enterprise platform KPIs, and built real-time monitoring dashboards for application performance.
+o	Produced comprehensive documentation covering CI/CD pipelines, disaster recovery, identity management, and codebase governance, ensuring a seamless transition to BAU teams.
+•	Presales & Strategic Advisory:
+o	Acted as Presales Architect for major accounts, including APA Group, LendLease, Brisbane City Council, Pharmacy Guild of Australia, and Parliament of South Australia.
+o	Designed solutions across Optimizely, Sitecore, Azure, and AWS, ensuring alignment with industry and vendor best practices.
+o	Provided strategy and advisory services to drive digital transformation initiatives and unlock new opportunities.
+•	Optimizely Commerce & DXP Delivery
+o	Symbion Shop: Designed and delivered an Optimizely Commerce B2C platform for 4,000 pharmacies; managed the full lifecycle from RFP and high-level design to integrations, DevOps, and testing.
+o	Perpetual Website: Delivered global and regional websites, chairing architectural workshops and managing relationships with business and technical stakeholders.
 ________________________________________
-Solution Architect – Design & Delivery
+Solution Architect / Delivery Lead
+Sonic Healthcare - Brisbane
 December 2018 – January 2022
-Company: Sonic Healthcare
-Overview:
-A top ASX-listed company specialising in global pathology, radiology, and primary care.
-Projects:
-EasyVisit: Designed a GP appointments platform scaled to over 200 medical centres, handling over 5 million bookings in the first year.
-•	Collaborated with stakeholders to define new projects.
-•	Engaged external UX and SEO partners.
-•	Developed new products like Patient Check-in Kiosk and Clinic Opening Hours Manager.
-•	Enhanced existing solutions with unit testing and monitoring (xUnit.net, Splunk).
-•	Developed corporate and clinic websites using Umbraco DXP, .NET Core, HTML5, Bootstrap, and TypeScript.
+Company Overview: Global healthcare company specialising in pathology, laboratory medicine, radiology, and other diagnostic services, delivering high-quality medical testing and healthcare solutions to patients, doctors, and hospitals.
+Responsibilities:
+•	As part of a digital innovation team, I collaborated with stakeholders to define and deliver new projects.
+•	Contributed to the development and design for new initiatives in the global digital products team.
+•	Implemented project management practices, including tracking cost, time, and quality for each new project, as well as estimates, reporting, profit and loss (P&L), and risk and issue management.
+•	Enhanced existing solutions with unit testing and telemetry (xUnit.net, Splunk) and provided guidance to the wider team on implementing new patterns and practices.
+Key Projects:
+•	EasyVisit GP appointments platform, supporting 200+ medical centres and 500,000+ bookings in its first year, along with complementary tools like a Check-in Kiosk and Hours Manager (.Net Core, Angular, Web API, SignalR).
+•	Corporate and GP Clinic websites (Umbraco DXP, .NET Core, HTML5, Bootstrap, and TypeScript).
 ________________________________________
-
 Technical Project Manager – R&D, Messaging, and Data Migration
+SS&C Technologies – Melbourne
 July 2015 – September 2016
-Company: SS&C Technologies
-Overview:
-A wealth management software company.
+Company Overview: A leading global provider of financial services software and outsourcing solutions.
 Responsibilities:
 •	Managed a team of 25 professionals, including Scrum Masters, Product Owners, Architects, Technical Leads, Developers, BAs, and QAs.
 •	Mentored staff, conducted performance reviews, and managed hiring and capacity planning.
@@ -136,65 +151,71 @@ Projects:
 •	Data Migration for Old Mutual Wealth: Managed a $2 million budget.
 •	Data Modelling Code Generator: Led with a $500,000 budget.
 •	Mobile Apps for StatePlus: Managed a $1 million budget.
-________________________________________
-Senior Consultant - Technical Business Analyst
+
+Product Owner
+Quantum IT - Melbourne
 July 2014 – July 2015
-Company: Quantum IT
-Overview:
-A leading Microsoft Partner IT consultancy and placement software company.
+Company Overview: A leading Microsoft Gold Partner and SaaS placement software company.
 Responsibilities:
 •	Served as Product Owner of InPlace Software, a SaaS platform used by over 300 universities globally.
-•	Engaged in wireframing, prototyping, business analysis, project management, demos, and guiding team members.
+•	Conducted business consulting activities including Presales, UX design (wireframes and prototypes), business analysis, project management, SoWs, and demos.
 •	Assessed feature requests against product strategy and designed solutions.
 •	Led product design for accessibility, branding, and user interface consistency.
 •	Implemented and trained users at TAFEs and universities.
-•	Prioritized the product backlog and modernized the platform for current trends and compliance.
+•	Prioritised the product backlog and modernised the platform for current trends and compliance.
 ________________________________________
 Manager, Development & Testing
+Education Services Australia - Melbourne
 October 2012 – June 2014
-Company: Education Services Australia
-Overview:
-A not-for-profit government organization and digital agency.
+Company Overview: A not-for-profit government organisation and digital agency owned by state and federal Education Departments.
 Responsibilities:
-•	Managed a cross-functional team of up to 15 developers and testers.
+•	Managed a cross-functional team of up to 15 developers and test analysts. Completed one on ones, performance reviews and regular feedback against KPIs.
 •	Handled administrative tasks, including hiring, performance management, and contract approvals.
 •	Participated in strategy and resource management meetings.
-•	Established an offshore partnership to expand development capabilities.
-•	Delivered key educational projects and platforms, including:
-o	Maths 300: Cross-platform mathematics games.
-o	Safe Schools Hub: Website with ministerial launch.
-o	MyFuture: National website for school leavers.
-o	Learning Object Repository System: Deployed to educational jurisdictions.
-o	Migrated cloud services to an in-house hosting environment.
+•	Established an offshore partnership to expand development capabilities and reduce cost saving over $2 million.
+•	Delivered key educational projects and platforms in a Prince 2 lite methodology including:
+o	Scootle Games on Demand: Tablet device games platform with 67 highly interactive educational games, with download on demand, learning paths, and leaderboard.
+o	Maths 300: Cross-platform mathematics games with over 300 games.
+o	Safe Schools Hub: Website to prevent bullying with ministerial launch.
+o	MyFuture: National website for school leavers built on Sitecore
 ________________________________________
- 
-Software Engineering Lead
+Software Engineering Team Leader
+Sonic Healthcare - Melbourne
 March 2011 – August 2012
-Company: Sonic Healthcare Ltd
 Responsibilities:
-•	Managed a team of 10 eHealth software engineers.
-•	Oversaw project outputs, change management, deployments, and transition to BAU.
-•	Ensured security frameworks were met and conducted testing.
-•	Delivered solutions including:
-o	Active Directory Management Tool
-o	iPad and iPhone Applications: Provided secure access to test results for doctors.
-o	Secure Web Portals: Integrated with enterprise legacy systems for radiology.
-o	Web Services: For secure integration with on-premises systems.
-________________________________________
+•	Managed a geographically distributed team of 10 eHealth engineers across Australia and the USA, overseeing project delivery, change management, deployments, and BAU transitions.
+•	Ensured compliance with security frameworks, passing external audits and pen testing.
+•	Defined hosting requirements, including server specs, database configurations, disaster recovery plans, and IIS.
+•	Migrated to JIRA for task management and Confluence for knowledge sharing, ensuring smooth adoption.
+•	Handled project change requests via the helpdesk, delivering within SLAs agreed with business units.
+Key Projects:
+•	Active Directory Management Tool: Built an enterprise tool to assign ADFS members to new digital products in testing and production environments saving countless hours in provisioning.
+•	iPad and iPhone Applications: Provided secure access to blood test results for doctors.
+•	Secure Web Portals: Integrated with enterprise legacy systems for radiology practice enabling customers access to diagnostic reports and x-ray imaging.
+•	Web Services: For secure integration with on-premises systems.
+
 Managing Director
-July 2008 – March 2011; August 2018 – Present
-Company: Digital Response
-Achievements:
-•	Brand Integrity/Marketing Platform:
-o	Developed a PaaS/SaaS platform for automotive dealerships.
-o	Collaborated with Mercedes-Benz and Chrysler Jeep Dodge.
-o	Enabled dealerships to create SMS, email, print, and direct mail campaigns.
-o	Managed account and product development, evolving the platform based on client feedback.
-•	Delivered Digital Projects:
-o	Managed accounts with clients like Britax, BlueChipIT, Bob Jane T-Marts, Isuzu, Live Combat Sports, SecureCorp, and Traffic Technologies.
-o	Delivered websites, e-commerce solutions, and mobile applications.
-o	Developed a digital platform for BlueChipIT, integrating with ERP systems and selling the solution to other clients.
+Digital Response – Brisbane
+July 2008 – March 2011; Sept 2016 – Dec 2018
+Brand Integrity/Marketing Platform:
+•	Designed and developed a SaaS platform for automotive dealerships, taking it from concept to delivery.
+•	Collaborated with major clients, including Mercedes-Benz and Chrysler Jeep Dodge, to meet their needs.
+•	Enabled dealerships to create localised and personalised SMS, email, print, and direct mail campaigns within brand guidelines, using approved collateral.
+•	Oversaw account and product development, continuously evolving the platform based on client feedback.
+•	Achieved a 97% user satisfaction score, delivered over 1,000 personalised marketing campaigns, and generated more than 1 million brand impressions annually.
+Delivery of Digital Projects:
+•	Managed accounts for high-profile clients including Britax, BlueChipIT, Bob Jane T-Marts, Isuzu, Live Combat Sports, SecureCorp, and Traffic Technologies.
+•	Delivered websites, e-commerce solutions, and mobile applications.
+•	Managed an IT account modernising their environment from on-premise to cloud.
+•	Developed a comprehensive digital platform for BlueChipIT, integrating it with Microsoft Dynamics, and successfully marketed the solution to other clients.
 ________________________________________
+
+
+
+OLDER ROLES:
+
+
+
 Technical Lead
 January 2005 – July 2008
 Company: SolutionsCorp
