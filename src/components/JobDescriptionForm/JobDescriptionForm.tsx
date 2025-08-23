@@ -4,7 +4,7 @@ import { marked } from 'marked';
 import DOMPurify from 'dompurify';
 import mammoth from 'mammoth';
 import * as pdfjsLib from 'pdfjs-dist';
-import { ApplicationInsights } from '@microsoft/applicationinsights-web';
+//import { ApplicationInsights } from '@microsoft/applicationinsights-web';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = `app/pdf.worker.min.mjs`;
 
@@ -15,7 +15,7 @@ interface JobDescriptionFormProps {
 }
 
 // Initialize Application Insights
-import { appInsights } from '../../../app/utils/appInsights';
+//import { appInsights } from '../../../app/utils/appInsights';
 
 export const JobDescriptionForm: React.FC<JobDescriptionFormProps> = ({
     onSubmit,
@@ -51,23 +51,23 @@ export const JobDescriptionForm: React.FC<JobDescriptionFormProps> = ({
             const cleanedText = cleanText(extractedText);
             setJobDescription(cleanedText);
 
-            appInsights.trackEvent({
-                name: 'FileUpload_Successful',
-                properties: {
-                    fileType: fileExtension,
-                    fileSize: file.size
-                }
-            });
+            //appInsights.trackEvent({
+            //    name: 'FileUpload_Successful',
+            //    properties: {
+            //        fileType: fileExtension,
+            //        fileSize: file.size
+            //    }
+            //});
         } catch (error) {
             console.error('Error processing file:', error);
-            appInsights.trackException({
-                error: error instanceof Error ? error : new Error(String(error)),
-                properties: {
-                    fileType: file.name.split('.').pop()?.toLowerCase(),
-                    fileSize: file.size
-                }
-            });
-            alert('Error processing file. Please try again or paste the text directly.');
+            //appInsights.trackException({
+            //    error: error instanceof Error ? error : new Error(String(error)),
+            //    properties: {
+            //        fileType: file.name.split('.').pop()?.toLowerCase(),
+            //        fileSize: file.size
+            //    }
+            //});
+            //alert('Error processing file. Please try again or paste the text directly.');
         } finally {
             setIsLoading(false);
         }

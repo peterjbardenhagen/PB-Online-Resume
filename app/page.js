@@ -30,20 +30,21 @@ import styles from "./globals.css";
 
 const inter = Inter({ subsets: ['latin'] });
 
-// Initialize Application Insights
-import { appInsights } from './utils/appInsights';
+//// Initialize Application Insights
+//import { appInsights } from './utils/appInsights';
 
-// At the top of the file, after initializing ApplicationInsights
+//// At the top of the file, after initializing ApplicationInsights
 const logUserAction = (actionName, properties) => {
-    if (appInsights) {
-        appInsights.trackEvent({
-            name: actionName,
-            properties: {
-                timestamp: new Date().toISOString(),
-                ...properties
-            }
-        });
-    }
+    // do nothing
+//    if (appInsights) {
+//        appInsights.trackEvent({
+//            name: actionName,
+//            properties: {
+//                timestamp: new Date().toISOString(),
+//                ...properties
+//            }
+//        });
+//    }
 };
 
 export default function Home() {
