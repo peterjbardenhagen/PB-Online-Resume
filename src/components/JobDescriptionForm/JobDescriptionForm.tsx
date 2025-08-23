@@ -170,18 +170,18 @@ export const JobDescriptionForm: React.FC<JobDescriptionFormProps> = ({
             // Call onSuccess callback
             onSuccess?.(sanitizedHtmlResponse);
 
-            appInsights.trackMetric({
-                name: 'FormSubmission_ProcessingTime',
-                average: Date.now() - startTime
-            });
+            //appInsights.trackMetric({
+            //    name: 'FormSubmission_ProcessingTime',
+            //    average: Date.now() - startTime
+            //});
 
-            appInsights.trackEvent({
-                name: 'FormSubmission_Successful',
-                properties: {
-                    processingTime: Date.now() - startTime,
-                    contentLength: jobDescription.length
-                }
-            });
+            //appInsights.trackEvent({
+            //    name: 'FormSubmission_Successful',
+            //    properties: {
+            //        processingTime: Date.now() - startTime,
+            //        contentLength: jobDescription.length
+            //    }
+            //});
 
         } catch (error) {
             if (error.message === 'RETRY') {
