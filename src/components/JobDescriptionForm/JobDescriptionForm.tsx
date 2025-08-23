@@ -112,7 +112,7 @@ export const JobDescriptionForm: React.FC<JobDescriptionFormProps> = ({
             console.groupCollapsed('%c[JD] API Request', 'color:#3b82f6;');
             console.debug('POST /api payload (truncated preview):', {
                 ...payload,
-                jobDescriptionPreview: jobDescription.slice(0, 200) + (jobDescription.length > 200 ? '…' : '')
+                jobDescriptionPreview: jobDescription.slice(0, 200) + (jobDescription.length > 200 ? ' ' : '')
             });
             console.groupEnd();
 
@@ -157,7 +157,7 @@ export const JobDescriptionForm: React.FC<JobDescriptionFormProps> = ({
             console.groupCollapsed('%c[JD] API Response', 'color:#16a34a;');
             console.info('Status:', res.status, res.statusText);
             console.info('Timing (ms):', elapsed);
-            console.debug('Raw JSON (trimmed):', JSON.stringify(data).slice(0, 1000) + (JSON.stringify(data).length > 1000 ? '…' : ''));
+            console.debug('Raw JSON (trimmed):', JSON.stringify(data).slice(0, 1000) + (JSON.stringify(data).length > 1000 ? ' ' : ''));
             console.groupEnd();
 
             const htmlResponse = marked.parse(data.message);
