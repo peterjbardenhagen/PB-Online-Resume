@@ -58,6 +58,17 @@ export default function Home() {
         }
     ]);
 
+    useEffect(() => {
+        // This check ensures window is defined, which is important for client-side code in Next.js
+        if (typeof window !== 'undefined') {
+            const currentUrl = window.location.href;
+            if (currentUrl.includes('digitalresponse.com.au')) {
+                // Redirect to the new URL
+                window.location.replace('https://digitalresponse.webflow.io');
+            }
+        }
+    }, []); // Empty dependency array ensures this runs only once on mount
+
     const submitForm = async (e) => {
         e.preventDefault();
         let newMessages = [...messages, { role: 'user', content: messageInput }]
