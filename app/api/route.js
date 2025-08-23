@@ -9,7 +9,7 @@ console.log('API route /api hit');
 
 const endpoint = 'https://ai-ccl02aihub531797370483.openai.azure.com/';
 const apiKey = 'F7qsG46VRDjgTqfO1dt3sxm2O2CbLCRQmf3YTrlv9dmbvauOVe1MJQQJ99BBACHYHv6XJ3w3AAAAACOGemVh';
-const model = 'gpt-4';
+const model = 'gpt-35-turbo';
 
 export async function POST(req) {
 
@@ -27,7 +27,7 @@ Help users learn more about Peter from his resume.`
 	})
 
 	const response = await client.getChatCompletions(model, messages, {
-		maxTokens: 128,
+		maxTokens: 350,
 	})
 
 	return NextResponse.json({

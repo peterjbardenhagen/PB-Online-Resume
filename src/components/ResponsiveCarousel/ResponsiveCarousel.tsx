@@ -5,6 +5,15 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // Default Carou
 import Image from "next/image";
 import "./ResponsiveCarousel.css"; // Custom CSS for styling
 
+class SilentErrorBoundary extends React.Component {
+    componentDidCatch(error: Error) {
+        // Optional: send to a logging service
+    }
+    render() {
+        return this.props.children;
+    }
+}
+
 interface ResponsiveCarouselProps { }
 
 const ResponsiveCarousel: FC<ResponsiveCarouselProps> = () => {
