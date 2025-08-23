@@ -104,22 +104,36 @@ export const JobDescriptionForm: React.FC<JobDescriptionFormProps> = ({
             const controller = new AbortController();
             const timeoutId = setTimeout(() => controller.abort(), TIMEOUT);
 
-            const payload = {
-                jobDescription
+            // Build the payload in the expected format
+            type ChatRole = 'user' | 'assistant' | 'system';
+            type ChatMessage = { role: ChatRole; content: string };
+
+            const payload: { messages: ChatMessage[] } = {
+                messages: [
+                    {
+                        role: 'user',
+                        content: jobDescription,
+                    },
+                ],
             };
 
+            // Tidy debug logging for the new shape
             console.groupCollapsed('%c[JD] API Request', 'color:#3b82f6;');
-            console.debug('POST /api payload (truncated preview):', {
-                ...payload,
-                jobDescriptionPreview: jobDescription.slice(0, 200) + (jobDescription.length > 200 ? ' ' : '')
+            console.debug('POST /api payload:', {
+                messagesCount: payload.messages.length,
+                firstMessageRole: payload.messages[0]?.role,
+                firstMessagePreview:
+                    (payload.messages[0]?.content ?? '').slice(0, 200) +
+                    ((payload.messages[0]?.content?.length ?? 0) > 200 ? '…' : ''),
             });
             console.groupEnd();
 
+            // Send request
             const res = await fetch('/api', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload),
-                signal: controller.signal
+                signal: controller.signal,
             });
 
             clearTimeout(timeoutId);
