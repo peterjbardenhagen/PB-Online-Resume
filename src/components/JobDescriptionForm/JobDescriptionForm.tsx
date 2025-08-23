@@ -4,18 +4,14 @@ import { marked } from 'marked';
 import DOMPurify from 'dompurify';
 import mammoth from 'mammoth';
 import * as pdfjsLib from 'pdfjs-dist';
-//import { ApplicationInsights } from '@microsoft/applicationinsights-web';
 
-pdfjsLib.GlobalWorkerOptions.workerSrc = `app/pdf.worker.min.mjs`;
+(pdfjsLib as any).GlobalWorkerOptions.workerSrc = `app/pdf.worker.min.mjs`;
 
 interface JobDescriptionFormProps {
     onSubmit?: (formData: any) => void;
     onError?: (error: any) => void;
     onSuccess?: (response: any) => void;
 }
-
-// Initialize Application Insights
-//import { appInsights } from '../../../app/utils/appInsights';
 
 export const JobDescriptionForm: React.FC<JobDescriptionFormProps> = ({
     onSubmit,
@@ -27,6 +23,7 @@ export const JobDescriptionForm: React.FC<JobDescriptionFormProps> = ({
     const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [retryCount, setRetryCount] = useState<number>(0);
+
     const MAX_RETRIES = 3;
     const TIMEOUT = 30000;
 
@@ -51,23 +48,15 @@ export const JobDescriptionForm: React.FC<JobDescriptionFormProps> = ({
             const cleanedText = cleanText(extractedText);
             setJobDescription(cleanedText);
 
-            //appInsights.trackEvent({
-            //    name: 'FileUpload_Successful',
-            //    properties: {
-            //        fileType: fileExtension,
-            //        fileSize: file.size
-            //    }
-            //});
+            console.info('[JD] File upload processed', {
+                name: file.name,
+                size: file.size,
+                type: file.type,
+                ext: fileExtension,
+                chars: cleanedText.length
+            });
         } catch (error) {
             console.error('Error processing file:', error);
-            //appInsights.trackException({
-            //    error: error instanceof Error ? error : new Error(String(error)),
-            //    properties: {
-            //        fileType: file.name.split('.').pop()?.toLowerCase(),
-            //        fileSize: file.size
-            //    }
-            //});
-            //alert('Error processing file. Please try again or paste the text directly.');
         } finally {
             setIsLoading(false);
         }
@@ -76,22 +65,14 @@ export const JobDescriptionForm: React.FC<JobDescriptionFormProps> = ({
     const extractTextFromPDF = async (file: File): Promise<string> => {
         try {
             const fileArrayBuffer = await file.arrayBuffer();
-
-            // Load the PDF document using ArrayBuffer
-            const loadingTask = pdfjsLib.getDocument({ data: fileArrayBuffer });
+            const loadingTask = (pdfjsLib as any).getDocument({ data: fileArrayBuffer });
             const pdf = await loadingTask.promise;
 
             let fullText = '';
-
-            // Pages are indexed from 1
             for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
                 const page = await pdf.getPage(pageNum);
                 const textContent = await page.getTextContent();
-
-                const pageText = textContent.items
-                    .map((item: any) => item.str)
-                    .join(' ');
-
+                const pageText = textContent.items.map((item: any) => item.str).join(' ');
                 fullText += pageText + '\n';
             }
 
@@ -110,9 +91,7 @@ export const JobDescriptionForm: React.FC<JobDescriptionFormProps> = ({
         if (e) e.preventDefault();
 
         const startTime = Date.now();
-        //appInsights.trackEvent({ name: 'FormSubmission_Started' });
 
-        // Call onSubmit callback
         onSubmit?.({
             jobDescription,
             file: (document.querySelector('.jobdesc-file-input') as HTMLInputElement)?.files?.[0]
@@ -125,16 +104,23 @@ export const JobDescriptionForm: React.FC<JobDescriptionFormProps> = ({
             const controller = new AbortController();
             const timeoutId = setTimeout(() => controller.abort(), TIMEOUT);
 
+            const payload = {
+                FormType: 'JobDesc',
+                jobDescription
+            };
+
+            console.groupCollapsed('%c[JD] API Request', 'color:#3b82f6;');
+            console.debug('POST /api payload (truncated preview):', {
+                ...payload,
+                jobDescriptionPreview: jobDescription.slice(0, 200) + (jobDescription.length > 200 ? '…' : '')
+            });
+            console.groupEnd();
+
             const res = await fetch('/api', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    FormType: "JobDesc",
-                    jobDescription
-                }),
-                signal: controller.signal,
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload),
+                signal: controller.signal
             });
 
             clearTimeout(timeoutId);
@@ -143,71 +129,53 @@ export const JobDescriptionForm: React.FC<JobDescriptionFormProps> = ({
                 const errorDetails = {
                     status: res.status,
                     statusText: res.statusText,
-                    url: res.url,
+                    url: res.url
                 };
 
-                //appInsights.trackException({
-                //    error: new Error(`HTTP error: ${res.status}`),
-                //    properties: errorDetails
-                //});
+                console.error('[JD] HTTP error', errorDetails);
 
                 if (res.status === 504 && retryCount < MAX_RETRIES) {
+                    const delayMs = 1000 * Math.max(1, retryCount);
+                    console.warn(`[JD] Timeout/504, retrying ${retryCount + 1}/${MAX_RETRIES} after ${delayMs}ms`);
                     setRetryCount(prev => prev + 1);
-                    await new Promise(resolve => setTimeout(resolve, 1000 * retryCount)); // Exponential backoff
-                    return handleSubmit(e); // Retry the request
+                    await new Promise(resolve => setTimeout(resolve, delayMs));
+                    return handleSubmit(e);
                 }
 
                 throw new Error(`HTTP error! status: ${res.status}`);
             }
 
-            const data = await res.json();
+            const elapsed = Date.now() - startTime;
+            let data: any;
+            try {
+                data = await res.json();
+            } catch (jsonErr) {
+                console.error('[JD] Failed to parse JSON response', jsonErr);
+                throw jsonErr;
+            }
+
+            console.groupCollapsed('%c[JD] API Response', 'color:#16a34a;');
+            console.info('Status:', res.status, res.statusText);
+            console.info('Timing (ms):', elapsed);
+            console.debug('Raw JSON (trimmed):', JSON.stringify(data).slice(0, 1000) + (JSON.stringify(data).length > 1000 ? '…' : ''));
+            console.groupEnd();
+
             const htmlResponse = marked.parse(data.message);
-            const sanitizedHtmlResponse = DOMPurify.sanitize('' + htmlResponse);
+            const sanitizedHtmlResponse = DOMPurify.sanitize(String(htmlResponse));
 
             setResponse(sanitizedHtmlResponse);
             setRetryCount(0);
 
-            // Call onSuccess callback
             onSuccess?.(sanitizedHtmlResponse);
-
-            //appInsights.trackMetric({
-            //    name: 'FormSubmission_ProcessingTime',
-            //    average: Date.now() - startTime
-            //});
-
-            //appInsights.trackEvent({
-            //    name: 'FormSubmission_Successful',
-            //    properties: {
-            //        processingTime: Date.now() - startTime,
-            //        contentLength: jobDescription.length
-            //    }
-            //});
-
-        } catch (error) {
-            if (error.message === 'RETRY') {
-                //appInsights.trackEvent({
-                //    name: 'FormSubmission_Retry',
-                //    properties: { retryCount }
-                //});
-
-                await new Promise(resolve => setTimeout(resolve, 1000 * retryCount));
-                return handleSubmit(e);
-            }
-
+        } catch (error: unknown) {
+            const elapsed = Date.now() - startTime;
+            console.groupCollapsed('%c[JD] API Error', 'color:#ef4444;');
             console.error('Error:', error);
+            console.info('Processing time (ms):', elapsed);
+            console.groupEnd();
 
-            // Call onError callback
             onError?.(error);
-
-            //appInsights.trackException({
-            //    error: error instanceof Error ? error : new Error(String(error)),
-            //    properties: {
-            //        processingTime: Date.now() - startTime,
-            //        contentLength: jobDescription.length
-            //    }
-            //});
-
-            setResponse('Error occured: ' + error);
+            setResponse('Error occured: ' + (error instanceof Error ? error.message : String(error)));
         } finally {
             setIsSubmitting(false);
             setIsLoading(false);
