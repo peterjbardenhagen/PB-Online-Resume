@@ -105,7 +105,6 @@ export const JobDescriptionForm: React.FC<JobDescriptionFormProps> = ({
             const timeoutId = setTimeout(() => controller.abort(), TIMEOUT);
 
             const payload = {
-                FormType: 'JobDesc',
                 jobDescription
             };
 
