@@ -124,7 +124,7 @@ export const JobDescriptionForm: React.FC<JobDescriptionFormProps> = ({
                 firstMessageRole: payload.messages[0]?.role,
                 firstMessagePreview:
                     (payload.messages[0]?.content ?? '').slice(0, 200) +
-                    ((payload.messages[0]?.content?.length ?? 0) > 200 ? '…' : ''),
+                    ((payload.messages[0]?.content?.length ?? 0) > 200 ? ' ' : ''),
             });
             console.groupEnd();
 
