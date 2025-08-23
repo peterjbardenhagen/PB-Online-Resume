@@ -110,7 +110,7 @@ export const JobDescriptionForm: React.FC<JobDescriptionFormProps> = ({
         if (e) e.preventDefault();
 
         const startTime = Date.now();
-        appInsights.trackEvent({ name: 'FormSubmission_Started' });
+        //appInsights.trackEvent({ name: 'FormSubmission_Started' });
 
         // Call onSubmit callback
         onSubmit?.({
@@ -146,10 +146,10 @@ export const JobDescriptionForm: React.FC<JobDescriptionFormProps> = ({
                     url: res.url,
                 };
 
-                appInsights.trackException({
-                    error: new Error(`HTTP error: ${res.status}`),
-                    properties: errorDetails
-                });
+                //appInsights.trackException({
+                //    error: new Error(`HTTP error: ${res.status}`),
+                //    properties: errorDetails
+                //});
 
                 if (res.status === 504 && retryCount < MAX_RETRIES) {
                     setRetryCount(prev => prev + 1);
@@ -185,10 +185,10 @@ export const JobDescriptionForm: React.FC<JobDescriptionFormProps> = ({
 
         } catch (error) {
             if (error.message === 'RETRY') {
-                appInsights.trackEvent({
-                    name: 'FormSubmission_Retry',
-                    properties: { retryCount }
-                });
+                //appInsights.trackEvent({
+                //    name: 'FormSubmission_Retry',
+                //    properties: { retryCount }
+                //});
 
                 await new Promise(resolve => setTimeout(resolve, 1000 * retryCount));
                 return handleSubmit(e);
@@ -199,15 +199,15 @@ export const JobDescriptionForm: React.FC<JobDescriptionFormProps> = ({
             // Call onError callback
             onError?.(error);
 
-            appInsights.trackException({
-                error: error instanceof Error ? error : new Error(String(error)),
-                properties: {
-                    processingTime: Date.now() - startTime,
-                    contentLength: jobDescription.length
-                }
-            });
+            //appInsights.trackException({
+            //    error: error instanceof Error ? error : new Error(String(error)),
+            //    properties: {
+            //        processingTime: Date.now() - startTime,
+            //        contentLength: jobDescription.length
+            //    }
+            //});
 
-            setResponse(`An error occurred. Please try again. If the problem persists, contact support.`);
+            setResponse('Error occured: ' + error);
         } finally {
             setIsSubmitting(false);
             setIsLoading(false);
