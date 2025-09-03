@@ -40,6 +40,17 @@
     height: 150px;
     padding: 10px;
 }
+/* globals.css */
+.role-cta img { height: 28px; }
+.role-cta { display:flex; align-items:center; gap:16px; margin-top:12px; flex-wrap:wrap; }
+#current-role {
+    background-image: linear-gradient(#e0e0e0, #EDEDED) !important;
+}
+.recusant-link {
+    text-decoration: none;
+    color: var(--blue-400) !important;
+    font-weight:bold;
+}
 .button, button {
     border-radius: 10px !important;
 }

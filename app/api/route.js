@@ -37,24 +37,17 @@ Help users learn more about Peter from his resume.`
 
 const DATA_RESUME = `
 
-
 Peter Bardenhagen Confidential CV
-Spring Hill, QLD | 0452 491 013 | peter@bardenhagen.xyz | peter.bardenhagen.xyz | LinkedIn
+Spring Hill, QLD | 0452 491 013 | peter@bardenhagen.xyz | Web: peter.bardenhagen.xyz | LinkedIn
 EXECUTIVE SUMMARY
-Results-driven Senior Solution Architect with 20+ years’ experience designing and delivering enterprise-grade digital solutions across healthcare, energy, finance, and government. Combines deep technical expertise in Azure, AWS, GCP, AI, and enterprise platforms with strategic leadership in large-scale transformations. Adept at aligning technical architecture with business objectives, delivering regulatory-compliant, scalable, and secure solutions. Experienced in presales, governance, and C-level engagement, with a track record of driving measurable business outcomes.
-Outside of work, I enjoy playing basketball, ice hockey, and staying active. A lifelong learner, I am deeply engaged with emerging technologies and business strategy, complemented by my ENTJ personality type, which drives my leadership and strategic vision.
+Technology leader with 20+ years’ experience leading enterprise-scale digital transformation, architecture, and innovation across energy, healthcare, finance, and government. Proven ability to align technology strategy with business vision, deliver regulatory-compliant solutions, and inspire high-performance teams. Specialises in cloud, AI, and emerging technologies, driving measurable business outcomes through strategic foresight, governance, and hands-on execution. Recently completed an MBA (UQ, 2025), combining deep technical expertise with commercial acumen to lead technology organisations at scale.
 KEY CAPABILITIES
-• AI & Innovation – Delivered AI-driven phone onboarding system and Azure AI-powered Teams chatbot for Carter Capner Law, reducing onboarding time and improving accuracy.
-• Quantum Computing Commercialisation – As part of CSIRO Data61 MBA Capstone, designed go-to-market strategy for patented algorithm to protect AI from adversarial attacks, identifying commercial partners and pivot opportunities.
-• Enterprise Transformation Leadership – Technical Lead for a $5M+ enterprise-wide digital transformation at Western Power, establishing an Optimizely Centre of Excellence and reusable delivery patterns.
-• Global SaaS Delivery – Led design and launch of EasyVisit GP appointments platform (200+ centres, 500k bookings first year) at Sonic Healthcare, plus complementary patient-facing tools.
-• Multi-Cloud Expertise – 10+ years in Azure and AWS, 1 year in GCP, delivering cloud-native, AI-integrated, and highly available enterprise platforms in regulated industries.
-CORE COMPENTENCIES
-• Architecture & Strategy: Enterprise/Solution Architecture, Target State Design, Capability Mapping, Regulatory Compliance (APRA, CPS 230, NER)
-• Delivery Leadership: Agile, DevOps, Program Governance, Multi-Stream Delivery, Presales Consulting
-• Cloud & AI: Azure PaaS/IaaS/AI, AWS Cloud Services, GCP Data & AI, AI/ML Solution Integration
-• Technology: .NET, Angular, React, Node.js, Power Platform, SQL, Optimizely, Sitecore
-• Stakeholder Engagement: C-level Advisory, Technical Governance, Change Management, Coaching
+• Technology Vision & Strategy: Defining and executing multi-year technology roadmaps aligned to organisational goals.
+• Enterprise Architecture & Governance: Establishing target state architectures, capability maps, and governance frameworks.
+• Regulatory Compliance & Risk Oversight: Ensuring alignment with APRA, CPS 230, NER and industry regulations.
+• Cloud & AI Innovation: Multi-cloud leadership (Azure, AWS, GCP) and enterprise AI adoption strategies.
+• People Leadership: Building and leading high-performance teams across architecture, engineering, and delivery.
+• Commercial Acumen: Budget oversight, investment planning, and delivering measurable ROI on technology spend.
 SKILLS MATRIX
 Technical Skills	Years	Technical Credentials	Business Credentials
 .Net, ASP.Net, C#	10+	AWS Solution Architect Associate	MBA, UQ (2025)
@@ -66,27 +59,26 @@ SQL Server / Entity Framework	3	Optimizely One	Mental Health First Aid Officer
 		TOGAF 10 & ArchiMate 3.1	St John’s First Aid
 AWS – 10 years	Azure – 10 years	GCP – 1 year
 CloudFormation, CloudFront, EC2, EKS, RDS, S3, SQS, VPCs or RDS	ACR, AKR, AI Search, AI Services, API, App Insights, Bicep, Blob Storage, Copilot Studio (no-code), Cost Management, Cosmos Db, Defender, DevOps, Entra ID, Entra B2C, Event Grid, Insights, Functions, Graph, Key Vault, Log Analytics, Logic Apps, M365, Monitor, Power Apps, Power Automate, PowerBI, Service Bus, Storage, SQL, VMs, VPC	Collab, Cloud Networking, Compute, Firebase, Gemini, Google AI, Identity Platform, Looker
-
-
-
+ 
 PROFESSIONAL EXPERIENCE
 Senior Solution Architect
 Recusant – Brisbane
 March 2024 – Present
-Overview: Recusant is a Brisbane-based consultancy specialising in business-led enterprise & solution architecture
+Overview: Recusant is a Brisbane-based strategic technology consultancy that collaborates with organisations to shape practical digital strategies—and then drives execution through solution architecture, delivery, and organisational change.
 Responsibilities:
-•	Retail Solution Architect at CS Energy:
-o	Provided strategic architectural governance to ensure technical solutions align with enterprise business goals.
-o	Translated complex business strategies and requirements into robust, scalable, and maintainable solution designs.
-o	Presented and secured approval for designs at the Architecture Forum and Architecture Review Board.
-o	Led the design and delivery of AI-powered and automation solutions, improving operational efficiency and customer engagement.
-•	Presales & Strategic Advisory:
-o	Partnered with leadership on go-to-market strategies, strengthening Recusant’s brand and market positioning.
-o	Supported business development and presales, scoping solutions, preparing proposals, and engaging directly with enterprise clients.
-o	Oversaw technical delivery and cross-team collaboration, ensuring high-quality outcomes and adherence to best practices.
+Retail Solution Architect – CS Energy
+•	Led baseline current state architecture assessment, defined future state architecture vision, and authored a multi-year architectural roadmap aligned to business strategy.
+•	Developed a functional roadmap and created multiple Initiative Canvases, scoring each against a functional priority matrix to inform investment decisions.
+•	Authored and presented Architecture Impact Assessments (AIAs) and High-Level Designs (HLDs) to the Architecture Forum, securing approvals and alignment.
+•	Identified and documented regulatory compliance obligations (including energy sector regulations) and operational risks, integrating these into proposed solution uplifts.
+•	Partnered with business stakeholders to ensure architectural recommendations supported regulatory, operational, and strategic objectives.
+Presales & Strategic Advisory
+•	Partnered with Recusant leadership on go-to-market strategies, strengthening brand and market positioning.
+•	Supported business development and presales: scoped solutions, prepared proposals, and engaged directly with enterprise clients.
+•	Oversaw technical delivery and cross-team collaboration, ensuring high-quality outcomes and adherence to best practices.
 ________________________________________
 Independent Contractor - Brisbane
-June 2024 – March 2025
+June 2024 – March 2025	
 Overview: Delivered short-term, high-impact architecture and delivery engagements
 Responsibilities:
 •	Conducted business development and presales activities for each project.
@@ -97,13 +89,16 @@ Responsibilities:
 Key Projects:
 1.	Carter Capner Law:
 •	AI Phone Calls: Developed AI-driven inbound and outbound phone calls for customer onboarding with call transcript logging and automated analysis.
-•	Teams Chatbot: Created an Azure AI powered Teams chatbot trained on extensive documentation and videos for staff onboarding.
+•	Teams ChatBot: Created an Azure AI powered Teams chatbot trained on extensive documentation and videos for staff onboarding.
 •	Custom App: Built a timesheet consolidation application integrating multiple business systems to streamline professional services invoicing, saving significant administrative time (.Net 8.0, C#, Web API).
 •	AI Automation: Designed and implemented automated email processing using Power Automate to generate responses for customer inquiries with built-in approval workflows.
 •	Proof of Concepts: Completed a PoC of an Azure AI Search agents on Copilot Studio and Power Apps.
 2.	Totalmobile UK:
 •	Conducted a WCAG accessibility compliance audit for a global rostering SaaS vendor entering the Australian market, ensuring alignment with Australian government accessibility requirements
-________________________________________
+
+
+
+
 Senior Manager – Digital Delivery (Digital Customer Experience Team)
 Capgemini – Brisbane
 January 2022 – June 2024
@@ -136,7 +131,7 @@ Key Projects:
 •	Corporate and GP Clinic websites (Umbraco DXP, .NET Core, HTML5, Bootstrap, and TypeScript).
 ________________________________________
 Technical Project Manager – R&D, Messaging, and Data Migration
-SS&C Technologies – Melbourne
+SS&C Technologies – Melbourne 
 July 2015 – September 2016
 Company Overview: A leading global provider of financial services software and outsourcing solutions.
 Responsibilities:
@@ -151,7 +146,7 @@ Projects:
 •	Data Migration for Old Mutual Wealth: Managed a $2 million budget.
 •	Data Modelling Code Generator: Led with a $500,000 budget.
 •	Mobile Apps for StatePlus: Managed a $1 million budget.
-
+________________________________________
 Product Owner
 Quantum IT - Melbourne
 July 2014 – July 2015
@@ -183,19 +178,18 @@ Software Engineering Team Leader
 Sonic Healthcare - Melbourne
 March 2011 – August 2012
 Responsibilities:
-•	Managed a geographically distributed team of 10 eHealth engineers across Australia and the USA, overseeing project delivery, change management, deployments, and BAU transitions.
-•	Ensured compliance with security frameworks, passing external audits and pen testing.
+•	Managed a geographically distributed team of 10 eHealth engineers across Australia and the USA, overseeing project delivery, change management, deployments, and BAU transitions. 
+•	Ensured compliance with security frameworks, passing external audits and pen testing. 
 •	Defined hosting requirements, including server specs, database configurations, disaster recovery plans, and IIS.
-•	Migrated to JIRA for task management and Confluence for knowledge sharing, ensuring smooth adoption.
+•	Migrated to JIRA for task management and Confluence for knowledge sharing, ensuring smooth adoption. 
 •	Handled project change requests via the helpdesk, delivering within SLAs agreed with business units.
 Key Projects:
 •	Active Directory Management Tool: Built an enterprise tool to assign ADFS members to new digital products in testing and production environments saving countless hours in provisioning.
 •	iPad and iPhone Applications: Provided secure access to blood test results for doctors.
 •	Secure Web Portals: Integrated with enterprise legacy systems for radiology practice enabling customers access to diagnostic reports and x-ray imaging.
 •	Web Services: For secure integration with on-premises systems.
-
 Managing Director
-Digital Response – Brisbane
+Digital Response – Melbourne
 July 2008 – March 2011; Sept 2016 – Dec 2018
 Brand Integrity/Marketing Platform:
 •	Designed and developed a SaaS platform for automotive dealerships, taking it from concept to delivery.
@@ -208,6 +202,27 @@ Delivery of Digital Projects:
 •	Delivered websites, e-commerce solutions, and mobile applications.
 •	Managed an IT account modernising their environment from on-premise to cloud.
 •	Developed a comprehensive digital platform for BlueChipIT, integrating it with Microsoft Dynamics, and successfully marketed the solution to other clients.
+________________________________________
+Technical Lead
+SolutionsCorp - Melbourne
+January 2005 – July 2008
+________________________________________
+Senior Web Developer
+iProperty.com.au / Professionals Real Estate - Melbourne
+January 2002 – July 2005
+________________________________________
+Web Developer
+Roadhouse Digital – Melbourne
+February 2001 – December 2002
+________________________________________
+Web Developer
+Challenger International – Hobart
+September 2000 – November 2000
+________________________________________
+Web Developer
+DigitalRez Software – Hobart
+November 1998 – August 2000
+
 ________________________________________
 
 
