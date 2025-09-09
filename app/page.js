@@ -162,9 +162,10 @@ export default function Home() {
                   initial={{ opacity: 0.2, scale: 0 }}
                   animate={{ opacity: 1, scale: 1, duration: 0.3, ease: "linear" }}
                 > 
-                  <strong>I lead enterprise-scale digital transformations, align technology strategy with business outcomes, and build high-performance teams. Recent work spans multi-year strategic architecture and functional roadmaps, and regulatory-compliant platforms across energy & utilities, healthcare, finance, and government.
+                  I lead enterprise-scale digital transformations, align technology strategy with business outcomes, and build high-performance teams. Recent work spans multi-year strategic architecture and functional roadmaps, and regulatory-compliant platforms across energy & utilities, healthcare, finance, and government.
                 </motion.p>
                 <div className="call-to-action">
+                  {/* UPDATED: resume file path */}
                   <a href="/Peter_Bardenhagen_CV.docx" className="button black">Resume</a>
                   <a href="tel:+61452491013" className="button white">Call</a>
                   <a href="mailto:peter@bardenhagen.xyz" className="button white">Email</a>
@@ -419,6 +420,7 @@ export default function Home() {
                   <li>Current availability for roles</li>
                   <li>Skills and qualifications</li>
                 </ul>
+                {/* UPDATED: resume link */}
                 <p><a href="/Peter_Bardenhagen_CV.docx" className="button black">Download Resume</a></p>
               </div>
               <div className="chat-box">
