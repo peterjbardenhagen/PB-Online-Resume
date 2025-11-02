@@ -5,35 +5,57 @@ import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 export const metadata = {
   metadataBase: new URL("https://peter.bardenhagen.xyz"),
   title: {
-    default: "Peter Bardenhagen — Accelerating Delivery, Reducing Risk & Scaling Digital Programmes",
+    default: "Peter Bardenhagen — Solution Architect & Technology Leader | Enterprise Digital Transformation",
     template: "%s — Peter Bardenhagen",
   },
   description:
-    "Accelerating Delivery, Reducing Risk & Scaling Digital Programmes : I lead enterprise-scale digital transformation, align technology strategy with business outcomes, and build high-performance teams across energy, healthcare, finance, and government.",
-  robots: { index: true, follow: true },
+    "Peter Bardenhagen: Solution Architect specializing in enterprise digital transformation, cloud architecture (AWS, Azure, GCP), and AI-enabled platforms. Expert in leading multi-million dollar programs across energy, healthcare, finance, and government sectors. TOGAF, ArchiMate, Agile certified.",
+  keywords: [
+    "Solution Architect",
+    "Technology Leader",
+    "Digital Transformation",
+    "Cloud Architecture",
+    "Enterprise Architecture",
+    "AWS Azure GCP",
+    "Technical Leadership",
+    "Agile Delivery",
+    "TOGAF",
+    "ArchiMate",
+    "React Next.js",
+    "DevOps",
+    "AI Platforms",
+    "Brisbane Australia",
+  ],
+  authors: [{ name: "Peter Bardenhagen", url: "https://peter.bardenhagen.xyz" }],
+  creator: "Peter Bardenhagen",
+  publisher: "Peter Bardenhagen",
+  robots: { index: true, follow: true, googleBot: { index: true, follow: true } },
   alternates: { canonical: "/" },
+  category: "Technology",
   twitter: {
     card: "summary_large_image",
-    site: "https://peter.bardenhagen.xyz",
-    title: "Peter Bardenhagen — Accelerating Delivery, Reducing Risk & Scaling Digital Programmes",
+    site: "@peterbardenhagen",
+    creator: "@peterbardenhagen",
+    title: "Peter Bardenhagen — Solution Architect & Technology Leader",
     description:
-      "Technology leader focused on AI-enabled operating models, cloud modernisation, and regulatory-compliant platforms.",
+      "Solution Architect specializing in enterprise digital transformation, cloud architecture, and AI-enabled platforms. TOGAF & ArchiMate certified.",
     images: ["https://peter.bardenhagen.xyz/imgs/preview.png"],
   },
   openGraph: {
-    type: "website",
+    type: "profile",
     url: "https://peter.bardenhagen.xyz",
-    siteName: "Peter Bardenhagen",
-    title: "Peter Bardenhagen — Accelerating Delivery, Reducing Risk & Scaling Digital Programmes",
+    siteName: "Peter Bardenhagen Portfolio",
+    title: "Peter Bardenhagen — Solution Architect & Technology Leader",
     description:
-      "Technology leader focused on AI-enabled operating models, cloud modernisation, and regulatory-compliant platforms.",
+      "Solution Architect specializing in enterprise digital transformation, cloud architecture (AWS, Azure, GCP), and AI-enabled platforms. Expert in leading multi-million dollar programs.",
     locale: "en_AU",
     images: [
       {
         url: "https://peter.bardenhagen.xyz/imgs/preview.png",
         width: 1200,
         height: 630,
-        alt: "Peter Bardenhagen — Accelerating Delivery, Reducing Risk & Scaling Digital Programmes",
+        alt: "Peter Bardenhagen — Solution Architect & Technology Leader",
+        type: "image/png",
       },
     ],
     videos: [
@@ -63,8 +85,57 @@ export const viewport = {
 };
 
 export default function RootLayout({ children }) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Peter Bardenhagen",
+    "url": "https://peter.bardenhagen.xyz",
+    "image": "https://peter.bardenhagen.xyz/imgs/hero-image.png",
+    "jobTitle": "Solution Architect",
+    "description": "Solution Architect specializing in enterprise digital transformation, cloud architecture, and AI-enabled platforms",
+    "email": "peter@bardenhagen.xyz",
+    "telephone": "+61452491013",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "AU",
+    },
+    "sameAs": [
+      "https://www.linkedin.com/in/peterbardenhagen",
+      "https://github.com/peterjbardenhagen",
+    ],
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Recusant",
+      "url": "https://www.recusant.com.au",
+    },
+    "alumniOf": [
+      {
+        "@type": "Organization",
+        "name": "Capgemini",
+      },
+      {
+        "@type": "Organization",
+        "name": "Sonic Healthcare",
+      },
+    ],
+    "knowsAbout": [
+      "Solution Architecture",
+      "Cloud Computing",
+      "Digital Transformation",
+      "Enterprise Architecture",
+      "Agile Methodology",
+      "Technical Leadership",
+    ],
+  };
+
   return (
     <html lang="en">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body>
         <div id="app-id-4466" />
         {children}

@@ -6,6 +6,11 @@ const nextConfig = {
             punycode: 'punycode/'
         };
         return config;
+    },
+    turbopack: {
+        resolveAlias: {
+            punycode: 'punycode/'
+        }
     }
 };
 

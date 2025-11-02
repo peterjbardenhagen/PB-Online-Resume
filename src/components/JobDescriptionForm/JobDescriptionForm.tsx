@@ -5,12 +5,18 @@ import DOMPurify from 'dompurify';
 import mammoth from 'mammoth';
 import * as pdfjsLib from 'pdfjs-dist';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 (pdfjsLib as any).GlobalWorkerOptions.workerSrc = `app/pdf.worker.min.mjs`;
 
+interface JobDescriptionFormData {
+    jobDescription: string;
+    file?: File;
+}
+
 interface JobDescriptionFormProps {
-    onSubmit?: (formData: any) => void;
-    onError?: (error: any) => void;
-    onSuccess?: (response: any) => void;
+    onSubmit?: (formData: JobDescriptionFormData) => void;
+    onError?: (error: unknown) => void;
+    onSuccess?: (response: string) => void;
 }
 
 export const JobDescriptionForm: React.FC<JobDescriptionFormProps> = ({
@@ -65,6 +71,7 @@ export const JobDescriptionForm: React.FC<JobDescriptionFormProps> = ({
     const extractTextFromPDF = async (file: File): Promise<string> => {
         try {
             const fileArrayBuffer = await file.arrayBuffer();
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             const loadingTask = (pdfjsLib as any).getDocument({ data: fileArrayBuffer });
             const pdf = await loadingTask.promise;
 
@@ -72,7 +79,8 @@ export const JobDescriptionForm: React.FC<JobDescriptionFormProps> = ({
             for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
                 const page = await pdf.getPage(pageNum);
                 const textContent = await page.getTextContent();
-                const pageText = textContent.items.map((item: any) => item.str).join(' ');
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                const pageText = textContent.items.map((item: any) => item.str || '').join(' ');
                 fullText += pageText + '\n';
             }
 
@@ -104,7 +112,6 @@ export const JobDescriptionForm: React.FC<JobDescriptionFormProps> = ({
             const controller = new AbortController();
             const timeoutId = setTimeout(() => controller.abort(), TIMEOUT);
 
-            // Build the payload in the expected format
             type ChatRole = 'user' | 'assistant' | 'system';
             type ChatMessage = { role: ChatRole; content: string };
 
@@ -117,7 +124,6 @@ export const JobDescriptionForm: React.FC<JobDescriptionFormProps> = ({
                 ],
             };
 
-            // Tidy debug logging for the new shape
             console.groupCollapsed('%c[JD] API Request', 'color:#3b82f6;');
             console.debug('POST /api payload:', {
                 messagesCount: payload.messages.length,
@@ -128,7 +134,6 @@ export const JobDescriptionForm: React.FC<JobDescriptionFormProps> = ({
             });
             console.groupEnd();
 
-            // Send request
             const res = await fetch('/api', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -159,7 +164,7 @@ export const JobDescriptionForm: React.FC<JobDescriptionFormProps> = ({
             }
 
             const elapsed = Date.now() - startTime;
-            let data: any;
+            let data: { message: string };
             try {
                 data = await res.json();
             } catch (jsonErr) {
@@ -221,6 +226,7 @@ export const JobDescriptionForm: React.FC<JobDescriptionFormProps> = ({
                     onChange={handleFileUpload}
                     className="jobdesc-file-input"
                     disabled={isSubmitting || isLoading}
+                    aria-label="Upload job description file"
                 />
                 <p>
                     <button

@@ -5,9 +5,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // Default Carou
 import Image from "next/image";
 import "./ResponsiveCarousel.css"; // Custom CSS for styling
 
-interface ResponsiveCarouselProps { }
-
-const ResponsiveCarousel: FC<ResponsiveCarouselProps> = () => {
+const ResponsiveCarousel: FC = () => {
     const { responsive } = slides;
 
     return (

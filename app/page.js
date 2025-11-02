@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import { Inter } from 'next/font/google';
 import IconButton from '@mui/material/IconButton';
 import GitHubIcon from '@mui/icons-material/GitHub';
@@ -8,9 +8,11 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 import { BackToTop } from '../src/components/BackToTop/BackToTop.tsx';
 import JobDescriptionForm from '../src/components/JobDescriptionForm/JobDescriptionForm.tsx';
 import Recommendations from '../src/components/Recommendations/Recommendations.tsx';
-import WordCloud from '../src/components/WordCloud/WordCloud.js';
+import dynamic from 'next/dynamic';
 import { motion } from "motion/react"
 import { useInView } from 'framer-motion';
+
+const WordCloud = dynamic(() => import('../src/components/WordCloud/WordCloud.js'), { ssr: false });
 import {
   EmailShareButton,
   FacebookShareButton,
@@ -30,7 +32,7 @@ import ResponsiveCarousel from "../src/components/ResponsiveCarousel/ResponsiveC
 const inter = Inter({ subsets: ['latin'] });
 
 // no-op logger (App Insights wiring optional)
-const logUserAction = (actionName, properties) => { /* no-op */ };
+const logUserAction = () => { /* no-op */ };
 
 export default function Home() {
   const scrollAreaRef = useRef(null);
@@ -123,23 +125,22 @@ export default function Home() {
             <div className="logo">PB</div>
             <div className="logo-text">Peter Bardenhagen</div>
           </motion.a>
-          <nav>
+          <nav aria-label="Main navigation">
             <ul id="menu" className={menuOpen ? "active" : ""}>
-              <li><a href="#">Home</a></li>
-              <li><a href="#skills">Skills</a></li>
-              {/* NEW: Experience anchor */}
-              <li><a href="#experience">Experience</a></li>
-              <li><a href="#chatbot">AI Assistant</a></li>
-              <li><a href="#book">Book a Time</a></li>
-              <li><a href="#references">References</a></li>
-              <li><a href="tel:+61452491013" className="button">Call</a></li>
-              <li><a href="mailto:peter@bardenhagen.xyz" className="button">Email</a></li>
+              <li><a href="#" aria-label="Navigate to home">Home</a></li>
+              <li><a href="#skills" aria-label="Navigate to skills section">Skills</a></li>
+              <li><a href="#experience" aria-label="Navigate to experience section">Experience</a></li>
+              <li><a href="#chatbot" aria-label="Navigate to AI assistant">AI Assistant</a></li>
+              <li><a href="#book" aria-label="Book a meeting time">Book a Time</a></li>
+              <li><a href="#references" aria-label="View references">References</a></li>
+              <li><a href="tel:+61452491013" className="button" aria-label="Call Peter Bardenhagen">Call</a></li>
+              <li><a href="mailto:peter@bardenhagen.xyz" className="button" aria-label="Email Peter Bardenhagen">Email</a></li>
             </ul>
-            <a href="#" className="mobile-toggle" onClick={toggleMobileMenu}>
+            <button className="mobile-toggle" onClick={toggleMobileMenu} aria-label="Toggle mobile menu" aria-expanded={menuOpen}>
               <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="none" viewBox="0 0 24 24">
                 <path stroke="currentColor" strokeLinecap="round" strokeWidth="2" d="M5 7h14M5 12h14M5 17h10" />
               </svg>
-            </a>
+            </button>
           </nav>
         </header>
 
@@ -148,8 +149,8 @@ export default function Home() {
           <BackToTop />
 
           {/* HERO */}
-          <section className="hero container">
-            <div className="hero-blue">
+          <section className="hero container" aria-label="Hero section">
+            <div className="hero-blue" role="region" aria-label="Peter Bardenhagen introduction">
               <div>
                 <motion.h1
                   initial={{ opacity: 0.2, scale: 0 }}
@@ -170,11 +171,11 @@ export default function Home() {
                   <a href="tel:+61452491013" className="button white">Call</a>
                   <a href="mailto:peter@bardenhagen.xyz" className="button white">Email</a>
                 </div>
-                <div className="social-links">
-                  <IconButton aria-label="GitHub" href="https://github.com/peterjbardenhagen" target="_blank" rel="noopener noreferrer">
+                <div className="social-links" role="navigation" aria-label="Social media links">
+                  <IconButton aria-label="Visit Peter's GitHub profile" href="https://github.com/peterjbardenhagen" target="_blank" rel="noopener noreferrer">
                     <GitHubIcon fontSize="large" />
                   </IconButton>
-                  <IconButton aria-label="LinkedIn" href="https://www.linkedin.com/in/peterbardenhagen" target="_blank" rel="noopener noreferrer">
+                  <IconButton aria-label="Visit Peter's LinkedIn profile" href="https://www.linkedin.com/in/peterbardenhagen" target="_blank" rel="noopener noreferrer">
                     <LinkedInIcon fontSize="large" />
                   </IconButton>
                 </div>
@@ -218,8 +219,8 @@ export default function Home() {
           </section>
 
           {/* CERTS CAROUSEL */}
-          <section id="qualify" className="chatbot container">
-            <h2>
+          <section id="qualify" className="chatbot container" aria-labelledby="certifications-heading">
+            <h2 id="certifications-heading">
               <small>Business &amp; Technical</small>
               Certifications
             </h2>
@@ -231,8 +232,8 @@ export default function Home() {
           </section>
 
           {/* SKILLS */}
-          <section id="skills" className="skills container">
-            <h2>
+          <section id="skills" className="skills container" aria-labelledby="skills-heading">
+            <h2 id="skills-heading">
               <small>About Me</small>
               Skills &amp; Experience
             </h2>
@@ -268,8 +269,8 @@ export default function Home() {
           </section>
 
 {/* CURRENT ROLE → Recusant / CS Energy */}
-<section id="experience" className="work-experience container">
-  <h2>
+<section id="experience" className="work-experience container" aria-labelledby="current-role-heading">
+  <h2 id="current-role-heading">
     <small>Current Role</small>
     Solution Architect @ Recusant
   </h2>
@@ -560,13 +561,14 @@ export default function Home() {
       <div
         onLoad={() => {
           try {
-            // eslint-disable-next-line no-undef
-            ReactTagManager?.action?.({
-              event: 'pageView',
-              pagePath: 'https://peter.bardenhagen.xyz',
-              pageTitle: 'Peter Bardenhagen - Online Resume',
-              visitorType: 'Customer'
-            });
+            if (typeof window !== 'undefined' && window.ReactTagManager) {
+              window.ReactTagManager.action({
+                event: 'pageView',
+                pagePath: 'https://peter.bardenhagen.xyz',
+                pageTitle: 'Peter Bardenhagen - Online Resume',
+                visitorType: 'Customer'
+              });
+            }
           } catch {}
         }}
       />

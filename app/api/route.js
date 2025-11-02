@@ -1,21 +1,22 @@
-﻿import { OpenAIClient, AzureKeyCredential } from '@azure/openai';
+import { AzureOpenAI } from 'openai';
 import { NextResponse } from "next/server";
 
 console.log('API route /api hit');
 
-// const endpoint = process.env.AZURE_OPENAI_ENDPOINT;
-// const apiKey = process.env.AZURE_OPENAI_API_KEY;
-// const model = process.env.AZURE_OPENAI_MODEL;
-
-const endpoint = 'https://ai-ccl02aihub531797370483.openai.azure.com/';
-const apiKey = 'F7qsG46VRDjgTqfO1dt3sxm2O2CbLCRQmf3YTrlv9dmbvauOVe1MJQQJ99BBACHYHv6XJ3w3AAAAACOGemVh';
-const model = 'gpt-35-turbo';
+const endpoint = process.env.AZURE_OPENAI_ENDPOINT;
+const apiKey = process.env.AZURE_OPENAI_API_KEY;
+const model = process.env.AZURE_OPENAI_MODEL;
 
 export async function POST(req) {
 
 	const { messages } = await req.json();
 
-	const client = new OpenAIClient(endpoint, new AzureKeyCredential(apiKey));
+	const client = new AzureOpenAI({
+		endpoint,
+		apiKey,
+		apiVersion: process.env.AZURE_OPENAI_API_VERSION || '2024-08-01-preview',
+		deployment: model
+	});
 
 	messages.unshift({
 		role: 'system',
@@ -26,8 +27,10 @@ ${DATA_RESUME}
 Help users learn more about Peter from his resume.`
 	})
 
-	const response = await client.getChatCompletions(model, messages, {
-		maxTokens: 350,
+	const response = await client.chat.completions.create({
+		model,
+		messages,
+		max_tokens: 350,
 	})
 
 	return NextResponse.json({

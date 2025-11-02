@@ -120,8 +120,12 @@ const WordCloud = () => {
 
         layout.start();
 
+        // Capture the current ref value for cleanup
+        const currentContainer = containerRef.current;
         return () => {
-            d3.select(containerRef.current).selectAll("svg").remove();
+            if (currentContainer) {
+                d3.select(currentContainer).selectAll("svg").remove();
+            }
         };
     }, [dimensions]);
 
