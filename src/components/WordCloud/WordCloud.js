@@ -1,11 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
-import * as d3 from 'd3';
-import d3Cloud from 'd3-cloud';
 import './WordCloud.css';
 
 const WordCloud = () => {
     const containerRef = useRef();
     const [dimensions, setDimensions] = useState({ width: 1200, height: 900 });
+    const [isClient, setIsClient] = useState(false);
+
+    useEffect(() => {
+        setIsClient(true);
+    }, []);
 
     useEffect(() => {
         // Function to update dimensions
@@ -31,103 +34,115 @@ const WordCloud = () => {
     }, []);
 
     useEffect(() => {
-        if (!dimensions.width || !dimensions.height) return;
+        if (!isClient || !dimensions.width || !dimensions.height) return;
 
-        const words = [
-            { text: "SEO", size: 30 },
-            { text: "Strategy", size: 45 },
-            { text: "Software Development", size: 30 },
-            { text: "Business Acumen", size: 40 },
-            { text: "Interpersonal Skills", size: 25 },
-            { text: "Reliable", size: 20 },
-            { text: "Communicator", size: 35 },
-            { text: "Proactive", size: 25 },
-            { text: "Mentor", size: 20 },
-            { text: "Digital", size: 60 },
-            { text: "SDLC", size: 20 },
-            { text: "Project Management", size: 40 },
-            { text: "Innovative", size: 30 },
-            { text: "High-Pressure", size: 20 },
-            { text: "Relationship Builder", size: 30 },
-            { text: "Microsoft", size: 20 },
-            { text: "Leadership", size: 35 },
-            { text: "Quality and Excellence", size: 25 },
-            { text: "Emerging Technologies", size: 35 }
-        ];
+        let cleanup = null;
 
-        // Clear any existing SVG content
-        d3.select(containerRef.current).selectAll("svg").remove();
+        // Dynamic import of d3 libraries only on client
+        Promise.all([import('d3'), import('d3-cloud')]).then(([d3Module, d3CloudModule]) => {
+            const d3 = d3Module;
+            const d3Cloud = d3CloudModule.default;
 
-        // Create new SVG
-        const svg = d3.select(containerRef.current)
-            .append("svg")
-            .attr("width", dimensions.width)
-            .attr("height", dimensions.height)
-            .append("g")
-            .attr("transform", `translate(${dimensions.width / 2},${dimensions.height / 2})`);
+            const words = [
+                { text: "SEO", size: 30 },
+                { text: "Strategy", size: 45 },
+                { text: "Software Development", size: 30 },
+                { text: "Business Acumen", size: 40 },
+                { text: "Interpersonal Skills", size: 25 },
+                { text: "Reliable", size: 20 },
+                { text: "Communicator", size: 35 },
+                { text: "Proactive", size: 25 },
+                { text: "Mentor", size: 20 },
+                { text: "Digital", size: 60 },
+                { text: "SDLC", size: 20 },
+                { text: "Project Management", size: 40 },
+                { text: "Innovative", size: 30 },
+                { text: "High-Pressure", size: 20 },
+                { text: "Relationship Builder", size: 30 },
+                { text: "Microsoft", size: 20 },
+                { text: "Leadership", size: 35 },
+                { text: "Quality and Excellence", size: 25 },
+                { text: "Emerging Technologies", size: 35 }
+            ];
 
-        // Adjust font sizes based on container width
-        const fontScale = dimensions.width / 1000; // baseline width of 1000px
-        const fontSize = d3.scaleLinear()
-            .domain([20, 50])
-            .range([20 * fontScale, 60 * fontScale]);
+            // Clear any existing SVG content
+            d3.select(containerRef.current).selectAll("svg").remove();
 
-        const color = d3.scaleOrdinal()
-            .domain(words.map(d => d.text))
-            .range(d3.schemeSet2);
+            // Create new SVG
+            const svg = d3.select(containerRef.current)
+                .append("svg")
+                .attr("width", dimensions.width)
+                .attr("height", dimensions.height)
+                .append("g")
+                .attr("transform", `translate(${dimensions.width / 2},${dimensions.height / 2})`);
 
-        const getRotation = () => {
-            return Math.random() < 0.5 ? 0 : 90;
-        };
+            // Adjust font sizes based on container width
+            const fontScale = dimensions.width / 1000; // baseline width of 1000px
+            const fontSize = d3.scaleLinear()
+                .domain([20, 50])
+                .range([20 * fontScale, 60 * fontScale]);
 
-        // Configure the layout
-        const layout = d3Cloud()
-            .size([dimensions.width, dimensions.height])
-            .words(words)
-            .padding(10)
-            .rotate(() => getRotation())
-            .font("Arial Narrow")
-            .fontSize(d => fontSize(d.size))
-            .spiral("archimedean")
-            .on("end", draw);
+            const color = d3.scaleOrdinal()
+                .domain(words.map(d => d.text))
+                .range(d3.schemeSet2);
 
-        function draw(words) {
-            svg.selectAll("text")
-                .data(words)
-                .enter()
-                .append("text")
-                .style("font-family", "Arial Narrow")
-                .style("font-weight", "600")
-                .style("fill", d => color(d.text))
-                .attr("text-anchor", "middle")
-                .style("font-size", d => `${d.size}px`)
-                .attr("transform", d => `translate(${d.x},${d.y})rotate(${d.rotate})`)
-                .text(d => d.text)
-                .style("cursor", "pointer")
-                .on("mouseover", function (event, d) {
-                    d3.select(this)
-                        .transition()
-                        .duration(200)
-                        .style("font-size", `${d.size * 1.2}px`);
-                })
-                .on("mouseout", function (event, d) {
-                    d3.select(this)
-                        .transition()
-                        .duration(200)
-                        .style("font-size", `${d.size}px`);
-                });
-        }
+            const getRotation = () => {
+                return Math.random() < 0.5 ? 0 : 90;
+            };
 
-        layout.start();
+            // Configure the layout
+            const layout = d3Cloud()
+                .size([dimensions.width, dimensions.height])
+                .words(words)
+                .padding(10)
+                .rotate(() => getRotation())
+                .font("Arial Narrow")
+                .fontSize(d => fontSize(d.size))
+                .spiral("archimedean")
+                .on("end", draw);
 
-        // Capture the current ref value for cleanup
-        const currentContainer = containerRef.current;
-        return () => {
-            if (currentContainer) {
-                d3.select(currentContainer).selectAll("svg").remove();
+            function draw(words) {
+                svg.selectAll("text")
+                    .data(words)
+                    .enter()
+                    .append("text")
+                    .style("font-family", "Arial Narrow")
+                    .style("font-weight", "600")
+                    .style("fill", d => color(d.text))
+                    .attr("text-anchor", "middle")
+                    .style("font-size", d => `${d.size}px`)
+                    .attr("transform", d => `translate(${d.x},${d.y})rotate(${d.rotate})`)
+                    .text(d => d.text)
+                    .style("cursor", "pointer")
+                    .on("mouseover", function (event, d) {
+                        d3.select(this)
+                            .transition()
+                            .duration(200)
+                            .style("font-size", `${d.size * 1.2}px`);
+                    })
+                    .on("mouseout", function (event, d) {
+                        d3.select(this)
+                            .transition()
+                            .duration(200)
+                            .style("font-size", `${d.size}px`);
+                    });
             }
+
+            layout.start();
+
+            // Store cleanup function
+            const currentContainer = containerRef.current;
+            cleanup = () => {
+                if (currentContainer) {
+                    d3.select(currentContainer).selectAll("svg").remove();
+                }
+            };
+        });
+
+        return () => {
+            if (cleanup) cleanup();
         };
-    }, [dimensions]);
+    }, [dimensions, isClient]);
 
     return (
         <div className="word-cloud-wrapper">
