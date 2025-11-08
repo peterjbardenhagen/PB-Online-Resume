@@ -1,6 +1,7 @@
 "use client";
 
-export const dynamic = 'force-dynamic';
+export const runtime = 'edge';
+export const preferredRegion = 'auto';
 
 import { Inter } from 'next/font/google';
 import IconButton from '@mui/material/IconButton';
@@ -15,7 +16,7 @@ import dynamic from 'next/dynamic';
 import { motion } from "motion/react"
 import { useInView } from 'framer-motion';
 
-const WordCloud = dynamic(() => import('../src/components/WordCloud/WordCloud.js'), { ssr: false });
+const WordCloud = dynamic(() => import('../src/components/WordCloud/WordCloudClient.js'), { ssr: false });
 import {
   EmailShareButton,
   FacebookShareButton,
