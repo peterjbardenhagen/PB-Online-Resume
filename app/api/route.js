@@ -41,7 +41,7 @@ Help users learn more about Peter from his resume.`
 const DATA_RESUME = `
 
 Peter Bardenhagen Confidential CV
-Spring Hill, QLD | 0452 491 013 | peter@bardenhagen.xyz | Web: peter.bardenhagen.xyz | LinkedIn
+Spring Hill, QLD | peter@bardenhagen.xyz | Web: peter.bardenhagen.xyz | LinkedIn
 EXECUTIVE SUMMARY
 Technology leader with 20+ years’ experience leading enterprise-scale digital transformation, architecture, and innovation across energy, healthcare, finance, and government. Proven ability to align technology strategy with business vision, deliver regulatory-compliant solutions, and inspire high-performance teams. Specialises in cloud, AI, and emerging technologies, driving measurable business outcomes through strategic foresight, governance, and hands-on execution. Recently completed an MBA (UQ, 2025), combining deep technical expertise with commercial acumen to lead technology organisations at scale.
 KEY CAPABILITIES

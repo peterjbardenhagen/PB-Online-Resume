@@ -135,7 +135,7 @@
 
 /* Chatbot Section */
 .chatbot-blue {
-    background: linear-gradient(135deg, var(--base-100) 0%, var(--gray-100) 100%);
+    background: white;
     border-radius: var(--radius-2xl);
     box-shadow: var(--shadow-lg);
     border: 1px solid var(--gray-200);

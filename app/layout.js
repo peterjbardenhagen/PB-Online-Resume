@@ -38,7 +38,7 @@ export const metadata = {
     creator: "@peterbardenhagen",
     title: "Peter Bardenhagen — Solution Architect & Technology Leader",
     description:
-      "Solution Architect specializing in enterprise digital transformation, cloud architecture, and AI-enabled platforms. TOGAF & ArchiMate certified.",
+      "Solution Architect specialising in enterprise digital transformation, cloud architecture, and AI-enabled platforms. TOGAF & ArchiMate certified.",
     images: ["https://peter.bardenhagen.xyz/imgs/preview.png"],
   },
   openGraph: {
@@ -94,7 +94,6 @@ export default function RootLayout({ children }) {
     "jobTitle": "Solution Architect",
     "description": "Solution Architect specializing in enterprise digital transformation, cloud architecture, and AI-enabled platforms",
     "email": "peter@bardenhagen.xyz",
-    "telephone": "+61452491013",
     "address": {
       "@type": "PostalAddress",
       "addressCountry": "AU",

@@ -137,7 +137,6 @@ export default function Home() {
               <li><a href="#chatbot" aria-label="Navigate to AI assistant">AI Assistant</a></li>
               <li><a href="#book" aria-label="Book a meeting time">Book a Time</a></li>
               <li><a href="#references" aria-label="View references">References</a></li>
-              <li><a href="tel:+61452491013" className="button" aria-label="Call Peter Bardenhagen">Call</a></li>
               <li><a href="mailto:peter@bardenhagen.xyz" className="button" aria-label="Email Peter Bardenhagen">Email</a></li>
             </ul>
             <button className="mobile-toggle" onClick={toggleMobileMenu} aria-label="Toggle mobile menu" aria-expanded={menuOpen}>
@@ -172,7 +171,6 @@ export default function Home() {
                 <div className="call-to-action">
                   {/* UPDATED: resume file path */}
                   <a href="/Peter_Bardenhagen_CV.docx" className="button black">Resume</a>
-                  <a href="tel:+61452491013" className="button white">Call</a>
                   <a href="mailto:peter@bardenhagen.xyz" className="button white">Email</a>
                 </div>
                 <div className="social-links" role="navigation" aria-label="Social media links">
