@@ -1,8 +1,5 @@
 "use client";
 
-export const runtime = 'edge';
-export const preferredRegion = 'auto';
-
 import { Inter } from 'next/font/google';
 import IconButton from '@mui/material/IconButton';
 import GitHubIcon from '@mui/icons-material/GitHub';
@@ -32,6 +29,7 @@ import {
 } from "react-share";
 import { useTrackingCode } from "react-hubspot-tracking-code-hook";
 import ResponsiveCarousel from "../src/components/ResponsiveCarousel/ResponsiveCarousel.tsx";
+import CareerTimeline from "../src/components/CareerTimeline/CareerTimeline.tsx";
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -133,11 +131,11 @@ export default function Home() {
             <ul id="menu" className={menuOpen ? "active" : ""}>
               <li><a href="#" aria-label="Navigate to home">Home</a></li>
               <li><a href="#skills" aria-label="Navigate to skills section">Skills</a></li>
-              <li><a href="#experience" aria-label="Navigate to experience section">Experience</a></li>
+              <li><a href="#career-timeline" aria-label="Navigate to experience section">Experience</a></li>
               <li><a href="#chatbot" aria-label="Navigate to AI assistant">AI Assistant</a></li>
               <li><a href="#book" aria-label="Book a meeting time">Book a Time</a></li>
               <li><a href="#references" aria-label="View references">References</a></li>
-              <li><a href="mailto:peter@bardenhagen.xyz" className="button" aria-label="Email Peter Bardenhagen">Email</a></li>
+              <li><a href="mailto:peter@bardenhagen.xyz" className="button" aria-label="Email Peter Bardenhagen">Email Me</a></li>
             </ul>
             <button className="mobile-toggle" onClick={toggleMobileMenu} aria-label="Toggle mobile menu" aria-expanded={menuOpen}>
               <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="none" viewBox="0 0 24 24">
@@ -171,7 +169,8 @@ export default function Home() {
                 <div className="call-to-action">
                   {/* UPDATED: resume file path */}
                   <a href="/Peter_Bardenhagen_CV.docx" className="button black">Resume</a>
-                  <a href="mailto:peter@bardenhagen.xyz" className="button white">Email</a>
+                  <a href="/profile" className="button black">Capability Pack</a>
+                  <a href="mailto:peter@bardenhagen.xyz" className="button white">Email Me</a>
                 </div>
                 <div className="social-links" role="navigation" aria-label="Social media links">
                   <IconButton aria-label="Visit Peter's GitHub profile" href="https://github.com/peterjbardenhagen" target="_blank" rel="noopener noreferrer">
@@ -250,7 +249,7 @@ export default function Home() {
                 </ul>
                 <h3>Backend</h3>
                 <ul>
-                  <li>ASP.Net</li><li>C#</li><li>C++</li><li>Java</li><li>Node.js</li><li>Python</li>
+                  <li>ASP.Net</li><li>C#</li><li>Java</li><li>Node.js</li><li>Python</li>
                 </ul>
               </div>
               <div className="right-column">
@@ -270,117 +269,13 @@ export default function Home() {
             </div>
           </section>
 
-{/* CURRENT ROLE → Recusant / CS Energy */}
-<section id="experience" className="work-experience container" aria-labelledby="current-role-heading">
-  <h2 id="current-role-heading">
-    <small>Current Role</small>
-    Solution Architect @ Recusant
-  </h2>
-  <div className="jobs">
-    <article id="current-role">
-      <h3>Retail Solution Architect – CS Energy</h3>
-      <div>March 2025 – September 2025</div>
-      <p>
-        Established the architectural foundations and roadmap for CS Energy’s retail uplift, with formal governance through the Architecture Forum.
-      </p>
-      <ul className="list">
-        <li>Baselined the <strong>current state architecture</strong>, defined the <strong>future state architecture vision</strong>, and authored a multi-year <strong>architectural roadmap</strong>.</li>
-        <li>Produced a <strong>functional roadmap</strong>; created multiple <strong>Initiative Canvases</strong> and scored them against a <strong>functional priority matrix</strong> to inform investment decisions.</li>
-        <li>Wrote and presented <strong>Architecture Impact Assessments (AIAs)</strong> and <strong>High-Level Designs (HLDs)</strong> to the Architecture Forum.</li>
-        <li>Explicitly called out <strong>regulatory compliance obligations</strong> and <strong>operational risks</strong> as part of the proposed uplift.</li>
-      </ul>
-
-      {/* Availability + Recusant logo */}
-      <div
-        className="role-cta"
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: "16px",
-          marginTop: "12px",
-          flexWrap: "wrap"
-        }}
-      >
-        <img
-          src="https://cdn.prod.website-files.com/67e37366806acb8fe9d88830/67e37366806acb8fe9d888af_Recusant_logo_red.svg"
-          alt="Recusant"
-          style={{ height: 28 }}
-        />
-        <p style={{ margin: 0 }}>
-          <strong>Upcoming Availability:</strong> I have room for new engagements!
-          <br/>{" "}
-          <a
-            href="https://www.recusant.com.au/who-we-are#peterbardenhagen"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="recusant-link"
-          >
-            View my Recusant profile →
-          </a>
-        </p>
-      </div>
-    </article>
-  </div>
-</section>
-
-          {/* Existing experience cards */}
-          <section className="work-experience container">
+{/* Career Story Timeline */}
+          <section id="career-timeline" className="container">
             <h2>
-              <small>Previous</small>
-              Experience
+              <small>My Professional Journey</small>
+              Career Story
             </h2>
-            <div className="jobs">
-              <article>
-                <figure>
-                  <div>
-                    <img src="./imgs/workplace-1.jpg" alt="Workplace 1 - Capgemini" width="100%" />
-                    <figcaption>Capgemini</figcaption>
-                  </div>
-                </figure>
-                <h3>Senior Manager</h3>
-                <div>2022-2024</div>
-                <p>Drove major digital transformation for leading Australian organisations. Highlights:</p>
-                <ul className="list">
-                  <li>Modernising Perpetual&apos;s online customer platforms</li>
-                  <li>Rebuilding Pharmacy Guild systems on cloud to improve efficiency</li>
-                  <li>Creating mapping solutions for LendLease developments</li>
-                  <li>Leading Western Power&apos;s shift to digital operations</li>
-                </ul>
-                <p>Kept skillset current across AI, data analytics, and Azure/Databricks.</p>
-              </article>
-              <article>
-                <figure>
-                  <div>
-                    <img src="./imgs/workplace-2.jpg" alt="Workplace 2 - Sonic Healthcare" width="100%" />
-                    <figcaption>Sonic Healthcare</figcaption>
-                  </div>
-                </figure>
-                <h3>Senior Consultant</h3>
-                <div>2018-2021</div>
-                <p>Led EasyVisit—medical bookings used by 200+ GP practices.</p>
-                <ul className="list">
-                  <li>Patients book online</li>
-                  <li>Practices manage schedules efficiently</li>
-                  <li>Self-service kiosks for check-in</li>
-                </ul>
-              </article>
-              <article>
-                <figure>
-                  <div>
-                    <img src="./imgs/workplace-3.jpg" alt="Workplace 3 - SS&C" width="100%" />
-                    <figcaption>SS&amp;C</figcaption>
-                  </div>
-                </figure>
-                <h3>Technical Project Manager</h3>
-                <div>2016-2017</div>
-                <p>Delivered digital programs ($500k–$5m) leading teams up to 25 and owning outcomes.</p>
-                <ul className="list">
-                  <li>Customisable wealth platform incl. mobile &amp; watch</li>
-                  <li>Improved inter-system messaging</li>
-                  <li>Managed complex data migrations</li>
-                </ul>
-              </article>
-            </div>
+            <CareerTimeline />
           </section>
 
           {/* Projects */}
@@ -391,7 +286,7 @@ export default function Home() {
             </h2>
             <div className="bento-grid">
               <a href="#" className="bento-item">
-                <img src="./imgs/per.png" alt="Perpetual" height="100%" width="auto" />
+                <img src="./imgs/recusant-intelligence.png" alt="Recusant Intelligence" height="100%" width="auto" />
               </a>
               <a href="#" className="bento-item">
                 <img src="./imgs/wp.png" alt="Western Power" width="100%" />
@@ -403,7 +298,7 @@ export default function Home() {
                 <img src="./imgs/bento-5.jpg" alt="Bob Jane Racing Heritage" width="auto" height="100%" />
               </a>
               <a href="#" className="bento-item">
-                <img src="./imgs/ev.png" alt="Easy Visit" width="100%" />
+                <img src="./imgs/easyvisit.png" alt="EasyVisit" width="100%" />
               </a>
             </div>
           </section>
@@ -424,7 +319,10 @@ export default function Home() {
                   <li>Skills and qualifications</li>
                 </ul>
                 {/* UPDATED: resume link */}
-                <p><a href="/Peter_Bardenhagen_CV.docx" className="button black">Download Resume</a></p>
+                <p>
+                  <a href="/Peter_Bardenhagen_CV.docx" className="button black">Resume</a>
+                  <a href="/profile" className="button black" style={{marginLeft: '10px'}}>Capability Pack</a>
+                </p>
               </div>
               <div className="chat-box">
                 <div className="scroll-area" ref={scrollAreaRef}>

@@ -96,18 +96,45 @@ body {
     font-size: 16px;
     color: var(--base-600);
     background-color: var(--gray-50);
+    background-image:
+        radial-gradient(ellipse 80% 50% at 20% -10%, rgba(37, 99, 235, 0.08), transparent),
+        radial-gradient(ellipse 60% 40% at 80% 10%, rgba(56, 189, 248, 0.08), transparent),
+        radial-gradient(ellipse 70% 50% at 50% 100%, rgba(16, 185, 129, 0.06), transparent);
+    background-attachment: fixed;
+    min-height: 100vh;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
-.jobdesc-textarea, textarea {
-    width: 350px;
-    height: 150px;
+textarea {
     padding: 12px;
     border: 1px solid var(--gray-300);
     border-radius: var(--radius-md);
     font-family: var(--font-body);
     transition: border-color var(--transition-base);
+    background-color: white;
+}
+
+.jobdesc-textarea {
+    width: 100%;
+    min-height: 260px;
+    padding: 20px;
+    border-radius: var(--radius-xl);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 
+        0 2px 12px rgba(0, 0, 0, 0.04),
+        0 0 0 1px rgba(255, 255, 255, 0.8) inset;
+    font-size: 16px;
+    line-height: 1.7;
+    transition: all var(--transition-base);
+}
+
+.jobdesc-textarea:hover {
+    border-color: var(--gray-300);
+    box-shadow: 
+        0 4px 16px rgba(0, 0, 0, 0.06),
+        0 0 0 1px rgba(255, 255, 255, 0.9) inset;
 }
 
 .jobdesc-textarea:focus, textarea:focus {
@@ -132,18 +159,6 @@ body {
 #current-role {
     background: linear-gradient(135deg, var(--accent-mint-100) 0%, var(--base-100) 100%) !important;
     border: 1px solid var(--accent-mint-400);
-}
-
-.recusant-link {
-    text-decoration: none;
-    color: var(--primary) !important;
-    font-weight: 600;
-    transition: color var(--transition-base);
-}
-
-.recusant-link:hover {
-    color: var(--primary-hover) !important;
-    text-decoration: underline;
 }
 
 /* Links */
@@ -377,16 +392,27 @@ h1 small {
 
 .hero .hero-blue {
     flex: 1;
-    background: white;
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
     padding: var(--spacing-2xl);
     border-radius: var(--radius-2xl);
     display: flex;
     flex-direction: column;
     justify-content: center;
-    box-shadow: var(--shadow-xl);
-    border: 1px solid var(--gray-100);
+    box-shadow: 
+        0 8px 40px rgba(0, 0, 0, 0.04),
+        0 0 0 1px rgba(255, 255, 255, 0.8) inset;
+    border: 1px solid rgba(255, 255, 255, 0.6);
     position: relative;
     overflow: hidden;
+    transition: all var(--transition-slow);
+}
+
+.hero .hero-blue:hover {
+    box-shadow: 
+        0 12px 56px rgba(0, 0, 0, 0.06),
+        0 0 0 1px rgba(255, 255, 255, 0.9) inset;
 }
 
 .hero .hero-blue::before {
@@ -472,93 +498,77 @@ h1 small {
  .logos-container {
      margin-bottom: 80px;
  }
+/* Logo Carousel - Redesigned */
 .logos {
-    background-color: #ffffff;
-    border-radius: 30px;
-    padding: 30px 0px;
-    vertical-align: middle;
+    background: white;
+    padding: 20px 0;
+    width: 100%;
+    margin-bottom: 30px;
     filter: grayscale(100%);
     opacity: 0.7;
     transition: opacity var(--transition-base);
-    width: 100%;
-    height: auto;
-    max-height: 50px;
-    margin-bottom: 50px;
 }
 
 .logos:hover {
     opacity: 1;
 }
 
-@media (max-width:1440px) {
-    .logos {
-        border-radius: 0px;
-    }
-}
-
 .logos .marquee {
-    width: 100vw;
-    max-width: 100%;
-    height: 128px;
+    width: 100%;
+    height: 60px;
     overflow: hidden;
     position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* Fade masks on left and right */
+.logos .marquee::before,
+.logos .marquee::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100px;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.logos .marquee::before {
+    left: 0;
+    background: linear-gradient(to right, white 0%, transparent 100%);
+}
+
+.logos .marquee::after {
+    right: 0;
+    background: linear-gradient(to left, white 0%, transparent 100%);
 }
 
 .logos .track {
-    position: absolute;
     display: flex;
-    gap: 10px 20px;
-    margin: auto;
-    vertical-align: middle;
+    align-items: center;
+    gap: 40px;
     white-space: nowrap;
     will-change: transform;
-    animation: marquee 40s linear infinite;
-    width: auto;
-}
-
-.logos .track .landscape {
-    margin-top: 13px !important;
-}
-
-.logos .track .archimate,
-.logos .track .togaf {
-    height: 35px;
-}
-
-.logos .track .agilist,
-.logos .track .prince2,
-.logos .track .pspoi,
-.logos .track .psmi {
-    height: 35px;
-}
-
-.logos .track .datadog,
-.logos .track .flutterflow,
-.logos .track .itil {
-    height: 35px;
-}
-
-.logos .track .databricks {
-    height: 31px;
-}
-
-.logos .track .optimizely {
-    margin-top: 7px !important;
-    height: 38px;
-}
-
-.logos .track .webflow {
-    height: 31px;
-}
-
-.logos .track .square {
-    margin-top: 5px !important;
-    height: 50px !important;
+    animation: marquee 30s linear infinite;
 }
 
 .logos .track img {
-    height: 35px;
+    height: 32px;
+    width: auto;
+    object-fit: contain;
+    flex-shrink: 0;
+    mix-blend-mode: multiply;
 }
+
+.logos .track .square {
+    height: 40px;
+}
+
+.logos .track .landscape {
+    height: 28px;
+}
+
  @keyframes marquee {
      0% {
          transform: translateX(0);
@@ -604,13 +614,24 @@ h3 {
     color: var(--gray-900);
 }
 .skills .holder-blue {
-    background: white;
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     border-radius: var(--radius-2xl);
     padding: var(--spacing-2xl);
     display: flex;
     gap: var(--spacing-2xl);
-    box-shadow: var(--shadow-lg);
-    border: 1px solid var(--gray-200);
+    box-shadow: 
+        0 8px 40px rgba(0, 0, 0, 0.04),
+        0 0 0 1px rgba(255, 255, 255, 0.8) inset;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    transition: all var(--transition-slow);
+}
+
+.skills .holder-blue:hover {
+    box-shadow: 
+        0 12px 48px rgba(0, 0, 0, 0.06),
+        0 0 0 1px rgba(255, 255, 255, 0.9) inset;
 }
 
 @media(max-width:1024px) {
@@ -676,18 +697,24 @@ h3 {
 }
 
 .work-experience .jobs article {
-    background: white;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     padding: var(--spacing-2xl);
     border-radius: var(--radius-2xl);
     flex: 1;
-    box-shadow: var(--shadow-lg);
-    border: 1px solid var(--gray-200);
-    transition: transform var(--transition-base), box-shadow var(--transition-base);
+    box-shadow: 
+        0 4px 24px rgba(0, 0, 0, 0.04),
+        0 0 0 1px rgba(255, 255, 255, 0.7) inset;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    transition: all var(--transition-slow);
 }
 
 .work-experience .jobs article:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-xl);
+    transform: translateY(-6px) scale(1.01);
+    box-shadow: 
+        0 12px 40px rgba(0, 0, 0, 0.08),
+        0 0 0 1px rgba(255, 255, 255, 0.9) inset;
 }
 
 .work-experience .jobs article h3 {

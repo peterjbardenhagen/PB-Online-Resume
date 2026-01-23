@@ -1,0 +1,92 @@
+/* Slide 5: Clients & Partners */
+
+#slide-clients { 
+    background: linear-gradient(135deg, var(--bg-green-900) 0%, var(--bg-blue-800) 55%, var(--bg-gray-950) 100%); 
+}
+
+.industry-bento-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, auto);
+    gap: 16px;
+    max-width: 1100px;
+    max-height: calc(100vh - 220px);
+    margin: 0 auto;
+}
+
+.industry-card {
+    background: var(--card-bg-standard);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--card-border-standard);
+    border-radius: var(--card-radius-standard);
+    padding: 20px;
+    transition: 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.industry-card h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #e5f2ff;
+}
+
+.industry-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--card-border-hover);
+    box-shadow: var(--card-shadow-standard);
+}
+
+.industry-card.featured {
+    border-left: 3px solid var(--primary);
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(255, 255, 255, 0.05));
+}
+
+.industry-card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.industry-card-header h3 {
+    margin: 0;
+    line-height: 1;
+}
+
+.industry-icon {
+    width: 18px;
+    height: 18px;
+    stroke: var(--primary);
+    flex-shrink: 0;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.client-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 12px;
+    margin-top: 8px;
+}
+
+.client-list span {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 14px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #e5f2ff;
+    transition: 0.3s ease;
+    white-space: nowrap;
+}
+
+.industry-card:hover .client-list span {
+    border-color: rgba(16, 185, 129, 0.5);
+    background: rgba(16, 185, 129, 0.16);
+    color: #ffffff;
+}

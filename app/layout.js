@@ -2,6 +2,8 @@ import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
 import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 
+export const runtime = "nodejs";
+
 export const metadata = {
   metadataBase: new URL("https://peter.bardenhagen.xyz"),
   title: {
@@ -39,7 +41,7 @@ export const metadata = {
     title: "Peter Bardenhagen — Solution Architect & Technology Leader",
     description:
       "Solution Architect specialising in enterprise digital transformation, cloud architecture, and AI-enabled platforms. TOGAF & ArchiMate certified.",
-    images: ["https://peter.bardenhagen.xyz/imgs/preview.png"],
+    images: ["/opengraph-image"],
   },
   openGraph: {
     type: "profile",
@@ -51,18 +53,11 @@ export const metadata = {
     locale: "en_AU",
     images: [
       {
-        url: "https://peter.bardenhagen.xyz/imgs/preview.png",
+        url: "/opengraph-image",
         width: 1200,
         height: 630,
         alt: "Peter Bardenhagen — Solution Architect & Technology Leader",
         type: "image/png",
-      },
-    ],
-    videos: [
-      {
-        url: "https://peter.bardenhagen.xyz/imgs/preview.mp4",
-        width: 1200,
-        height: 630,
       },
     ],
   },

@@ -151,7 +151,9 @@ const WordCloud = () => {
                 className="word-cloud-container"
             />
             <p className="c">
-                An AI generated visualisation of skills and qualities most often recognised by peers
+                Caption: An AI generated visualisation of skills and qualities most often recognised by peers
+                <br />
+                <br />
             </p>
         </div>
     );

@@ -13,6 +13,7 @@ const ResponsiveCarousel: FC = () => {
             <Carousel
                 showArrows={true}
                 showIndicators={true}
+                showThumbs={false}
                 infiniteLoop={true}
                 dynamicHeight={false}
                 autoPlay={true} // Optional: Enables auto-play
@@ -25,9 +26,10 @@ const ResponsiveCarousel: FC = () => {
                             <Image
                                 src={slide.imageUrl}
                                 alt={slide.title}
-                                layout="responsive"
                                 width={800}
                                 height={600}
+                                sizes="100vw"
+                                style={{ width: '100%', height: 'auto' }}
                                 className="carousel-image"
                             />
                         </div>

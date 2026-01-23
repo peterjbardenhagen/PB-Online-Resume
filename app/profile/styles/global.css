@@ -1,0 +1,95 @@
+/* --- GLOBAL ELEMENTS --- */
+
+/* Progress Bar */
+.progress-bar-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: rgba(255,255,255,0.1);
+    z-index: 2000;
+}
+.progress-bar {
+    height: 100%;
+    background: var(--primary);
+    width: 0%;
+    transition: width 0.8s ease;
+    box-shadow: 0 0 12px var(--primary), 0 0 24px rgba(16, 185, 129, 0.4);
+}
+
+/* PDF Float Button */
+.pdf-btn {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 2000;
+    transition: all 0.35s ease;
+    color: white;
+    padding: 0;
+}
+
+.pdf-btn:hover {
+    background: var(--primary);
+    color: var(--bg-green-900);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px rgba(16,185,129,0.35);
+}
+
+/* Headers - Standardized across all slides */
+.section-header {
+    text-align: center;
+    margin-bottom: clamp(20px, 3vh, 36px);
+    flex-shrink: 0;
+}
+
+.section-header h2 {
+    font-size: clamp(36px, 5vw, 52px);
+    font-weight: 700;
+    margin-bottom: 10px;
+    background: var(--text-gradient-header);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.02em;
+}
+
+.section-header p {
+    font-size: clamp(14px, 1.8vw, 18px);
+    color: var(--text-muted);
+    max-width: 680px;
+    margin: 0 auto;
+    line-height: 1.5;
+}
+
+.section-header .header-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+/* Icon SVG Standard */
+.icon-svg {
+    width: 42px;
+    height: 42px;
+    stroke: white;
+    fill: none;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    margin-bottom: 20px;
+    display: block;
+}

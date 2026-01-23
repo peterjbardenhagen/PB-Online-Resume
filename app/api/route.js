@@ -30,7 +30,7 @@ Help users learn more about Peter from his resume.`
 	const response = await client.chat.completions.create({
 		model,
 		messages,
-		max_tokens: 350,
+		max_completion_tokens: 350,
 	})
 
 	return NextResponse.json({
@@ -66,7 +66,7 @@ CloudFormation, CloudFront, EC2, EKS, RDS, S3, SQS, VPCs or RDS	ACR, AKR, AI Sea
 PROFESSIONAL EXPERIENCE
 Senior Solution Architect
 Recusant – Brisbane
-March 2024 – Present
+March 2025 – Jan 2026
 Overview: Recusant is a Brisbane-based strategic technology consultancy that collaborates with organisations to shape practical digital strategies—and then drives execution through solution architecture, delivery, and organisational change.
 Responsibilities:
 Retail Solution Architect – CS Energy
@@ -75,11 +75,13 @@ Retail Solution Architect – CS Energy
 •	Authored and presented Architecture Impact Assessments (AIAs) and High-Level Designs (HLDs) to the Architecture Forum, securing approvals and alignment.
 •	Identified and documented regulatory compliance obligations (including energy sector regulations) and operational risks, integrating these into proposed solution uplifts.
 •	Partnered with business stakeholders to ensure architectural recommendations supported regulatory, operational, and strategic objectives.
+•	Provide oversight for the development of a new billing system built on Azure with Kubernetes, ensuring Architecture Board approval gained and external cybersecurity audit feedback adhered to.
 Presales & Strategic Advisory
 •	Partnered with Recusant leadership on go-to-market strategies, strengthening brand and market positioning.
 •	Supported business development and presales: scoped solutions, prepared proposals, and engaged directly with enterprise clients.
-•	Oversaw technical delivery and cross-team collaboration, ensuring high-quality outcomes and adherence to best practices.
-________________________________________
+Product Development
+•	Design and build of an Recusant Intelligence (https://recusant-intelligence-website.vercel.app), an in-house enterprise AI platform built on Azure using Azure OpenAI, LangChain, Vercel AI SDK, enabling MCP for intelligent chatbot capable of understanding the knowledge graph of the platform and integrations. Next.js / React frontend with ASP.Net WebAPI, and Azure SQL database.
+____________________________________
 Independent Contractor - Brisbane
 June 2024 – March 2025	
 Overview: Delivered short-term, high-impact architecture and delivery engagements

@@ -1,0 +1,132 @@
+/* Slide 6: Creative Direction & HCD Collage */
+
+.hcd-slide {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Photos scattered around edges */
+.hcd-photos {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.hcd-photo {
+    position: absolute;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.12);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+    pointer-events: auto;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hcd-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.hcd-photo:hover {
+    border-color: rgba(16, 185, 129, 0.5);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+
+/* Photo positions */
+.hcd-photo--top-left {
+    top: 8%;
+    left: 3%;
+    width: 220px;
+    height: 150px;
+    transform: rotate(-3deg);
+}
+
+.hcd-photo--top-center {
+    top: 2%;
+    left: 50%;
+    transform: translateX(-50%) rotate(1deg);
+    width: 280px;
+    height: 160px;
+}
+
+.hcd-photo--top-right {
+    top: 8%;
+    right: 3%;
+    width: 200px;
+    height: 140px;
+    transform: rotate(4deg);
+}
+
+.hcd-photo--bottom-left {
+    bottom: 12%;
+    left: 5%;
+    width: 260px;
+    height: 170px;
+    transform: rotate(-2deg);
+}
+
+.hcd-photo--bottom-right {
+    bottom: 10%;
+    right: 4%;
+    width: 280px;
+    height: 180px;
+    transform: rotate(3deg);
+}
+
+/* Center content */
+.hcd-center {
+    position: relative;
+    z-index: 5;
+    text-align: center;
+    max-width: 900px;
+}
+
+.hcd-center .section-header {
+    margin-bottom: clamp(20px, 3vh, 32px);
+}
+
+.design-dna-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.dna-item {
+    background: var(--card-bg-standard);
+    border: 1px solid var(--card-border-standard);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: left;
+    transition: 0.3s ease;
+}
+
+.dna-item:hover {
+    background: rgba(16, 185, 129, 0.05);
+    border-color: rgba(16, 185, 129, 0.3);
+    transform: translateY(-4px);
+}
+
+.dna-label {
+    display: block;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: var(--primary);
+    margin-bottom: 10px;
+}
+
+.dna-item p {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin: 0;
+}

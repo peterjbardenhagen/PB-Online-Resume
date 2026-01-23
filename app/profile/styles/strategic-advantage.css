@@ -1,0 +1,206 @@
+/* Slide 3: The Strategic Advantage (McKinsey 2x2 Matrix) */
+
+#slide-strategic-advantage { 
+    background: linear-gradient(135deg, var(--bg-green-900) 0%, var(--bg-gray-800) 55%, var(--bg-blue-900) 100%); 
+}
+
+.strategic-matrix-container {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 32px;
+    max-width: 1100px;
+    max-height: calc(100vh - 220px);
+    margin: 0 auto;
+    align-items: stretch;
+}
+
+.positioning-panel {
+    background: var(--card-bg-standard);
+    border: 1px solid var(--card-border-standard);
+    border-radius: var(--card-radius-standard);
+    overflow: hidden;
+    box-shadow: var(--card-shadow-standard);
+}
+
+.panel-header {
+    background: rgba(16, 185, 129, 0.15);
+    border-bottom: 1px solid rgba(16, 185, 129, 0.3);
+    padding: 16px 24px;
+}
+
+.panel-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--primary);
+}
+
+.positioning-content {
+    padding: 24px;
+}
+
+.positioning-statement {
+    font-size: 16px;
+    color: #e2e8f0;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    font-style: italic;
+    border-left: 3px solid var(--primary);
+    padding-left: 16px;
+}
+
+.positioning-points {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.pos-point {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.08);
+    transition: 0.3s ease;
+}
+
+.pos-point:hover {
+    background: rgba(16, 185, 129, 0.08);
+    border-color: rgba(16, 185, 129, 0.25);
+}
+
+.pos-number {
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--primary);
+    opacity: 0.7;
+    min-width: 24px;
+}
+
+.pos-text {
+    font-size: 14px;
+    color: #cbd5e1;
+    line-height: 1.5;
+}
+
+.matrix-panel {
+    background: var(--card-bg-standard);
+    border: 1px solid var(--card-border-standard);
+    border-radius: var(--card-radius-standard);
+    overflow: hidden;
+    box-shadow: var(--card-shadow-standard);
+}
+
+.matrix-header {
+    background: rgba(59, 130, 246, 0.12);
+    border-bottom: 1px solid rgba(59, 130, 246, 0.25);
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.matrix-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #60a5fa;
+}
+
+.matrix-axes {
+    display: flex;
+    gap: 20px;
+}
+
+.axis-label {
+    font-size: 10px;
+    color: var(--text-subtle);
+    letter-spacing: 1px;
+}
+
+.matrix-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 10px;
+    padding: 20px;
+    position: relative;
+}
+
+.matrix-quadrant {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 6px;
+    position: relative;
+    transition: 0.3s ease;
+}
+
+.matrix-quadrant:hover {
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(16, 185, 129, 0.3);
+    transform: scale(1.02);
+}
+
+.matrix-quadrant .q-icon {
+    width: 44px;
+    height: 44px;
+    background: rgba(16, 185, 129, 0.12);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 4px;
+}
+
+.matrix-quadrant .q-icon svg {
+    width: 22px;
+    height: 22px;
+    stroke: var(--primary);
+}
+
+.q-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: white;
+}
+
+.q-subtitle {
+    font-size: 11px;
+    color: var(--text-subtle);
+}
+
+.matrix-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 10;
+    box-shadow: 0 8px 24px rgba(251, 191, 36, 0.4);
+    color: var(--bg-gray-950);
+}
+
+.matrix-center span {
+    font-size: 11px;
+    font-weight: 800;
+    color: inherit;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    line-height: 1.2;
+}

@@ -1,0 +1,120 @@
+/* Slide 7: Architect Spectrum (Digital Equalizer) */
+
+#slide-spectrum { 
+    background: linear-gradient(135deg, var(--bg-gray-950) 0%, var(--bg-gray-900) 55%, var(--bg-gray-950) 100%); 
+}
+
+.dashboard-container { 
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 28px; 
+    width: 100%; 
+    max-width: 1200px; 
+    max-height: calc(100vh - 220px);
+    margin: 0 auto; 
+}
+
+.gauge-group {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 20px;
+    transition: 0.3s ease;
+    overflow: hidden;
+}
+
+.gauge-group:hover {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.gauge-group h3 { 
+    font-size: 11px; 
+    text-transform: uppercase; 
+    letter-spacing: 2px; 
+    color: var(--primary); 
+    margin-bottom: 18px; 
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
+}
+
+.gauge-group h3::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(16, 185, 129, 0.3), transparent);
+}
+
+.gauge-row { 
+    margin-bottom: 14px; 
+}
+
+.gauge-header { 
+    display: flex; 
+    justify-content: space-between; 
+    margin-bottom: 8px; 
+    font-size: 14px; 
+    font-weight: 600; 
+    color: var(--text-soft);
+}
+
+.gauge-header span:last-child {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-subtle);
+}
+
+.gauge-track { 
+    height: 12px; 
+    background: rgba(255, 255, 255, 0.05); 
+    border-radius: 2px; 
+    overflow: hidden; 
+    position: relative;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.3);
+}
+
+/* Digital Equalizer segments effect */
+.gauge-track::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(90deg, transparent 0%, transparent 80%, rgba(0,0,0,0.5) 80%, rgba(0,0,0,0.5) 100%);
+    background-size: 8px 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.gauge-fill { 
+    height: 100%; 
+    width: 0; 
+    transition: width 1.5s cubic-bezier(0.16, 1, 0.3, 1); 
+    position: relative;
+    z-index: 1;
+}
+
+/* Color tiers for equalizer */
+.g-max .gauge-fill { 
+    background: linear-gradient(90deg, #065f46, var(--primary)); 
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
+}
+.g-high .gauge-fill { 
+    background: linear-gradient(90deg, #1e40af, #3b82f6); 
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+}
+.g-med .gauge-fill { 
+    background: linear-gradient(90deg, #92400e, #f59e0b); 
+    box-shadow: 0 0 15px rgba(245, 158, 11, 0.3);
+}
+
+.slide.active .gauge-fill { width: var(--w); }
+
+/* Print: force all gauge fills to show full width */
+@media print {
+    .slide.active .gauge-fill {
+        width: var(--w) !important;
+        transition: none !important;
+    }
+}

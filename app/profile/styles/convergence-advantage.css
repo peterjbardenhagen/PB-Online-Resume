@@ -1,0 +1,262 @@
+/* Slide 4: The Convergence Advantage */
+
+.convergence-model {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: center;
+    height: clamp(420px, calc(100vh - 320px), 620px);
+}
+
+.model-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    min-height: 0;
+}
+
+.synergy-svg {
+    width: 100%;
+    max-width: 550px;
+    height: 100%;
+    max-height: 100%;
+    filter: drop-shadow(0 0 20px rgba(16, 185, 129, 0.15));
+}
+
+.synergy-path {
+    fill: rgba(16, 185, 129, 0.03);
+    stroke: rgba(16, 185, 129, 0.2);
+    stroke-width: 1;
+    stroke-dasharray: 4 4;
+}
+
+.synergy-link {
+    stroke: rgba(255, 255, 255, 0.1);
+    stroke-width: 1.5;
+}
+
+.synergy-node .node-bg {
+    fill: var(--bg-gray-900);
+    stroke: rgba(255, 255, 255, 0.15);
+    stroke-width: 2;
+    transition: 0.3s ease;
+}
+
+.synergy-node {
+    cursor: pointer;
+}
+
+.synergy-node:hover .node-bg,
+.synergy-node.is-active .node-bg {
+    stroke: var(--primary);
+    fill: var(--primary-soft);
+    filter: url(#glow);
+}
+
+.synergy-node .node-text {
+    fill: var(--text-muted);
+    font-size: 13px;
+    font-weight: 600;
+    text-anchor: middle;
+    pointer-events: none;
+    transition: 0.3s ease;
+}
+
+.synergy-node:hover .node-text,
+.synergy-node.is-active .node-text {
+    fill: white;
+}
+
+.synergy-node.core .node-bg {
+    fill: var(--bg-gray-950);
+    stroke: var(--primary);
+    stroke-width: 3;
+    filter: drop-shadow(0 0 15px rgba(16, 185, 129, 0.4));
+}
+
+.synergy-node.core .core-label {
+    fill: var(--primary);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.synergy-details {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.convergence-carousel {
+    height: 100%;
+    min-height: 0;
+}
+
+.convergence-carousel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    margin-bottom: 12px;
+}
+
+.convergence-carousel-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.convergence-carousel-title h4 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+    color: white;
+}
+
+.convergence-carousel-controls {
+    display: flex;
+    gap: 10px;
+}
+
+.convergence-carousel-btn {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    color: white;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.25s ease;
+    padding: 0;
+}
+
+.convergence-carousel-btn:hover {
+    border-color: rgba(16, 185, 129, 0.45);
+    background: rgba(16, 185, 129, 0.10);
+    transform: translateY(-1px);
+}
+
+.convergence-carousel-btn svg {
+    width: 20px;
+    height: 20px;
+}
+
+.convergence-viewport {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    overflow: hidden;
+}
+
+.synergy-card-btn {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    font: inherit;
+    color: inherit;
+}
+
+.synergy-card-btn:focus-visible {
+    outline: 2px solid rgba(16, 185, 129, 0.55);
+    outline-offset: 2px;
+}
+
+.synergy-card.is-selected {
+    border-color: rgba(16, 185, 129, 0.55);
+    background: linear-gradient(90deg, rgba(16, 185, 129, 0.12), rgba(255, 255, 255, 0.03));
+}
+
+.convergence-helper {
+    margin-top: 10px;
+    font-size: 12px;
+    color: rgba(226, 232, 240, 0.7);
+}
+
+.synergy-card {
+    background: var(--card-bg-standard);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--card-border-standard);
+    border-radius: var(--card-radius-standard);
+    padding: 20px;
+    transition: 0.35s ease;
+}
+
+.synergy-card:hover,
+.synergy-card.is-highlight {
+    transform: translateX(10px);
+    border-color: var(--card-border-hover);
+    background: linear-gradient(90deg, rgba(16, 185, 129, 0.1), transparent);
+}
+
+.syn-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.syn-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.syn-dot.digital { background: #3b82f6; }
+.syn-dot.ai { background: #ef4444; }
+.syn-dot.cx { background: #10b981; }
+.syn-dot.integration { background: #8b5cf6; }
+.syn-dot.business { background: #f59e0b; }
+.syn-dot.data { background: #3b82f6; }
+
+.synergy-card h4 {
+    font-size: 16px;
+    font-weight: 700;
+    color: white;
+    margin: 0;
+}
+
+.synergy-card p {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin: 0;
+}
+
+.convergence-points {
+    list-style: none;
+    padding: 0;
+    margin: 8px 0 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.convergence-points li {
+    font-size: 13px;
+    color: var(--text-muted);
+    padding-left: 16px;
+    position: relative;
+}
+
+.convergence-points li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--primary);
+}
+
+.convergence-summary.has-active {
+    border-color: var(--primary);
+    background: rgba(16, 185, 129, 0.05);
+}

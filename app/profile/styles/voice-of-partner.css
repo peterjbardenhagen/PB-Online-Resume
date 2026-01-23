@@ -1,0 +1,124 @@
+/* Slide 17: Voice of the Partner / Testimonials */
+
+#slide-testimonials { 
+    background: linear-gradient(135deg, var(--bg-gray-900) 0%, rgba(16, 185, 129, 0.08) 50%, var(--bg-gray-950) 100%); 
+}
+
+.partner-board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 1100px;
+    max-height: calc(100vh - 240px);
+    margin: 0 auto;
+}
+
+.partner-note {
+    background: var(--card-bg-standard);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--card-border-standard);
+    border-radius: var(--card-radius-standard);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: 0.35s ease;
+    box-shadow: var(--card-shadow-standard);
+    position: relative;
+}
+
+.partner-note:hover {
+    transform: translateY(-6px);
+    border-color: var(--card-border-hover);
+    z-index: 10;
+}
+
+.partner-note.featured {
+    border-top: 4px solid var(--primary);
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(255, 255, 255, 0.05));
+}
+
+.quote-icon {
+    width: 28px;
+    height: 28px;
+    color: var(--primary);
+    margin-bottom: 14px;
+    opacity: 0.5;
+}
+
+.note-quote p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-soft);
+    font-style: italic;
+    margin-bottom: 20px;
+}
+
+.note-author {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.author-avatar {
+    width: 48px;
+    height: 48px;
+    background: var(--primary-soft);
+    color: var(--primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 14px;
+    border: 2px solid var(--primary);
+}
+
+.author-meta strong {
+    display: block;
+    font-size: 15px;
+    color: white;
+}
+
+.author-meta span {
+    font-size: 12px;
+    color: var(--text-subtle);
+}
+
+.partner-footer {
+    margin-top: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+}
+
+.linkedin-validation {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #60a5fa;
+    font-weight: 600;
+}
+
+.linkedin-validation svg {
+    width: 24px;
+    height: 24px;
+}
+
+.partner-link {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 8px 20px;
+    border: 1px solid var(--primary);
+    border-radius: 20px;
+    transition: 0.3s ease;
+}
+
+.partner-link:hover {
+    background: var(--primary);
+    color: #0f172a;
+}

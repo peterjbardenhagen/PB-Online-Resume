@@ -3,10 +3,7 @@ import './JobDescriptionForm.css';
 import { marked } from 'marked';
 import DOMPurify from 'dompurify';
 import mammoth from 'mammoth';
-import * as pdfjsLib from 'pdfjs-dist';
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-(pdfjsLib as any).GlobalWorkerOptions.workerSrc = `app/pdf.worker.min.mjs`;
+import SkillsAnalysis from '../SkillsAnalysis/SkillsAnalysis';
 
 interface JobDescriptionFormData {
     jobDescription: string;
@@ -26,12 +23,20 @@ export const JobDescriptionForm: React.FC<JobDescriptionFormProps> = ({
 }) => {
     const [jobDescription, setJobDescription] = useState<string>('');
     const [response, setResponse] = useState<string>('');
+    const [analysis, setAnalysis] = useState<{
+        score: number;
+        matchingSkills: string[];
+        missingSkills: string[];
+        summary: string;
+        strengths: string[];
+        recommendations: string[];
+    } | null>(null);
     const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [retryCount, setRetryCount] = useState<number>(0);
 
     const MAX_RETRIES = 3;
-    const TIMEOUT = 30000;
+    const TIMEOUT = 45000;
 
     const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0];
@@ -70,6 +75,13 @@ export const JobDescriptionForm: React.FC<JobDescriptionFormProps> = ({
 
     const extractTextFromPDF = async (file: File): Promise<string> => {
         try {
+            const pdfjsLib = await import('pdfjs-dist');
+
+            if (typeof window !== 'undefined') {
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                (pdfjsLib as any).GlobalWorkerOptions.workerSrc = `app/pdf.worker.min.mjs`;
+            }
+
             const fileArrayBuffer = await file.arrayBuffer();
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             const loadingTask = (pdfjsLib as any).getDocument({ data: fileArrayBuffer });
@@ -107,50 +119,44 @@ export const JobDescriptionForm: React.FC<JobDescriptionFormProps> = ({
 
         setIsSubmitting(true);
         setIsLoading(true);
+        setAnalysis(null);
+        setResponse('');
 
         try {
             const controller = new AbortController();
             const timeoutId = setTimeout(() => controller.abort(), TIMEOUT);
 
-            type ChatRole = 'user' | 'assistant' | 'system';
-            type ChatMessage = { role: ChatRole; content: string };
-
-            const payload: { messages: ChatMessage[] } = {
-                messages: [
-                    {
-                        role: 'user',
-                        content: jobDescription,
-                    },
-                ],
-            };
-
-            console.groupCollapsed('%c[JD] API Request', 'color:#3b82f6;');
-            console.debug('POST /api payload:', {
-                messagesCount: payload.messages.length,
-                firstMessageRole: payload.messages[0]?.role,
-                firstMessagePreview:
-                    (payload.messages[0]?.content ?? '').slice(0, 200) +
-                    ((payload.messages[0]?.content?.length ?? 0) > 200 ? ' ' : ''),
-            });
+            console.groupCollapsed('%c[JD] Qualify API Request', 'color:#3b82f6;');
+            console.debug('POST /api/qualify');
             console.groupEnd();
 
-            const res = await fetch('/api', {
+            const res = await fetch('/api/qualify', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload),
+                body: JSON.stringify({ jobDescription }),
                 signal: controller.signal,
             });
 
             clearTimeout(timeoutId);
 
             if (!res.ok) {
+                // Try to get detailed error from response body
+                let errorBody;
+                try {
+                    errorBody = await res.json();
+                } catch {
+                    errorBody = null;
+                }
+
                 const errorDetails = {
                     status: res.status,
                     statusText: res.statusText,
-                    url: res.url
+                    url: res.url,
+                    body: errorBody
                 };
 
-                console.error('[JD] HTTP error', errorDetails);
+                console.error('[JD] HTTP error details:', errorDetails);
+                console.error('[JD] Full error body:', JSON.stringify(errorBody, null, 2));
 
                 if (res.status === 504 && retryCount < MAX_RETRIES) {
                     const delayMs = 1000 * Math.max(1, retryCount);
@@ -160,31 +166,31 @@ export const JobDescriptionForm: React.FC<JobDescriptionFormProps> = ({
                     return handleSubmit(e);
                 }
 
-                throw new Error(`HTTP error! status: ${res.status}`);
+                // Build detailed error message
+                const errorMsg = errorBody 
+                    ? `HTTP ${res.status}: ${errorBody.message || errorBody.error} [${errorBody.type || 'Unknown'}] Code: ${errorBody.code || 'N/A'}`
+                    : `HTTP error! status: ${res.status}`;
+                
+                throw new Error(errorMsg);
             }
 
             const elapsed = Date.now() - startTime;
-            let data: { message: string };
-            try {
-                data = await res.json();
-            } catch (jsonErr) {
-                console.error('[JD] Failed to parse JSON response', jsonErr);
-                throw jsonErr;
-            }
+            const data = await res.json();
 
-            console.groupCollapsed('%c[JD] API Response', 'color:#16a34a;');
+            console.groupCollapsed('%c[JD] Qualify API Response', 'color:#16a34a;');
             console.info('Status:', res.status, res.statusText);
             console.info('Timing (ms):', elapsed);
-            console.debug('Raw JSON (trimmed):', JSON.stringify(data).slice(0, 1000) + (JSON.stringify(data).length > 1000 ? ' ' : ''));
+            console.debug('Analysis:', data);
             console.groupEnd();
 
-            const htmlResponse = marked.parse(data.message);
-            const sanitizedHtmlResponse = DOMPurify.sanitize(String(htmlResponse));
+            if (data.error) {
+                throw new Error(data.error);
+            }
 
-            setResponse(sanitizedHtmlResponse);
+            setAnalysis(data);
             setRetryCount(0);
 
-            onSuccess?.(sanitizedHtmlResponse);
+            onSuccess?.(JSON.stringify(data));
         } catch (error: unknown) {
             const elapsed = Date.now() - startTime;
             console.groupCollapsed('%c[JD] API Error', 'color:#ef4444;');
@@ -193,7 +199,7 @@ export const JobDescriptionForm: React.FC<JobDescriptionFormProps> = ({
             console.groupEnd();
 
             onError?.(error);
-            setResponse('Error occured: ' + (error instanceof Error ? error.message : String(error)));
+            setResponse('Error occurred: ' + (error instanceof Error ? error.message : String(error)));
         } finally {
             setIsSubmitting(false);
             setIsLoading(false);
@@ -242,6 +248,7 @@ export const JobDescriptionForm: React.FC<JobDescriptionFormProps> = ({
                         onClick={() => {
                             setJobDescription('');
                             setResponse('');
+                            setAnalysis(null);
                         }}
                         disabled={isSubmitting || isLoading}
                     >
@@ -249,7 +256,17 @@ export const JobDescriptionForm: React.FC<JobDescriptionFormProps> = ({
                     </button>
                 </p>
             </form>
-            {response && (
+            {analysis && (
+                <SkillsAnalysis
+                    score={analysis.score}
+                    matchingSkills={analysis.matchingSkills}
+                    missingSkills={analysis.missingSkills}
+                    summary={analysis.summary}
+                    strengths={analysis.strengths}
+                    recommendations={analysis.recommendations}
+                />
+            )}
+            {response && !analysis && (
                 <div
                     className="jobdesc_response"
                     dangerouslySetInnerHTML={{ __html: response }}
