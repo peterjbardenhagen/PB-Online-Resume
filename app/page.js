@@ -214,7 +214,17 @@ export default function Home() {
               <li><a href="#chatbot"       aria-label="AI Assistant">AI Assistant</a></li>
               <li><a href="#book"          aria-label="Book a meeting">Book a Time</a></li>
               <li><a href="#references"    aria-label="References">References</a></li>
-              <li><a href="mailto:peter@bardenhagen.xyz" className="button" aria-label="Contact">Contact</a></li>
+              <li>
+                <div className="contact-dropdown">
+                  <button className="button" aria-label="Contact options" title="0452 491 013 | peter@bardenhagen.xyz">
+                    Contact
+                  </button>
+                  <div className="contact-options-dropdown">
+                    <a href="tel:0452491013" className="contact-opt">📞 0452 491 013</a>
+                    <a href="mailto:peter@bardenhagen.xyz" className="contact-opt">✉️ peter@bardenhagen.xyz</a>
+                  </div>
+                </div>
+              </li>
             </ul>
             <button className="mobile-toggle" onClick={toggleMobileMenu}
               aria-label="Toggle navigation" aria-expanded={menuOpen}>
@@ -619,19 +629,27 @@ export default function Home() {
           {/* ══════════════════════════════════
               BOOK A TIME
           ══════════════════════════════════ */}
-          <section id="book" className="container">
+          <section id="book" className="container booking-section">
             <motion.h2
               initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }} transition={{ duration: 0.6 }}>
-              <small>Let&apos;s Connect on Teams</small>
+              <small>Let&apos;s Connect</small>
               Book a Meeting
             </motion.h2>
-            <iframe
-              src="https://outlook.office.com/bookwithme/user/aad8f0e0beba4aebb06c83a9fbd6be01@bardenhagen.xyz?anonymous&ep=plink"
-              className="bookings"
-              scrolling="no"
-              title="Book a meeting with Peter Bardenhagen"
-            />
+            <motion.div className="booking-options"
+              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1 }}>
+              <a href="https://outlook.office.com/bookwithme/user/aad8f0e0beba4aebb06c83a9fbd6be01@bardenhagen.xyz?anonymous&ep=plink"
+                 target="_blank" rel="noopener noreferrer" className="cta-button primary">
+                Schedule on Outlook
+              </a>
+              <a href="tel:0452491013" className="cta-button secondary">
+                Call: 0452 491 013
+              </a>
+              <a href="mailto:peter@bardenhagen.xyz" className="cta-button secondary">
+                Email: peter@bardenhagen.xyz
+              </a>
+            </motion.div>
           </section>
 
           {/* ══════════════════════════════════
@@ -686,6 +704,36 @@ export default function Home() {
             </div>
           </section>
         </main>
+
+        {/* ═════════════════════════════════════════
+            STICKY BOTTOM NAVIGATION (Mobile)
+        ═════════════════════════════════════════ */}
+        <nav className="sticky-bottom-nav">
+          <motion.a
+            href="/Peter_Bardenhagen_CV.docx"
+            download="Peter_Bardenhagen_CV.docx"
+            className="nav-item"
+            whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <span className="nav-icon">⬇</span>
+            <span className="nav-label">Download CV</span>
+          </motion.a>
+
+          <motion.a
+            href="mailto:peter@bardenhagen.xyz"
+            className="nav-item primary"
+            whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <span className="nav-icon">✉</span>
+            <span className="nav-label">Get in Touch</span>
+          </motion.a>
+
+          <motion.button
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            className="nav-item back-to-top"
+            whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <span className="nav-icon">↑</span>
+            <span className="nav-label">Back to Top</span>
+          </motion.button>
+        </nav>
       </div>
 
       {/* GTM */}

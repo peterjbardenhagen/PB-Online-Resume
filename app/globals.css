@@ -1,62 +1,62 @@
 /* =====================================================
-   PB Online Resume — Dark Premium Theme
+   PB Online Resume — Light Executive Premium Theme
    ===================================================== */
 
 :root {
-  /* Core dark palette */
-  --bg-base:    #050b14;
-  --bg-1:       #080f1c;
-  --bg-2:       #0a1628;
-  --bg-3:       #0f1e30;
+  /* Core light palette */
+  --bg-base:    #ffffff;
+  --bg-1:       #fafbfc;
+  --bg-2:       #f5f6f8;
+  --bg-3:       #eff0f3;
 
   /* Card surfaces */
-  --card-bg:          rgba(255,255,255,0.04);
-  --card-bg-hover:    rgba(255,255,255,0.07);
-  --card-border:      rgba(255,255,255,0.09);
-  --card-border-hover:rgba(255,255,255,0.18);
+  --card-bg:          rgba(0,0,0,0.02);
+  --card-bg-hover:    rgba(0,0,0,0.04);
+  --card-border:      rgba(0,0,0,0.08);
+  --card-border-hover:rgba(0,0,0,0.12);
 
-  /* Accent colours */
-  --accent-green:        #10b981;
-  --accent-green-soft:   rgba(16,185,129,0.12);
-  --accent-blue:         #3b82f6;
-  --accent-blue-soft:    rgba(59,130,246,0.12);
-  --accent-purple:       #8b5cf6;
-  --accent-purple-soft:  rgba(139,92,246,0.12);
-  --accent-amber:        #f59e0b;
+  /* Accent colours — executive palette */
+  --accent-green:        #0e7c7b;
+  --accent-green-soft:   rgba(14,124,123,0.12);
+  --accent-blue:         #1e40af;
+  --accent-blue-soft:    rgba(30,64,175,0.12);
+  --accent-purple:       #6366f1;
+  --accent-purple-soft:  rgba(99,102,241,0.12);
+  --accent-amber:        #b45309;
 
-  /* ── Legacy compat vars used by existing components ── */
-  --base:        #94a3b8;
+  /* ── Legacy compat vars for existing components ── */
+  --base:        #475569;
   --base-100:    #f8fafc;
   --base-200:    #e2e8f0;
   --base-400:    #94a3b8;
-  --base-600:    #cbd5e1;
-  --base-800:    #f1f5f9;
+  --base-600:    #475569;
+  --base-800:    #1e293b;
 
-  --primary:        #10b981;
-  --primary-hover:  #059669;
-  --primary-light:  rgba(16,185,129,0.12);
+  --primary:        #0e7c7b;
+  --primary-hover:  #0a5f5e;
+  --primary-light:  rgba(14,124,123,0.12);
 
-  --gray-50:   #0a1628;
-  --gray-100:  #0f1e30;
-  --gray-200:  rgba(255,255,255,0.08);
-  --gray-300:  rgba(255,255,255,0.14);
-  --gray-600:  #94a3b8;
-  --gray-800:  #e2e8f0;
-  --gray-900:  #f1f5f9;
+  --gray-50:   #f9fafb;
+  --gray-100:  #f3f4f6;
+  --gray-200:  #e5e7eb;
+  --gray-300:  #d1d5db;
+  --gray-600:  #4b5563;
+  --gray-800:  #1f2937;
+  --gray-900:  #111827;
 
-  --success:       #10b981;
-  --success-light: rgba(16,185,129,0.15);
+  --success:       #059669;
+  --success-light: rgba(5,150,105,0.15);
 
-  /* Glassmorphism */
-  --glass-bg:     rgba(8,15,28,0.85);
-  --glass-border: rgba(255,255,255,0.1);
+  /* Glassmorphism (light variant) */
+  --glass-bg:     rgba(255,255,255,0.95);
+  --glass-border: rgba(0,0,0,0.1);
   --glass-blur:   20px;
 
   /* Shadows */
-  --shadow-sm: 0 2px 8px  rgba(0,0,0,0.4);
-  --shadow-md: 0 8px 24px rgba(0,0,0,0.35);
-  --shadow-lg: 0 16px 48px rgba(0,0,0,0.45);
-  --shadow-xl: 0 24px 64px rgba(0,0,0,0.55);
+  --shadow-sm: 0 1px 2px  rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 6px  rgba(0,0,0,0.1);
+  --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+  --shadow-xl: 0 20px 25px rgba(0,0,0,0.1);
 
   /* Typography */
   --font-body:    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -83,10 +83,10 @@
   --transition-slow: 300ms cubic-bezier(0.4,0,0.2,1);
 
   /* Accent-mint aliases (legacy compat) */
-  --accent-mint:      rgba(16,185,129,0.08);
-  --accent-mint-100:  #0a1628;
-  --accent-mint-400:  #10b981;
-  --accent-mint-800:  #065f46;
+  --accent-mint:      rgba(14,124,123,0.08);
+  --accent-mint-100:  #f0fffe;
+  --accent-mint-400:  #0e7c7b;
+  --accent-mint-800:  #04403f;
 }
 
 /* ── Reset ── */
@@ -103,25 +103,25 @@ html, body { width: 100%; min-height: 100vh; }
 
 body {
   font-size: 16px;
-  color: #cbd5e1;
+  color: #1f2937;
   background-color: var(--bg-base);
   background-image:
-    radial-gradient(ellipse 80% 50% at 20% -10%, rgba(16,185,129,0.06), transparent),
-    radial-gradient(ellipse 60% 40% at 80%  10%, rgba(59,130,246,0.06), transparent),
-    radial-gradient(ellipse 70% 50% at 50% 100%, rgba(139,92,246,0.04), transparent);
+    radial-gradient(ellipse 80% 50% at 20% -10%, rgba(14,124,123,0.04), transparent),
+    radial-gradient(ellipse 60% 40% at 80%  10%, rgba(30,64,175,0.04), transparent),
+    radial-gradient(ellipse 70% 50% at 50% 100%, rgba(99,102,241,0.02), transparent);
   background-attachment: fixed;
 }
 
-a { color: var(--accent-green); text-decoration: none; transition: color var(--transition-base); }
-a:hover { color: #34d399; }
+a { color: var(--accent-blue); text-decoration: none; transition: color var(--transition-base); }
+a:hover { color: var(--primary); }
 
 textarea {
   padding: 14px 18px;
-  border: 1px solid rgba(255,255,255,0.1);
+  border: 1px solid rgba(0,0,0,0.1);
   border-radius: var(--radius-md);
   transition: border-color var(--transition-base);
-  background: rgba(255,255,255,0.04);
-  color: #e2e8f0;
+  background: rgba(0,0,0,0.02);
+  color: #1f2937;
 }
 
 /* =====================================================
@@ -827,4 +827,285 @@ h4 { font-size: 16px; font-weight: 700; color: #e2e8f0; }
 
 nextjs-portal, .nextjs-toast, .nextjs-toast-errors-parent, .nextjs-error-with-static {
   display: none !important; visibility: hidden !important;
+}
+
+/* =====================================================
+   STICKY BOTTOM NAVIGATION (Mobile)
+   ===================================================== */
+.sticky-bottom-nav {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border-top: 1px solid var(--glass-border);
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.08);
+  z-index: 500;
+  padding: 8px 0;
+  padding-bottom: max(8px, env(safe-area-inset-bottom));
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .sticky-bottom-nav {
+    display: flex;
+  }
+}
+
+.sticky-bottom-nav .nav-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 10px 8px;
+  text-decoration: none;
+  color: #475569;
+  font-size: 11px;
+  font-weight: 600;
+  transition: all var(--transition-base);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.sticky-bottom-nav .nav-item:hover {
+  color: var(--primary);
+}
+
+.sticky-bottom-nav .nav-item.primary {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.sticky-bottom-nav .nav-item.back-to-top {
+  color: #64748b;
+}
+
+.sticky-bottom-nav .nav-icon {
+  display: block;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.sticky-bottom-nav .nav-label {
+  display: block;
+  white-space: nowrap;
+}
+
+/* =====================================================
+   BOOKING SECTION (Light theme)
+   ===================================================== */
+.booking-section {
+  padding: 48px 20px;
+  background: linear-gradient(135deg, rgba(14,124,123,0.02) 0%, rgba(30,64,175,0.02) 100%);
+  border-radius: var(--radius-2xl);
+  margin: 40px 0;
+}
+
+.booking-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+@media (min-width: 768px) {
+  .booking-options {
+    flex-direction: row;
+    justify-content: center;
+    gap: 16px;
+  }
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 14px 24px;
+  border: none;
+  border-radius: var(--radius-lg);
+  font-size: 15px;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  transition: all var(--transition-base);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.cta-button.primary {
+  background: var(--primary);
+  color: white;
+  box-shadow: 0 4px 12px rgba(14,124,123,0.25);
+}
+
+.cta-button.primary:hover {
+  background: var(--primary-hover);
+  box-shadow: 0 6px 16px rgba(14,124,123,0.35);
+  transform: translateY(-2px);
+}
+
+.cta-button.secondary {
+  background: var(--card-bg);
+  color: var(--primary);
+  border: 1px solid var(--card-border);
+}
+
+.cta-button.secondary:hover {
+  background: var(--card-bg-hover);
+  border-color: var(--primary);
+  transform: translateY(-2px);
+}
+
+/* =====================================================
+   LIGHT THEME ADJUSTMENTS
+   ===================================================== */
+header {
+  background: rgba(255,255,255,0.95);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+header .logo-text {
+  color: #1f2937;
+}
+
+header nav ul li a {
+  color: #475569;
+}
+
+header nav ul li a:hover {
+  color: var(--primary);
+}
+
+header nav ul li a.button {
+  background: var(--primary);
+  color: white;
+  padding: 8px 16px;
+  border-radius: var(--radius-md);
+}
+
+header nav ul li a.button:hover {
+  background: var(--primary-hover);
+}
+
+/* Contact dropdown */
+.contact-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.contact-options-dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: white;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: var(--radius-md);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  min-width: 200px;
+  z-index: 1000;
+  margin-top: 4px;
+  overflow: hidden;
+}
+
+.contact-dropdown:hover .contact-options-dropdown {
+  display: block;
+}
+
+.contact-opt {
+  display: block;
+  padding: 12px 16px;
+  color: #1f2937;
+  text-decoration: none;
+  transition: all var(--transition-base);
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  font-size: 13px;
+}
+
+.contact-opt:last-child {
+  border-bottom: none;
+}
+
+.contact-opt:hover {
+  background: rgba(14,124,123,0.08);
+  color: var(--primary);
+  padding-left: 20px;
+}
+
+.mobile-toggle {
+  color: #1f2937;
+  border: 1px solid rgba(0,0,0,0.1);
+  background: rgba(0,0,0,0.02);
+}
+
+.mobile-toggle:hover {
+  background: rgba(0,0,0,0.05);
+  border-color: var(--primary);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #0f172a;
+}
+
+h2 small {
+  color: #64748b;
+}
+
+/* =====================================================
+   MOBILE-FIRST RESPONSIVE
+   ===================================================== */
+@media (max-width: 768px) {
+  main {
+    padding-bottom: 100px;
+  }
+
+  section.container {
+    padding: 24px 16px;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+
+  .cap-title {
+    font-size: 16px;
+  }
+
+  .cap-desc {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 24px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  section.container {
+    padding: 20px 12px;
+  }
+
+  .booking-options {
+    gap: 10px;
+  }
+
+  .cta-button {
+    padding: 12px 16px;
+    font-size: 13px;
+  }
 }
