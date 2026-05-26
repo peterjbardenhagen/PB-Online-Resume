@@ -1,4 +1,5 @@
 import "./globals.css";
+import "./executive-polish.css";
 import { Analytics } from "@vercel/analytics/react";
 import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 
@@ -76,7 +77,7 @@ export const viewport = {
   width: "device-width",
   initialScale: 1.0,
   maximumScale: 2,
-  themeColor: "#000000",
+  themeColor: "#07111f",
 };
 
 export default function RootLayout({ children }) {
