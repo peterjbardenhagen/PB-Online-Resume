@@ -1,69 +1,329 @@
 "use client";
 
-const bookingUrl = "https://outlook.office.com/bookwithme/user/peter@bardenhagen.xyz";
+import { useState } from "react";
 
-const skills = ["Solution Architecture", "Cloud Platforms", "Azure AI", "OpenAI", "Product Strategy", "DevOps", "TOGAF", "ArchiMate", "React", "Next.js", "Executive Advisory", "Agile Delivery"];
+const bookingUrl = "https://outlook.office.com/bookwithme/user/aad8f0e0beba4aebb06c83a9fbd6be01@bardenhagen.xyz?anonymous&ep=plink";
+
+const skills = [
+  "Solution Architecture", "Cloud Platforms", "Azure AI", "OpenAI",
+  "Product Strategy", "DevOps", "TOGAF", "ArchiMate",
+  "React", "Next.js", "Executive Advisory", "Agile Delivery",
+  "Enterprise Integration", "Technical Leadership", "AWS", "Microservices",
+];
+
+const metrics = [
+  { value: "20+", label: "Years Experience" },
+  { value: "100s", label: "Projects Delivered" },
+  { value: "6", label: "Industry Sectors" },
+  { value: "25+", label: "Teams Led" },
+];
+
+const capabilities = [
+  {
+    icon: "⬡",
+    title: "Solution Architecture",
+    sub: "Enterprise Scale Design",
+    desc: "TOGAF 10 & ArchiMate 3.1 certified. Distributed systems, cloud-native platforms, integration patterns, and multi-year roadmaps aligned to business strategy.",
+    tags: ["TOGAF 10", "ArchiMate", "Azure AZ-305", "Microservices"],
+    accent: "#1e40af",
+    wide: true,
+  },
+  {
+    icon: "◎",
+    title: "Technical Leadership",
+    sub: "Teams of 25+",
+    desc: "Building high-performance teams across multi-stream delivery programs with a culture of quality.",
+    tags: ["Team Building", "Mentoring", "Agile/SAFe"],
+    accent: "#0e7c7b",
+    wide: false,
+  },
+  {
+    icon: "◈",
+    title: "AI & Innovation",
+    sub: "Prototype to Production",
+    desc: "Azure OpenAI, LangChain, RAG pipelines. Agentic platforms and intelligent process automation that deliver real business outcomes.",
+    tags: ["Azure AI", "LangChain", "RAG", "OpenAI"],
+    accent: "#6366f1",
+    wide: false,
+  },
+  {
+    icon: "◇",
+    title: "Product Strategy",
+    sub: "Vision to Roadmap",
+    desc: "Translating C-suite vision into prioritised product roadmaps, measurable OKRs, and user-centred digital products.",
+    tags: ["Product Ownership", "Roadmapping", "OKRs", "UX"],
+    accent: "#b45309",
+    wide: false,
+  },
+  {
+    icon: "◉",
+    title: "Agile Delivery",
+    sub: "Strategy to Execution",
+    desc: "End-to-end program governance across discovery, design, build and release. DevOps culture and CI/CD from day one.",
+    tags: ["SAFe", "Scrum", "DevOps", "CI/CD"],
+    accent: "#0e7c7b",
+    wide: false,
+  },
+];
+
 const references = [
-  ["Enterprise clarity", "Peter consistently bridges business and engineering with exceptional clarity and delivery focus."],
-  ["Technical leadership", "He brings calm, practical leadership to complex architecture and delivery challenges."],
-  ["Trusted advisor", "Peter is reliable, transparent and able to translate complexity into business outcomes."],
+  {
+    name: "Christopher R.",
+    company: "Sonic Healthcare",
+    quote: "Peter is knowledgeable, proactive and always advancing his skills. He is very knowledgeable in web applications, CRMs, SEO and digital strategy — a reliable and friendly team member.",
+  },
+  {
+    name: "David Green",
+    company: "Real Estate Group",
+    quote: "Peter is one of the fastest and most flexible web developers I have ever encountered — possessing a rare combination of business acumen and technical proficiency.",
+  },
+  {
+    name: "Senior Leader",
+    company: "Enterprise Client",
+    quote: "Peter consistently bridges business and engineering with exceptional clarity and delivery focus. He brings calm, practical leadership to complex architecture challenges.",
+  },
+];
+
+const sectors = [
+  ["Energy & Utilities", "Grid modernisation, IoT, SCADA integration"],
+  ["Healthcare", "Digital health platforms, clinical workflows, HL7 FHIR"],
+  ["Finance", "Core banking, regulatory compliance, data platforms"],
+  ["Government", "Enterprise architecture, digital services, PSPF"],
+  ["Property", "PropTech platforms, CRM integration, digital portals"],
+  ["Consulting", "Architecture practice lead, pre-sales, delivery"],
 ];
 
 export default function Home() {
-  return (
-    <main className="pb-page">
-      <section className="mobile-landscape-cta" aria-label="Quick contact options">
-        <img src="/profile/img/me.jpeg" alt="Peter Bardenhagen" />
-        <div><p>Peter Bardenhagen</p><h1>Solution Architect & Technology Leader</h1></div>
-        <nav><a href="/Peter_Bardenhagen_CV.docx">CV</a><a href="tel:0452491013">Mobile</a><a href="mailto:peter@bardenhagen.xyz">Email</a></nav>
-      </section>
+  const [menuOpen, setMenuOpen] = useState(false);
 
-      <header className="pb-header">
-        <a href="#home" className="pb-brand"><span>PB</span>Peter Bardenhagen</a>
+  return (
+    <div className="pb-page">
+
+      {/* Mobile bar (landscape) */}
+      <div className="pb-mobile-bar">
+        <img src="/profile/img/me.jpeg" alt="" />
+        <span>Peter Bardenhagen</span>
         <nav>
-          <a href="#skills">Skills</a><a href="#career-story">Career Story</a><a href="#references">References</a><a href="#book">Book</a>
-          <a href="mailto:peter@bardenhagen.xyz" className="pb-email"><span aria-hidden="true">✉️</span><span>peter@bardenhagen.xyz</span></a>
+          <a href="/Peter_Bardenhagen_CV.docx">CV</a>
+          <a href="tel:0452491013">Call</a>
+          <a href="mailto:peter@bardenhagen.xyz">Email</a>
+        </nav>
+      </div>
+
+      {/* Header */}
+      <header className="pb-header">
+        <a href="#" className="pb-brand">
+          <span className="pb-brand-mark">PB</span>
+          <span>Peter Bardenhagen</span>
+        </a>
+
+        <button
+          className="pb-menu-toggle"
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={menuOpen}
+          onClick={() => setMenuOpen(v => !v)}
+        >
+          <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            {menuOpen
+              ? <path strokeLinecap="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+              : <path strokeLinecap="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h12" />}
+          </svg>
+        </button>
+
+        <nav className={`pb-nav${menuOpen ? " open" : ""}`}>
+          <a href="#capabilities" onClick={() => setMenuOpen(false)}>Capabilities</a>
+          <a href="#career" onClick={() => setMenuOpen(false)}>Career</a>
+          <a href="#references" onClick={() => setMenuOpen(false)}>References</a>
+          <a href="#book" onClick={() => setMenuOpen(false)}>Book</a>
+          <a href="mailto:peter@bardenhagen.xyz" className="pb-nav-cta" onClick={() => setMenuOpen(false)}>
+            peter@bardenhagen.xyz
+          </a>
         </nav>
       </header>
 
-      <section id="home" className="pb-hero pb-section">
-        <div className="pb-hero-copy">
-          <p className="pb-eyebrow">Available for senior technology roles</p>
-          <h1>Senior Solution Architect, Product Lead & AI Practitioner</h1>
-          <p className="pb-lead">20+ years leading enterprise digital transformations across energy, healthcare, finance and government. I align strategy, architecture and delivery so teams ship valuable, resilient platforms.</p>
-          <div className="pb-actions"><a href="/Peter_Bardenhagen_CV.docx" className="pb-button primary">Download CV</a><a href="tel:0452491013" className="pb-button secondary">Call 0452 491 013</a><a href="mailto:peter@bardenhagen.xyz" className="pb-button ghost">Email Me</a></div>
-        </div>
-        <div className="pb-photo-card"><img src="/profile/img/me.jpeg" alt="Peter Bardenhagen" /><div><strong>100's of projects</strong><span>Ranging from $500k to $10m</span></div></div>
-      </section>
+      <main>
 
-      <section className="pb-section pb-metrics" aria-label="Career metrics">
-        <article><strong>20+ Years</strong><span>Enterprise leadership</span></article><article><strong>100's</strong><span>Projects from $500k to $10m</span></article><article><strong>6 Industries</strong><span>Energy, health, finance, government and more</span></article><article><strong>25+</strong><span>Teams and delivery streams led</span></article>
-      </section>
+        {/* Hero */}
+        <section id="home" className="pb-hero">
+          <div className="pb-hero-copy">
+            <p className="pb-eyebrow">Available for senior technology roles</p>
+            <h1>Senior Solution Architect,<br />Product Lead &amp; AI Practitioner</h1>
+            <p className="pb-lead">
+              20+ years leading enterprise digital transformations across energy, healthcare,
+              finance and government. I align strategy, architecture and delivery so teams
+              ship valuable, resilient platforms.
+            </p>
+            <div className="pb-actions">
+              <a href="/Peter_Bardenhagen_CV.docx" className="pb-button primary">↓ Download CV</a>
+              <a href="tel:0452491013" className="pb-button secondary">📞 0452 491 013</a>
+              <a href="mailto:peter@bardenhagen.xyz" className="pb-button ghost">✉ Email Me</a>
+            </div>
+          </div>
 
-      <section id="skills" className="pb-section">
-        <div className="pb-section-heading"><p className="pb-eyebrow">Capability Cloud</p><h2>High-impact architecture, AI and delivery skills</h2></div>
-        <div className="pb-cloud">{skills.map((s, i) => <span key={s} style={{"--i": i}}>{s}</span>)}</div>
-      </section>
+          <div className="pb-hero-visual">
+            <div className="pb-photo-frame">
+              <img src="/profile/img/me.jpeg" alt="Peter Bardenhagen — Solution Architect" />
+            </div>
+            <div className="pb-cert-row">
+              {["TOGAF 10", "ArchiMate 3.1", "Azure AI"].map(c => (
+                <div key={c} className="pb-cert">{c}</div>
+              ))}
+            </div>
+          </div>
+        </section>
 
-      <section id="career-story" className="pb-section pb-card-section">
-        <div className="pb-section-heading"><p className="pb-eyebrow">Career Story</p><h2>Business-first technologist with hands-on depth</h2></div>
-        <div className="pb-story-card"><p>Peter combines executive communication, solution architecture and hands-on engineering leadership to deliver complex digital programs. He has led hundreds of initiatives spanning architecture strategy, cloud migration, AI implementation, product delivery and enterprise transformation.</p></div>
-      </section>
+        {/* Metrics */}
+        <section className="pb-metrics" aria-label="Career statistics">
+          {metrics.map(({ value, label }) => (
+            <article key={label}>
+              <strong>{value}</strong>
+              <span>{label}</span>
+            </article>
+          ))}
+        </section>
 
-      <section id="references" className="pb-section">
-        <div className="pb-section-heading"><p className="pb-eyebrow">References</p><h2>What Colleagues Say</h2></div>
-        <div className="pb-reference-grid">{references.map(([name, quote]) => <article className="pb-reference-card" key={name}><p>“{quote}”</p><footer>{name}</footer></article>)}</div>
-      </section>
+        {/* Skills */}
+        <section id="skills" className="pb-section">
+          <div className="pb-section-head">
+            <p className="pb-eyebrow">Capability Cloud</p>
+            <h2>Skills &amp; Technologies</h2>
+          </div>
+          <div className="pb-cloud">
+            {skills.map((s, i) => (
+              <span key={s} style={{ animationDelay: `${i * 0.06}s` }}>{s}</span>
+            ))}
+          </div>
+        </section>
 
-      <section id="qualify" className="pb-section pb-card-section">
-        <div className="pb-section-heading"><p className="pb-eyebrow">Role Fit</p><h2>Qualify Me for Your Role</h2></div>
-        <form className="pb-role-form"><textarea placeholder="Paste a role description or describe the challenge..." aria-label="Role description" /><button type="submit" className="pb-button primary">Send</button></form>
-      </section>
+        {/* Capabilities */}
+        <section id="capabilities" className="pb-section pb-alt-bg">
+          <div className="pb-section-head">
+            <p className="pb-eyebrow">Core Capabilities</p>
+            <h2>What I Bring to the Table</h2>
+          </div>
+          <div className="pb-caps-grid">
+            {capabilities.map(cap => (
+              <article
+                key={cap.title}
+                className={`pb-cap${cap.wide ? " wide" : ""}`}
+                style={{ "--cap": cap.accent }}
+              >
+                <span className="pb-cap-icon">{cap.icon}</span>
+                <p className="pb-cap-sub">{cap.sub}</p>
+                <h3>{cap.title}</h3>
+                <p className="pb-cap-desc">{cap.desc}</p>
+                <div className="pb-cap-tags">
+                  {cap.tags.map(t => <span key={t}>{t}</span>)}
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
 
-      <section id="book" className="pb-section pb-book-section">
-        <div className="pb-section-heading"><p className="pb-eyebrow">Let&apos;s Connect</p><h2>Book a Meeting</h2></div>
-        <div className="pb-book-card"><p>Choose a time that works for you using Outlook booking, or open the booking page in a new tab.</p><iframe title="Book a meeting with Peter Bardenhagen" src={bookingUrl} loading="lazy" referrerPolicy="no-referrer-when-downgrade" /><a href={bookingUrl} target="_blank" rel="noopener noreferrer" className="pb-button primary">Open Outlook Booking</a></div>
-      </section>
-    </main>
+        {/* Career Story */}
+        <section id="career" className="pb-section">
+          <div className="pb-section-head">
+            <p className="pb-eyebrow">Career Story</p>
+            <h2>Business-first Technologist with Hands-on Depth</h2>
+          </div>
+          <div className="pb-story-layout">
+            <div className="pb-story-text">
+              <p>
+                Peter combines executive communication, solution architecture and hands-on
+                engineering leadership to deliver complex digital programs. He has led hundreds
+                of initiatives spanning architecture strategy, cloud migration, AI implementation,
+                product delivery and enterprise transformation.
+              </p>
+              <p>
+                With deep roots in both business and engineering, Peter translates strategy into
+                executable architecture and complex technical realities into board-level narratives
+                that secure investment and alignment.
+              </p>
+            </div>
+            <div className="pb-sector-grid">
+              {sectors.map(([sector, desc]) => (
+                <div key={sector} className="pb-sector">
+                  <strong>{sector}</strong>
+                  <span>{desc}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* References */}
+        <section id="references" className="pb-section pb-alt-bg">
+          <div className="pb-section-head">
+            <p className="pb-eyebrow">References</p>
+            <h2>What Colleagues Say</h2>
+          </div>
+          <div className="pb-ref-grid">
+            {references.map(({ name, company, quote }) => (
+              <article key={name} className="pb-ref-card">
+                <p>"{quote}"</p>
+                <footer>
+                  <strong>{name}</strong>
+                  <span>{company}</span>
+                </footer>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        {/* Qualify Me */}
+        <section id="qualify" className="pb-section">
+          <div className="pb-section-head">
+            <p className="pb-eyebrow">Role Fit</p>
+            <h2>Qualify Me for Your Role</h2>
+          </div>
+          <div className="pb-qualify">
+            <p>Paste a job description or describe your challenge — I'll respond with how my background aligns.</p>
+            <form className="pb-qualify-form">
+              <textarea placeholder="Paste a role description or describe the challenge..." aria-label="Role description" />
+              <button type="submit" className="pb-button primary">✉ Send to Peter</button>
+            </form>
+          </div>
+        </section>
+
+        {/* Book */}
+        <section id="book" className="pb-section pb-book-section">
+          <div className="pb-section-head inverted">
+            <p className="pb-eyebrow">Let's Connect</p>
+            <h2>Book a Meeting</h2>
+          </div>
+          <div className="pb-book-card">
+            <p>Choose a time that works for you, or reach out directly.</p>
+            <div className="pb-book-actions">
+              <a href={bookingUrl} target="_blank" rel="noopener noreferrer" className="pb-button light-primary">
+                📅 Open Outlook Booking
+              </a>
+              <a href="tel:0452491013" className="pb-button light-ghost">📞 0452 491 013</a>
+              <a href="mailto:peter@bardenhagen.xyz" className="pb-button light-ghost">✉ peter@bardenhagen.xyz</a>
+            </div>
+            <iframe
+              title="Book a meeting with Peter Bardenhagen"
+              src={bookingUrl}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
+        </section>
+
+      </main>
+
+      {/* Sticky bottom nav — mobile only */}
+      <nav className="pb-bottom-nav" aria-label="Quick actions">
+        <a href="/Peter_Bardenhagen_CV.docx" download="Peter_Bardenhagen_CV.docx" className="pb-bottom-item">
+          <span>⬇</span><span>Download CV</span>
+        </a>
+        <a href="mailto:peter@bardenhagen.xyz" className="pb-bottom-item accent">
+          <span>✉</span><span>Get in Touch</span>
+        </a>
+        <button className="pb-bottom-item" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+          <span>↑</span><span>Top</span>
+        </button>
+      </nav>
+
+    </div>
   );
 }
